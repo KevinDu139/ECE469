@@ -50,6 +50,10 @@
 #define	TRAP_PROCESS_WAKEUP	0x420
 #define	TRAP_PROCESS_FORK	0x430
 
+//I made these
+#define TRAP_GETPID 0x431
+
+
 // The following are special I/O addresses for DLX.
 #define	DLX_TIMER_ADDRESS	0xfff00010
 #define	DLX_KBD_PUTCHAR		0xfff00100

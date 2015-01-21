@@ -11,5 +11,6 @@
 int Open(char *filename, int mode);
 void Printf(char *format, ...);
 void Exit();
+unsigned int getpid();
 
 #endif
