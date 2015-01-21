@@ -665,13 +665,10 @@ ProcessGetFromFile (int fd, unsigned char *buf, uint32 *addr, int max)
 //---------------------------------------------------------------------
 
 
-unsigned int GetCurrentPid();
+unsigned int GetCurrentPid(){
+  return  currentPCB- pcbs;
+}
 
-
-
-
-
-
 //----------------------------------------------------------------------
 //
 //	main

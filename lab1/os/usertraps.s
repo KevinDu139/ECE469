@@ -66,3 +66,12 @@ _Printf:
 	nop
 .endproc _Printf
 
+;;; User defined traps
+.proc _Getpid
+.global _Getpid
+_Getpid:
+  trap #0x431
+  jr  r31
+  nop
+.endproc _Getpid
+

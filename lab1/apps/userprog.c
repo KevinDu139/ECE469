@@ -2,6 +2,5 @@
 
 void main (int x)
 {
-  Printf("Hello World!\n");
-  while(1); // Use CTRL-C to exit the simulator
+  Printf("current pid is: %d\n\n", Getpid());
 }

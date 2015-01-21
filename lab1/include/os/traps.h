@@ -51,7 +51,7 @@
 #define	TRAP_PROCESS_FORK	0x430
 
 //I made these
-#define TRAP_GETPID 0x433
+#define TRAP_GETPID 0x431
 
 
 // The following are special I/O addresses for DLX.
