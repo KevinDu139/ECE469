@@ -1,0 +1,5 @@
+1. 32 max semaphores
+2. 64 max locks
+3. A semaphore is created using SemCreate. You specify the number of semaphores you would like to create as an arguement to the SemCreate function and it returns the handle to the latest created semaphone.
+4. 
+

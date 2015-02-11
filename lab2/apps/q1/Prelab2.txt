@@ -1,0 +1,6 @@
+1. 32 max semaphores
+2. 64 max locks
+3. A semaphore is created using SemCreate. You specify the number of semaphores you would like to create as an arguement to the SemCreate function and it returns the handle to the latest created semaphone.
+4. sem_wait is used to check if the resources of a semaphore are used up. When the semaphore's value is less than 0 then all resources are used and the process must wait for resources to become available. sem_signal is used by a process to signal that it is done using the resources of a semaphore and increments the semaphore value.
+5. A handle is a pointer to a semaphore and allows the same semaphore to be accessed between processes in DLXOS.
+
