@@ -1,0 +1,5 @@
+*.o
+*.lst
+*.depend
+*.dlx
+*.dlx.obj
