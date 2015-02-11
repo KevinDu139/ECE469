@@ -324,7 +324,6 @@ int CondInit (Cond *cond) {
     printf("FATAL ERROR: could not initialize condition variable waiting queue in CondInit!\n");
     exitsim();
   }
-  cond->cv = 1;
   return SYNC_SUCCESS;
 }
 
@@ -347,7 +346,7 @@ cond_t CondCreate(lock_t lock) {
   cond_t cond;
   uint32 intrval;
 
-  // grabbing a semaphore should be an atomic operation
+  // grabbing a condition variable should be an atomic operation
   intrval = DisableIntrs();
   for(cond=0; cond<MAX_CONDS; cond++) {
     if(conds[cond].inuse==0) {
@@ -386,10 +385,34 @@ cond_t CondCreate(lock_t lock) {
 //	CondHandleBroadcast releases the lock explicitly.
 //---------------------------------------------------------------------------
 int CondHandleWait(cond_t c) {
-  // Your code goes here
-  return SYNC_SUCCESS;
+    if (c < 0) return SYNC_FAIL;
+    if (c >= MAX_CONDS) return SYNC_FAIL;
+    if (!conds[c].inuse)    return SYNC_FAIL;
+    return CondWait(&conds[c]);
 }
 
+int CondWait (Cond *cond) {
+    Link	*l;
+    int		intrval;
+
+    if (!cond) return SYNC_FAIL;
+
+    intrval = DisableIntrs ();
+    dbprintf ('I', "CondWait: Old interrupt value was 0x%x.\n", intrval);
+    dbprintf('s', "SemWait: putting process %d to sleep\n", GetCurrentPid());
+
+    if ((l = AQueueAllocLink ((void *)currentPCB)) == NULL) {
+        printf("FATAL ERROR: could not allocate link for condition variable queue in CondWait!\n");
+        exitsim();
+    }
+    if (AQueueInsertLast (&cond->waiting, l) != QUEUE_SUCCESS) {
+        printf("FATAL ERROR: could not insert new link into condition variable waiting queue in condwait!\n");
+        exitsim();
+    }
+    ProcessSleep();
+    RestoreIntrs (intrval);
+    return SYNC_SUCCESS;
+}
 
 
 //---------------------------------------------------------------------------
@@ -412,10 +435,33 @@ int CondHandleWait(cond_t c) {
 //	must explicitly release the lock after the call is complete.
 //---------------------------------------------------------------------------
 int CondHandleSignal(cond_t c) {
-  // Your code goes here
-  return SYNC_SUCCESS;
+    if (c < 0) return SYNC_FAIL;
+    if (c >= MAX_CONDS) return SYNC_FAIL;
+    if (!conds[c].inuse)    return SYNC_FAIL;
+    return CondSignal(&conds[c]);
 }
 
+int CondSignal (Cond *cond) {
+    Link *l;
+    int	intrs;
+    PCB *pcb;
+
+    if (!cond) return SYNC_FAIL;
+
+    intrs = DisableIntrs ();
+    if (!AQueueEmpty(&cond->waiting)) { // there is a process to wake up
+        l = AQueueFirst(&cond->waiting);
+        pcb = (PCB *)AQueueObject(l);
+        if (AQueueRemove(&l) != QUEUE_SUCCESS) { 
+            printf("FATAL ERROR: could not remove link from condition variable queue in CondSignal!\n");
+            exitsim();
+        }
+        dbprintf ('s', "CondSignal: Waking up PID %d.\n", (int)(GetPidFromAddress(pcb)));
+        ProcessWakeup (pcb);
+    }
+    RestoreIntrs (intrs);
+    return SYNC_SUCCESS;
+}
 //---------------------------------------------------------------------------
 //	CondHandleBroadcast
 //
@@ -432,6 +478,32 @@ int CondHandleSignal(cond_t c) {
 //	must explicitly release the lock after the call completion.
 //---------------------------------------------------------------------------
 int CondHandleBroadcast(cond_t c) {
-  // Your code goes here
-  return SYNC_SUCCESS;
+    if (c < 0) return SYNC_FAIL;
+    if (c >= MAX_CONDS) return SYNC_FAIL;
+    if (!conds[c].inuse)    return SYNC_FAIL;
+    return CondBroadcast(&conds[c]);
+}
+
+int CondBroadcast (Cond *cond) {
+    Link *l;
+    int	intrs;
+    PCB *pcb;
+
+    if (!cond) return SYNC_FAIL;
+
+    intrs = DisableIntrs ();
+
+    while (!AQueueEmpty(&cond->waiting)) { // there is a process to wake up
+        l = AQueueFirst(&cond->waiting);
+        pcb = (PCB *)AQueueObject(l);
+        if (AQueueRemove(&l) != QUEUE_SUCCESS) { 
+            printf("FATAL ERROR: could not remove link from condition variable queue in CondSignal!\n");
+            exitsim();
+        }
+        dbprintf ('s', "CondSignal: Waking up PID %d.\n", (int)(GetPidFromAddress(pcb)));
+        ProcessWakeup (pcb);
+    }
+
+    RestoreIntrs (intrs);
+    return SYNC_SUCCESS;
 }

@@ -96,15 +96,21 @@ LC7:
 	.ascii "\n\000"
 	.align 2
 LC8:
-	.ascii "Producer %d inserted: %c\n\000"
+	.ascii "Bad CV c_emptyslots (%d) in PID: %d \n\000"
 	.align 2
 LC9:
-	.ascii "Bad lock release (%d) in \000"
+	.ascii "Producer %d inserted: %c\n\000"
 	.align 2
 LC10:
-	.ascii "producer: PID %d is complete.\n\000"
+	.ascii "Bad CV c_fullslots\n\000"
 	.align 2
 LC11:
+	.ascii "Bad lock release (%d) in \000"
+	.align 2
+LC12:
+	.ascii "producer: PID %d is complete.\n\000"
+	.align 2
+LC13:
 	.ascii "Bad semaphore s_procs_completed (%d) in \000"
 .text
 	.align 2
@@ -117,59 +123,59 @@ _main:
 	sw	-8(r29),r31	; push ret addr
 	subui	r29,r29,#24	; alloc local storage
 	lw	r2,(r30)
-	lw	r8,4(r30)
+	lw	r9,4(r30)
 	jal	___main
 	nop	; not filled.
 	lhi	r1,((LC0)>>16)&0xffff
 	addui	r1,r1,(LC0)&0xffff
-	lb	r11,(r1)
-	sb	-24(r30),r11
-	lb	r11,1(r1)
-	sb	-23(r30),r11
-	lb	r11,2(r1)
-	sb	-22(r30),r11
-	lb	r11,3(r1)
-	sb	-21(r30),r11
-	lb	r11,4(r1)
-	sb	-20(r30),r11
-	lb	r11,5(r1)
-	sb	-19(r30),r11
-	lb	r11,6(r1)
-	sb	-18(r30),r11
-	lb	r11,7(r1)
-	sb	-17(r30),r11
-	lb	r11,8(r1)
-	sb	-16(r30),r11
-	lb	r11,9(r1)
-	sb	-15(r30),r11
-	lb	r11,10(r1)
-	sb	-14(r30),r11
+	lb	r13,(r1)
+	sb	-24(r30),r13
+	lb	r13,1(r1)
+	sb	-23(r30),r13
+	lb	r13,2(r1)
+	sb	-22(r30),r13
+	lb	r13,3(r1)
+	sb	-21(r30),r13
+	lb	r13,4(r1)
+	sb	-20(r30),r13
+	lb	r13,5(r1)
+	sb	-19(r30),r13
+	lb	r13,6(r1)
+	sb	-18(r30),r13
+	lb	r13,7(r1)
+	sb	-17(r30),r13
+	lb	r13,8(r1)
+	sb	-16(r30),r13
+	lb	r13,9(r1)
+	sb	-15(r30),r13
+	lb	r13,10(r1)
+	sb	-14(r30),r13
 	lb	r1,11(r1)
 	sb	-13(r30),r1
 	addi	r7,r0,#0
 	addi	r29,r29,#-8
-	lhi	r11,((LC1)>>16)&0xffff
-	addui	r11,r11,(LC1)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC1)>>16)&0xffff
+	addui	r13,r13,(LC1)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	addi	r29,r29,#8
-	snei	r1,r2,#4
+	snei	r1,r2,#6
 	beqz	r1,L14
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC2)>>16)&0xffff
-	addui	r11,r11,(LC2)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC2)>>16)&0xffff
+	addui	r13,r13,(LC2)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lw	r11,(r8)
-	sw	(r29),r11
+	lw	r13,(r9)
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lhi	r11,((LC3)>>16)&0xffff
-	addui	r11,r11,(LC3)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC3)>>16)&0xffff
+	addui	r13,r13,(LC3)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	jal	_Exit
@@ -177,33 +183,51 @@ _main:
 	addi	r29,r29,#8
 L14:
 	addi	r29,r29,#-16
-	lw	r11,4(r8)
-	sw	(r29),r11
-	addi	r11,r0,#0
-	sw	4(r29),r11
-	addi	r11,r0,#10
-	sw	8(r29),r11
+	lw	r13,4(r9)
+	sw	(r29),r13
+	addi	r13,r0,#0
+	sw	4(r29),r13
+	addi	r13,r0,#10
+	sw	8(r29),r13
 	jal	_dstrtol
 	nop	; not filled.
 	add	r2,r0,r1
-	lw	r11,8(r8)
-	sw	(r29),r11
-	addi	r11,r0,#0
-	sw	4(r29),r11
-	addi	r11,r0,#10
-	sw	8(r29),r11
+	lw	r13,8(r9)
+	sw	(r29),r13
+	addi	r13,r0,#0
+	sw	4(r29),r13
+	addi	r13,r0,#10
+	sw	8(r29),r13
 	jal	_dstrtol
 	nop	; not filled.
-	add	r10,r0,r1
-	lw	r11,12(r8)
-	sw	(r29),r11
-	addi	r11,r0,#0
-	sw	4(r29),r11
-	addi	r11,r0,#10
-	sw	8(r29),r11
+	add	r12,r0,r1
+	lw	r13,12(r9)
+	sw	(r29),r13
+	addi	r13,r0,#0
+	sw	4(r29),r13
+	addi	r13,r0,#10
+	sw	8(r29),r13
 	jal	_dstrtol
 	nop	; not filled.
 	add	r6,r0,r1
+	lw	r13,16(r9)
+	sw	(r29),r13
+	addi	r13,r0,#0
+	sw	4(r29),r13
+	addi	r13,r0,#10
+	sw	8(r29),r13
+	jal	_dstrtol
+	nop	; not filled.
+	add	r11,r0,r1
+	lw	r13,20(r9)
+	sw	(r29),r13
+	addi	r13,r0,#0
+	sw	4(r29),r13
+	addi	r13,r0,#10
+	sw	8(r29),r13
+	jal	_dstrtol
+	nop	; not filled.
+	add	r8,r0,r1
 	sw	(r29),r2
 	jal	_shmat
 	nop	; not filled.
@@ -213,25 +237,25 @@ L14:
 	bnez	r1,L15
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC4)>>16)&0xffff
-	addui	r11,r11,(LC4)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC4)>>16)&0xffff
+	addui	r13,r13,(LC4)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lw	r11,(r8)
-	sw	(r29),r11
+	lw	r13,(r9)
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lhi	r11,((LC5)>>16)&0xffff
-	addui	r11,r11,(LC5)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC5)>>16)&0xffff
+	addui	r13,r13,(LC5)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	jal	_Exit
 	nop	; not filled.
 	addi	r29,r29,#8
 L15:
-	addi	r9,r0,#11
+	addi	r10,r0,#11
 L18:
 	addi	r29,r29,#-8
 	sw	(r29),r6
@@ -242,29 +266,29 @@ L18:
 	beqz	r1,L19
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC6)>>16)&0xffff
-	addui	r11,r11,(LC6)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC6)>>16)&0xffff
+	addui	r13,r13,(LC6)&0xffff
+	sw	(r29),r13
 	sw	4(r29),r6
 	jal	_Printf
 	nop	; not filled.
-	lw	r11,(r8)
-	sw	(r29),r11
+	lw	r13,(r9)
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lhi	r11,((LC7)>>16)&0xffff
-	addui	r11,r11,(LC7)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC7)>>16)&0xffff
+	addui	r13,r13,(LC7)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	jal	_Exit
 	nop	; not filled.
 	addi	r29,r29,#8
 L19:
-	lw	r4,16(r5)
-	addi	r3,r4,#1
+	lw	r1,16(r5)
+	addi	r3,r1,#1
 	movi2fp	f0,r3
-	movi2fp	f1,r9
+	movi2fp	f1,r10
 	div	f0,f0,f1
 	movfp2i	r2,f0
 	slli	r1,r2,#0x1
@@ -273,18 +297,59 @@ L19:
 	sub	r1,r1,r2
 	sub	r2,r3,r1
 	lw	r1,12(r5)
-	sne	r1,r2,r1
+	seq	r1,r2,r1
+	beqz	r1,L21
+	nop	; not filled.
+	addi	r4,r0,#11
+L22:
+	addi	r29,r29,#-8
+	sw	(r29),r8
+	jal	_cond_wait
+	nop	; not filled.
+	addi	r29,r29,#8
+	snei	r1,r1,#1
 	beqz	r1,L20
 	nop	; not filled.
-	add	r2,r5,r4
-	addi	r1,r30,#-24
-	add	r4,r1,r7
-	lb	r11,(r4)
-	sb	(r2),r11
+	jal	_getpid
+	nop	; not filled.
+	addi	r29,r29,#-16
+	lhi	r13,((LC8)>>16)&0xffff
+	addui	r13,r13,(LC8)&0xffff
+	sw	(r29),r13
+	sw	4(r29),r8
+	sw	8(r29),r1
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#16
+L20:
 	lw	r1,16(r5)
 	addi	r3,r1,#1
 	movi2fp	f0,r3
-	movi2fp	f1,r9
+	movi2fp	f1,r4
+	div	f0,f0,f1
+	movfp2i	r2,f0
+	slli	r1,r2,#0x1
+	add	r1,r1,r2
+	slli	r1,r1,#0x2
+	sub	r1,r1,r2
+	sub	r2,r3,r1
+	lw	r1,12(r5)
+	seq	r1,r2,r1
+	bnez	r1,L22
+	nop	; not filled.
+L21:
+	lw	r1,16(r5)
+	add	r2,r5,r1
+	addi	r1,r30,#-24
+	add	r4,r1,r7
+	lb	r13,(r4)
+	sb	(r2),r13
+	lw	r1,16(r5)
+	addi	r3,r1,#1
+	movi2fp	f0,r3
+	movi2fp	f1,r10
 	div	f0,f0,f1
 	movfp2i	r2,f0
 	slli	r1,r2,#0x1
@@ -296,17 +361,32 @@ L19:
 	jal	_getpid
 	nop	; not filled.
 	addi	r29,r29,#-16
-	lhi	r11,((LC8)>>16)&0xffff
-	addui	r11,r11,(LC8)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC9)>>16)&0xffff
+	addui	r13,r13,(LC9)&0xffff
+	sw	(r29),r13
 	sw	4(r29),r1
 	lbu	r1,(r4)
 	sw	8(r29),r1
 	jal	_Printf
 	nop	; not filled.
 	addi	r7,r7,#1
+	sw	(r29),r11
+	jal	_cond_signal
+	nop	; not filled.
 	addi	r29,r29,#16
-L20:
+	snei	r1,r1,#1
+	beqz	r1,L25
+	nop	; not filled.
+	addi	r29,r29,#-8
+	lhi	r13,((LC10)>>16)&0xffff
+	addui	r13,r13,(LC10)&0xffff
+	sw	(r29),r13
+	jal	_Printf
+	nop	; not filled.
+	jal	_Exit
+	nop	; not filled.
+	addi	r29,r29,#8
+L25:
 	addi	r29,r29,#-8
 	sw	(r29),r6
 	jal	_lock_release
@@ -316,19 +396,19 @@ L20:
 	beqz	r1,L16
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC9)>>16)&0xffff
-	addui	r11,r11,(LC9)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC11)>>16)&0xffff
+	addui	r13,r13,(LC11)&0xffff
+	sw	(r29),r13
 	sw	4(r29),r6
 	jal	_Printf
 	nop	; not filled.
-	lw	r11,(r8)
-	sw	(r29),r11
+	lw	r13,(r9)
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
-	lhi	r11,((LC7)>>16)&0xffff
-	addui	r11,r11,(LC7)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC7)>>16)&0xffff
+	addui	r13,r13,(LC7)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	jal	_Exit
@@ -341,39 +421,39 @@ L16:
 	jal	_getpid
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC10)>>16)&0xffff
-	addui	r11,r11,(LC10)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC12)>>16)&0xffff
+	addui	r13,r13,(LC12)&0xffff
+	sw	(r29),r13
 	sw	4(r29),r1
 	jal	_Printf
 	nop	; not filled.
-	sw	(r29),r10
+	sw	(r29),r12
 	jal	_sem_signal
 	nop	; not filled.
 	addi	r29,r29,#8
 	snei	r1,r1,#1
-	beqz	r1,L23
+	beqz	r1,L28
 	nop	; not filled.
 	addi	r29,r29,#-8
-	lhi	r11,((LC11)>>16)&0xffff
-	addui	r11,r11,(LC11)&0xffff
-	sw	(r29),r11
-	sw	4(r29),r10
+	lhi	r13,((LC13)>>16)&0xffff
+	addui	r13,r13,(LC13)&0xffff
+	sw	(r29),r13
+	sw	4(r29),r12
 	jal	_Printf
 	nop	; not filled.
-	lw	r8,(r8)
-	sw	(r29),r8
+	lw	r9,(r9)
+	sw	(r29),r9
 	jal	_Printf
 	nop	; not filled.
-	lhi	r11,((LC5)>>16)&0xffff
-	addui	r11,r11,(LC5)&0xffff
-	sw	(r29),r11
+	lhi	r13,((LC5)>>16)&0xffff
+	addui	r13,r13,(LC5)&0xffff
+	sw	(r29),r13
 	jal	_Printf
 	nop	; not filled.
 	jal	_Exit
 	nop	; not filled.
 	addi	r29,r29,#8
-L23:
+L28:
 	jal	_exit
 	nop
 .endproc _main

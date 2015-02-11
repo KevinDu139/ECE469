@@ -11,14 +11,14 @@ void main (int argc, char *argv[])
 	buffer_l *ring_buffer;
 	uint32 h_mem;                   // Used to hold handle to shared memory page
 	sem_t s_procs_completed;        // Semaphore used to wait until all spawned processes have completed
-	cond_t c_fullslots;				//semaphore used to hold number of full slots available
-	cond_t c_emptyslots; 			//semaphore used to hold number of empty slots available
-	lock_t buffer_lock;             // lock for program
+	sem_t s_fullslots;				//semaphore used to hold number of full slots available
+	sem_t s_emptyslots; 			//semaphore used to hold number of empty slots available
+    lock_t buffer_lock;             // lock for program
 	char h_mem_str[10];             // Used as command-line argument to pass mem_handle to new processes
 	char s_procs_completed_str[10]; // Used as command-line argument to pass page_mapped handle to new processes
-	char buffer_lock_str[10]; 
-	char c_fullslots_str[10];
-	char c_emptyslots_str[10];
+    char buffer_lock_str[10]; 
+	char s_fullslots_str[10];
+	char s_emptyslots_str[10];
 
 	if (argc != 2) {
     	Printf("Usage: "); Printf(argv[0]); Printf(" <number of processes to create>\n");
@@ -60,18 +60,13 @@ void main (int argc, char *argv[])
     	Exit();
   	}
 
-	if((c_fullslots = cond_create(0)) == SYNC_FAIL) {
-		Printf("Bad cond_create in"); Printf(argv[0]); Printf("\n");
+	if(s_fullslots = sem_create(BUFFERSIZE) == SYNC_FAIL) {
+		Printf("Bad sem_create in"); Printf(argv[0]); Printf("\n");
 		Exit();
 	}
 
-	if((c_emptyslots = cond_create(BUFFERSIZE)) == SYNC_FAIL) {
-		Printf("Bad cond_create in"); Printf(argv[0]); Printf("\n");
-		Exit();
-	}
-
-	if((buffer_lock = lock_create()) == SYNC_FAIL) {
-		Printf("Bad lock_create in"); Printf(argv[0]); Printf("\n");
+	if(s_emptyslots = sem_create(0) == SYNC_FAIL) {
+		Printf("Bad sem_create in"); Printf(argv[0]); Printf("\n");
 		Exit();
 	}
 
@@ -81,9 +76,9 @@ void main (int argc, char *argv[])
   	// on the command line, so we must first convert them from ints to strings.
   	ditoa(h_mem, h_mem_str);
   	ditoa(s_procs_completed, s_procs_completed_str);
-	ditoa(buffer_lock, buffer_lock_str);
-	ditoa(c_fullslots, c_fullslots_str);
-	ditoa(c_emptyslots, c_emptyslots_str);
+    ditoa(buffer_lock, buffer_lock_str);
+	ditoa(s_fullslots, s_fullslots_str);
+	ditoa(s_emptyslots, s_emptyslots_str);
 
   // Now we can create the processes.  Note that you MUST end your call to
   // process_create with a NULL argument so that the operating system
@@ -91,9 +86,9 @@ void main (int argc, char *argv[])
   for(i=0; i<numprocs; i++) {
     //process_create(FILENAME_TO_RUN, h_mem_str, s_procs_completed_str, NULL);
     // Create Producer
-    process_create(FILENAME_PRODUCER, h_mem_str, s_procs_completed_str, buffer_lock_str, c_fullslots_str, c_emptyslots_str);
+    process_create(FILENAME_PRODUCER, h_mem_str, s_procs_completed_str, buffer_lock_str, s_fullslots_str, s_emptyslots_str);
     // Create Consumer
-    process_create(FILENAME_CONSUMER, h_mem_str, s_procs_completed_str, buffer_lock_str, c_fullslots_str, c_emptyslots_str);
+    process_create(FILENAME_CONSUMER, h_mem_str, s_procs_completed_str, buffer_lock_str, s_fullslots_str, s_emptyslots_str);
     Printf("Process %d created\n", i);
   }
 
