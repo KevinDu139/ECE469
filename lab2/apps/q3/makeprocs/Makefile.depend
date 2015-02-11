@@ -1,5 +1,0 @@
-work/makeprocs.o: makeprocs.c \
- /home/shay/a/ee469g02/ee469/lab2/apps/q3/../../include/lab2-api.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q3/../../include/usertraps.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q3/../../include/misc.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q3/include/spawn.h

@@ -1,5 +1,0 @@
-work/producer.o: producer.c \
- /home/shay/a/ee469g02/ee469/lab2/apps/q4/../../include/lab2-api.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q4/../../include/usertraps.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q4/../../include/misc.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q4/include/spawn.h

@@ -1,5 +1,0 @@
-work/injectN2.o: injectN2.c \
- /home/shay/a/ee469g02/ee469/lab2/apps/q5/../../include/lab2-api.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q5/../../include/usertraps.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q5/../../include/misc.h \
- /home/shay/a/ee469g02/ee469/lab2/apps/q5/include/spawn.h
