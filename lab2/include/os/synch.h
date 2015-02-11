@@ -59,8 +59,6 @@ typedef struct Cond {
   // Your code goes here
   Queue waiting;
   Lock l;
-  int inuse;
-  int cv;
 } Cond;
 
 int CondInit(Cond *);
