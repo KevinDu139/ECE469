@@ -5,6 +5,9 @@
 #include "queue.h"
 #include "mbox.h"
 
+static mbox mboxs[MBOX_NUM_MBOXES];
+static mbox_message mbox_messages[MBOX_NUM_BUFFERS];
+
 //-------------------------------------------------------
 //
 // void MboxModuleInit();
@@ -19,6 +22,15 @@
 //-------------------------------------------------------
 
 void MboxModuleInit() {
+    int i;
+    dbprintf('p', "MboxModuleInit: Entering MboxModuleInit\n");
+    for(i=0; i<MBOX_NUM_MBOXES; i++){
+        mboxs[i].inuse = 0;
+    }
+    for(i=0; i< MBOX_NUM_BUFFERS; i++){
+        mbox_messages[i].inuse = 0;
+    }
+    dbprintf('p', "MboxModuleInit: Leaving MboxModuleInit\n");
 }
 
 //-------------------------------------------------------
@@ -32,7 +44,32 @@ void MboxModuleInit() {
 //
 //-------------------------------------------------------
 mbox_t MboxCreate() {
-  return MBOX_FAIL;
+    mbox_t mbox;
+    uint32 intrval;
+
+    //grabbing a mailbox should be an atomic operation
+    intrval = DisableIntrs();
+    for(mbox=0; mbox<MBOX_NUM_MBOXES; mbox++){
+        if(mboxs[mbox].inuse == 0){
+            mboxs[mbox].inuse = 1;
+            break;
+        }
+    }
+
+    RestoreIntrs(intrval);
+    if(mbox == MBOX_NUM_MBOXES) return MBOX_FAIL;
+
+    if(AQueueInit(&mboxs[mbox].messages) != QUEUE_SUCCESS){
+        printf("FATAL ERROR: Could not initialize mbox messsage queue\n");
+        exitsim();
+    }
+
+    if(AQueueInit(&mboxs[mbox].pids) != QUEUE_SUCCESS){
+        printf("FATAL ERROR: Could not initialize mbox pid queue\n");
+        exitsim();
+    }
+
+    return mbox;
 }
 
 //-------------------------------------------------------
@@ -50,7 +87,21 @@ mbox_t MboxCreate() {
 //
 //-------------------------------------------------------
 int MboxOpen(mbox_t handle) {
-  return MBOX_FAIL;
+    Link *l;
+
+    if(!&mboxs[handle]) return MBOX_FAIL;
+
+    if ((l = AQueueAllocLink ((void *)GetCurrentPid())) == NULL) {
+        printf("FATAL ERROR: could not allocate link for pid queue in Mbox Open!\n");
+        exitsim();
+    }
+
+    if (AQueueInsertLast (&mboxs[handle].pids, l) != QUEUE_SUCCESS) {
+        printf("FATAL ERROR: could not insert new link into pid queue in Mbox Open!\n");
+        exitsim();
+    }
+
+    return MBOX_SUCCESS;
 }
 
 //-------------------------------------------------------
@@ -67,7 +118,40 @@ int MboxOpen(mbox_t handle) {
 //
 //-------------------------------------------------------
 int MboxClose(mbox_t handle) {
-  return MBOX_FAIL;
+    int i;
+    int length;
+    Link *l;
+
+    if(!&mboxs[handle]) return MBOX_FAIL;
+
+    if(!AQueueEmpty(&mboxs[handle].pids)){
+
+        length = AQueueLength(&mboxs[handle].pids); 
+        
+        l = AQueueFirst(&mboxs[handle].pids);
+
+        for(i=0; i < length; i++){
+            if((int)AQueueObject(l) == GetCurrentPid()){
+                AQueueRemove(&l);
+                break;
+            }
+
+            l = AQueueNext(l);
+        }
+
+    }
+
+    if(AQueueEmpty(&mboxs[handle].pids)){
+        while(!AQueueEmpty(&mboxs[handle].messages)){
+            l = AQueueFirst(&mboxs[handle].messages);
+            AQueueRemove(&l);
+        }
+
+        mboxs[handle].inuse = 0;
+    }
+
+    return MBOX_SUCCESS;
+
 }
 
 //-------------------------------------------------------
@@ -87,6 +171,12 @@ int MboxClose(mbox_t handle) {
 //
 //-------------------------------------------------------
 int MboxSend(mbox_t handle, int length, void* message) {
+    //check pid opened mailbox
+    //check length of message
+    //check for space in mailbox (while loop)
+    //lock 
+    //add message to end of queue
+    //unlock
   return MBOX_FAIL;
 }
 
@@ -107,6 +197,12 @@ int MboxSend(mbox_t handle, int length, void* message) {
 //
 //-------------------------------------------------------
 int MboxRecv(mbox_t handle, int maxlength, void* message) {
+    //check if pid opened mailbox
+    //check if message longer than maxlength
+    //lock
+    //read message at front of queue
+    //unlock
+
   return MBOX_FAIL;
 }
 
