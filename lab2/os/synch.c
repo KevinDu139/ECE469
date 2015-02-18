@@ -398,6 +398,11 @@ int CondWait (Cond *cond) {
     if (!cond) return SYNC_FAIL;
 
     intrval = DisableIntrs ();
+
+    // Check lock is valid
+
+    // Release lock
+
     dbprintf ('I', "CondWait: Old interrupt value was 0x%x.\n", intrval);
     dbprintf('s', "SemWait: putting process %d to sleep\n", GetCurrentPid());
 
@@ -456,6 +461,9 @@ int CondSignal (Cond *cond) {
             printf("FATAL ERROR: could not remove link from condition variable queue in CondSignal!\n");
             exitsim();
         }
+
+	// Reaquire Lock
+
         dbprintf ('s', "CondSignal: Waking up PID %d.\n", (int)(GetPidFromAddress(pcb)));
         ProcessWakeup (pcb);
     }
