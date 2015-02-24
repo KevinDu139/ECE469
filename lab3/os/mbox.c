@@ -171,13 +171,82 @@ int MboxClose(mbox_t handle) {
 //
 //-------------------------------------------------------
 int MboxSend(mbox_t handle, int length, void* message) {
-    //check pid opened mailbox
-    //check length of message
-    //check for space in mailbox (while loop)
-    //lock 
-    //add message to end of queue
-    //unlock
-  return MBOX_FAIL;
+    int i;
+    int qlen;
+    Link *l;
+    int exists = 0;
+    
+    //check if mailbox is real
+    if(!&mboxs[handle]) return MBOX_FAIL;
+
+    //check if pid opened this mailbox
+    if(!AQueueEmpty(&mboxs[handle].pids ) ){
+       
+        qlen = AQueueLength(&mboxs[handle].pids); 
+        
+        l = AQueueFirst(&mboxs[handle].pids);
+
+        for(i=0; i < qlen; i++){
+            if((int)AQueueObject(l) == GetCurrentPid()){
+                exists = 1; 
+                break;
+            }
+
+            l = AQueueNext(l);
+        }
+       
+       //actuall checks if pid exists 
+        if(exists == 0){
+            return MBOX_FAIL;
+        }
+
+        //check if message longer than max length
+        if(length > MBOX_MAX_MESSAGE_LENGTH) {
+            return MBOX_FAIL;
+        }
+        
+        //check for space in mailbox (while loop)
+        while(AQueueLength(&mboxs[handle].messages) == MBOX_MAX_BUFFERS_PER_MBOX );
+
+                //lock
+        if(! LockAcquire(&mboxs[handle].l) ){
+            printf("FATAL ERROR: could not get lock in Mbox send!\n");
+            exitsim();
+        }
+
+        for(i=0; i<MBOX_NUM_BUFFERS; i++){
+            if(mbox_messages[i].inuse == 0){
+                mbox_messages[i].inuse = 1;
+                break;
+            }
+        }
+
+
+        //creating mbox_message structure
+        dstrncpy(mbox_messages[i].message, (char *) message, length);
+        mbox_messages[i].length = length;
+
+        if ((l = AQueueAllocLink(&mbox_messages[i])) == NULL) {
+            printf("FATAL ERROR: could not allocate link for pid queue in Mbox Open!\n");
+            exitsim();
+        }
+
+        //add message to end of queue
+        AQueueInsertLast(&mboxs[handle].messages, l);
+
+        //unlock
+        if(! LockRelease(&mboxs[handle].l) ){
+            printf("FATAL ERROR: could not release lock in Mbox send!\n");
+            exitsim();
+        }
+
+
+    }else{
+        return MBOX_FAIL;
+    }
+
+    return MBOX_SUCCESS;
+
 }
 
 //-------------------------------------------------------
@@ -197,7 +266,83 @@ int MboxSend(mbox_t handle, int length, void* message) {
 //
 //-------------------------------------------------------
 int MboxRecv(mbox_t handle, int maxlength, void* message) {
-    //check if pid opened mailbox
+    int i;
+    int qlen;
+    Link *l;
+    int exists = 0;
+    
+    //check if mailbox is real
+    if(!&mboxs[handle]) return MBOX_FAIL;
+
+    //check if pid opened this mailbox
+    if(!AQueueEmpty(&mboxs[handle].pids ) ){
+       
+        qlen = AQueueLength(&mboxs[handle].pids); 
+        
+        l = AQueueFirst(&mboxs[handle].pids);
+
+        for(i=0; i < qlen; i++){
+            if((int)AQueueObject(l) == GetCurrentPid()){
+                exists = 1; 
+                break;
+            }
+
+            l = AQueueNext(l);
+        }
+       
+       //actuall checks if pid exists 
+        if(exists == 0){
+            return MBOX_FAIL;
+        }
+
+        //check if message longer than max length
+        if(length > MBOX_MAX_MESSAGE_LENGTH) {
+            return MBOX_FAIL;
+        }
+        
+        //check for space in mailbox (while loop)
+        while(AQueueLength(&mboxs[handle].messages) == MBOX_MAX_BUFFERS_PER_MBOX );
+
+                //lock
+        if(! LockAcquire(&mboxs[handle].l) ){
+            printf("FATAL ERROR: could not get lock in Mbox send!\n");
+            exitsim();
+        }
+
+        for(i=0; i<MBOX_NUM_BUFFERS; i++){
+            if(mbox_messages[i].inuse == 0){
+                mbox_messages[i].inuse = 1;
+                break;
+            }
+        }
+
+
+        //creating mbox_message structure
+        dstrncpy(mbox_messages[i].message, (char *) message, length);
+        mbox_messages[i].length = length;
+
+        if ((l = AQueueAllocLink(&mbox_messages[i])) == NULL) {
+            printf("FATAL ERROR: could not allocate link for pid queue in Mbox Open!\n");
+            exitsim();
+        }
+
+        //add message to end of queue
+        AQueueInsertLast(&mboxs[handle].messages, l);
+
+        //unlock
+        if(! LockRelease(&mboxs[handle].l) ){
+            printf("FATAL ERROR: could not release lock in Mbox send!\n");
+            exitsim();
+        }
+
+
+    }else{
+        return MBOX_FAIL;
+    }
+
+    return MBOX_SUCCESS;
+
+   //check if pid opened mailbox
     //check if message longer than maxlength
     //lock
     //read message at front of queue
@@ -219,5 +364,10 @@ int MboxRecv(mbox_t handle, int maxlength, void* message) {
 //
 //--------------------------------------------------------------------------------
 int MboxCloseAllByPid(int pid) {
+    //loop through queue of Mbox
+    //call mbox close with handle
+   // Will pid flow through to the MboxClose?
+    // if so then we're golden
+
   return MBOX_FAIL;
 }
