@@ -55,8 +55,23 @@ mbox_t MboxCreate() {
             break;
         }
     }
-
     RestoreIntrs(intrval);
+
+    if((mboxs[mbox].l = LockCreate()) == SYNC_FAIL){
+        printf("FATAL ERROR: Could not create lock for mbox\n");
+        exitsim();
+    }
+
+    if((mboxs[mbox].s_msg_full = SemCreate(0)) == SYNC_FAIL) {
+        printf("Bad sem create in mbox create\n ");
+        exitsim();
+    }
+
+    if((mboxs[mbox].s_msg_empty = SemCreate(MBOX_MAX_BUFFERS_PER_MBOX)) == SYNC_FAIL) {
+        printf("Bad sem create in mbox create\n ");
+        exitsim();
+    }
+
     if(mbox == MBOX_NUM_MBOXES) return MBOX_FAIL;
 
     if(AQueueInit(&mboxs[mbox].messages) != QUEUE_SUCCESS){
@@ -205,11 +220,15 @@ int MboxSend(mbox_t handle, int length, void* message) {
             return MBOX_FAIL;
         }
         
-        //check for space in mailbox (while loop)
-        while(AQueueLength(&mboxs[handle].messages) == MBOX_MAX_BUFFERS_PER_MBOX );
+        //check for space in mailbox 
 
-                //lock
-        if(! LockAcquire(&mboxs[handle].l) ){
+        if((SemHandleWait(mboxs[handle].s_msg_empty)) == SYNC_FAIL ){
+            printf("bad sem handle wait in mbox send\n");
+            exitsim();
+        }
+
+        //lock
+        if(LockHandleAcquire(mboxs[handle].l) != SYNC_SUCCESS){
             printf("FATAL ERROR: could not get lock in Mbox send!\n");
             exitsim();
         }
@@ -235,11 +254,16 @@ int MboxSend(mbox_t handle, int length, void* message) {
         AQueueInsertLast(&mboxs[handle].messages, l);
 
         //unlock
-        if(! LockRelease(&mboxs[handle].l) ){
+        if(LockHandleRelease(mboxs[handle].l) != SYNC_SUCCESS){
             printf("FATAL ERROR: could not release lock in Mbox send!\n");
             exitsim();
         }
 
+        if(SemHandleSignal(mboxs[handle].s_msg_full) == SYNC_FAIL){
+            printf("bad sem handle signal in mbox send\n");
+            exitsim();
+        }
+    
 
     }else{
         return MBOX_FAIL;
@@ -296,12 +320,14 @@ int MboxRecv(mbox_t handle, int maxlength, void* message) {
             return MBOX_FAIL;
         }
 
-       
         //wait until queue has something in it
-        while(AQueueLength(&mboxs[handle].messages) ==0);
+        if(SemHandleWait(mboxs[handle].s_msg_full) == SYNC_FAIL){
+            printf("bad sem handle wait in mbox recv\n");
+            exitsim();
+        }
 
         //lock
-        if(! LockAcquire(&mboxs[handle].l) ){
+        if(LockHandleAcquire(mboxs[handle].l) != SYNC_SUCCESS){
             printf("FATAL ERROR: could not get lock in Mbox send!\n");
             exitsim();
         }
@@ -322,14 +348,18 @@ int MboxRecv(mbox_t handle, int maxlength, void* message) {
         m->inuse =0;
 
         //delete link
-        AQueueRemove(l);
+        AQueueRemove(&l);
 
         //unlock
-        if(! LockRelease(&mboxs[handle].l) ){
+        if(LockHandleRelease(mboxs[handle].l) != SYNC_SUCCESS){
             printf("FATAL ERROR: could not release lock in Mbox send!\n");
             exitsim();
         }
 
+        if(SemHandleSignal(mboxs[handle].s_msg_empty) == SYNC_FAIL){
+            printf("bad sem handle signal in mbox recv\n");
+            exitsim();
+        }
 
     }else{
         return MBOX_FAIL;
@@ -356,7 +386,7 @@ int MboxCloseAllByPid(int pid) {
     int i;
 
     for(i=0; i < MBOX_NUM_MBOXES; i++){
-        MboxClose(&mboxs[i]);
+        MboxClose(i);
     }
 
     return MBOX_SUCCESS;

@@ -11,7 +11,7 @@ void main (int argc, char *argv[])
 
     char data[3];
 
-    Printf("Reaction 1: starting\n");
+    Printf("Reaction 1: starting - PID %d \n", getpid());
 
     if (argc != 4 ) { 
         Printf("Usage: "); Printf(argv[0]); Printf(" <handle_to_proc_semaphore> <handle_to_N2_mailbox> <handle_to_N_mailbox>\n"); 
@@ -35,10 +35,14 @@ void main (int argc, char *argv[])
         Exit();
     }
 
+    Printf("Waiting to recieve n2\n");
+
     mbox_recv(mb_n2, 2, (char *) data);
     Printf("Recv N2 from mb_n2\n");
 
     mbox_send(mb_n, 1, (void *) "N");
+    Printf("Sent N to mb_n\n");
+
     mbox_send(mb_n, 1, (void *) "N");
 
     Printf("Sent N to mb_n\n");

@@ -23,7 +23,9 @@ typedef struct mbox {
     Queue messages;
     Queue pids;
     int inuse;
-    Lock l;
+    lock_t l;  
+    sem_t s_msg_full;
+    sem_t s_msg_empty;
 } mbox;
 
 typedef int mbox_t; // This is the "type" of mailbox handles

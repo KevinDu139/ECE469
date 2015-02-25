@@ -12,9 +12,9 @@ void main (int argc, char *argv[])
 
     char data[3];
 
-    Printf("Reaction 2: starting\n");
+    Printf("Reaction 2: starting - PID %d \n", getpid());
 
-    if (argc != 5 ) { 
+    if (argc != 6 ) { 
         Printf("Usage: "); Printf(argv[0]); Printf(" <handle_to_proc_semaphore> <handle_to_H2O_mailbox> <handle_to_H2_mailbox> <handle_to_O2_mailbox>\n"); 
         Exit();
     } 
@@ -44,10 +44,12 @@ void main (int argc, char *argv[])
     }
 
     mbox_recv(mb_h2o, 3, (char *) data);
+    Printf("Recv H2O from mb_h2o\n");
     mbox_recv(mb_h2o, 3, (char *) data);
     Printf("Recv H2O from mb_h2o\n");
 
     mbox_send(mb_h2, 2, (void *) "H2");
+    Printf("Sent H2 to mb_h2\n");
     mbox_send(mb_h2, 2, (void *) "H2");
     Printf("Sent H2 to mb_h2\n");
     

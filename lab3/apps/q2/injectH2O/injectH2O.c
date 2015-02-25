@@ -8,9 +8,9 @@ void main (int argc, char *argv[])
     sem_t s_procs_completed;    // Semaphore to signal the original process that we're done
     mbox_t mb_h2o;                // mailbox for H2O atom
 
-    Printf("Starting H2O Injection\n");
+    Printf("Starting H2O Injection - PID %d \n", getpid());
 
-    if (argc != 3 ) { 
+    if (argc > 4 ) { 
         Printf("Usage: "); Printf(argv[0]); Printf(" <handle_to_proc_semaphore> <handle_to_H2O_mailbox>\n"); 
         Exit();
     } 

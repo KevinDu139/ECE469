@@ -8,9 +8,9 @@ void main (int argc, char *argv[])
     sem_t s_procs_completed;    // Semaphore to signal the original process that we're done
     mbox_t mb_n2;                // mailbox for H2O atom
 
-    Printf("Starting N2 Injection\n");
+    Printf("Starting N2 Injection - PID %d \n", getpid());
 
-    if (argc != 3 ) { 
+    if (argc > 4 ) { 
         Printf("Usage: "); Printf(argv[0]); Printf(" <handle_to_proc_semaphore> <handle_to_N2_mailbox>\n"); 
         Exit();
     } 
@@ -24,7 +24,11 @@ void main (int argc, char *argv[])
         Exit();
     }
 
-    mbox_send(mb_n2, 2, (void *) "N2");
+    Printf("opened n2 mailbox\n");
+
+    if(mbox_send(mb_n2, 2, (void *) "N2") != MBOX_SUCCESS){
+        Printf("N2 send error\n");
+    }
     Printf("Sent N2 to mb_n2\n");
 
     if(!mbox_close(mb_n2)){

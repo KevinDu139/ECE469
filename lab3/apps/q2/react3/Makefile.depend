@@ -1,4 +1,0 @@
-work/react3.o: react3.c \
- /home/shay/a/ee469g02/ee469/lab3/apps/q2/../../include/usertraps.h \
- /home/shay/a/ee469g02/ee469/lab3/apps/q2/../../include/misc.h \
- /home/shay/a/ee469g02/ee469/lab3/apps/q2/include/spawn.h

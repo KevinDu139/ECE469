@@ -7,6 +7,9 @@ void main (int argc, char *argv[])
 {
   //int numprocs = 0;               // Used to store number of processes to create
   //int i;                          // Loop index variable
+  int pnice = 0;
+  int pinfo = 0;
+
   // Number of molecules to spawn and react
   int num_n2;
   int num_h2o;
@@ -20,6 +23,7 @@ void main (int argc, char *argv[])
   mbox_t mb_n2;
   mbox_t mb_n;
   mbox_t mb_h2o;
+  mbox_t mb_h2;
   mbox_t mb_o2;
   mbox_t mb_no2;
 
@@ -32,6 +36,7 @@ void main (int argc, char *argv[])
   char s_procs_completed_str[10]; // Used as command-line argument to pass page_mapped handle to new processes
   char mb_n2_str[10];
   char mb_h2o_str[10];
+  char mb_h2_str[10];
   char mb_n_str[10];
   char mb_o2_str[10];
   char mb_no2_str[10];
@@ -82,9 +87,9 @@ void main (int argc, char *argv[])
   // each of the processes has signaled, the semaphore should be back to
   // zero and the final sem_wait below will return.
   //// Total processes = num_n2_created + num_n2_used
-  ////                    + num_h2o_created + num_h2o_used
+  ////                    + num_h2o_created + num_h2o_used/2
   ////                    + limiting_num
-  if ((s_procs_completed = sem_create(-(((num_n2*2)+(num_h2o*2)+(num_limit))-1))) == SYNC_FAIL) {
+  if ((s_procs_completed = sem_create(-(((num_n2*2)+(num_h2o)+(num_h2o/2)+(num_limit))-1))) == SYNC_FAIL) {
     Printf("Bad sem_create in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
@@ -94,22 +99,22 @@ void main (int argc, char *argv[])
     Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if((mb_h2o = mbox_create()) == MBOX_FAIL) {
     Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
+  if((mb_h2 = mbox_create()) == MBOX_FAIL) {
+    Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
+    Exit();
+  }
   if((mb_n = mbox_create()) == MBOX_FAIL) {
     Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if((mb_o2 = mbox_create()) == MBOX_FAIL) {
     Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if((mb_no2 = mbox_create()) == MBOX_FAIL) {
     Printf("Bad mbox_create in "); Printf(argv[0]); Printf("\n");
     Exit();
@@ -121,22 +126,22 @@ void main (int argc, char *argv[])
     Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_open(mb_h2o) == MBOX_FAIL) {
     Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
+  if(mbox_open(mb_h2) == MBOX_FAIL) {
+    Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
+    Exit();
+  }
   if(mbox_open(mb_n) == MBOX_FAIL) {
     Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_open(mb_o2) == MBOX_FAIL) {
     Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_open(mb_no2) == MBOX_FAIL) {
     Printf("Bad mbox_open in "); Printf(argv[0]); Printf("\n");
     Exit();
@@ -149,6 +154,7 @@ void main (int argc, char *argv[])
   ditoa(s_procs_completed, s_procs_completed_str);
   ditoa(mb_n2, mb_n2_str);
   ditoa(mb_h2o, mb_h2o_str);
+  ditoa(mb_h2, mb_h2_str);
   ditoa(mb_n, mb_n_str);
   ditoa(mb_o2, mb_o2_str);
   ditoa(mb_no2, mb_no2_str);
@@ -163,21 +169,23 @@ void main (int argc, char *argv[])
   /* Create a process for each N2 generation and consumption */
   for(num_molecules = 0; num_molecules < num_n2; num_molecules++) {
     // N2 Generator
-    process_create(FILENAME_INJECTN2, s_procs_completed_str, mb_n2_str);
+    process_create(FILENAME_INJECTN2, pnice, pinfo, s_procs_completed_str, mb_n2_str);
     // N Reactor
-    process_create(FILENAME_REACT1, s_procs_completed_str, mb_n2_str, mb_n_str);
+    process_create(FILENAME_REACT1, pnice, pinfo, s_procs_completed_str, mb_n2_str, mb_n_str);
   }
   /* Create a process for each H2O generation and consumption */
   for(num_molecules = 0; num_molecules < num_h2o; num_molecules++) {
     // H2O Generator
-    process_create(FILENAME_INJECTH2O, s_procs_completed_str, mb_h2o_str);
+    process_create(FILENAME_INJECTH2O, pnice, pinfo, s_procs_completed_str, mb_h2o_str);
+  }
+  for(num_molecules = 0; num_molecules < num_h2o/2; num_molecules++) {
     // H2O Reactor
-    process_create(FILENAME_REACT2, s_procs_completed_str, mb_h2o_str, mb_o2_str);
+    process_create(FILENAME_REACT2, pnice, pinfo, s_procs_completed_str, mb_h2o_str, mb_h2_str, mb_o2_str);
   }
   /* Create a process for each NO2 Reaction */
   for(num_molecules = 0; num_molecules < num_limit; num_molecules++) {
     // N2O Reactor
-    process_create(FILENAME_REACT3, s_procs_completed_str, mb_n_str, mb_o2_str, mb_no2_str);
+    process_create(FILENAME_REACT3, pnice, pinfo, s_procs_completed_str, mb_n_str, mb_o2_str, mb_no2_str);
   }
   Printf("Processes created\n");
 
@@ -192,22 +200,18 @@ void main (int argc, char *argv[])
     Printf("Bad mbox_close in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_close(mb_h2o) == MBOX_FAIL) {
     Printf("Bad mbox_close in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_close(mb_n) == MBOX_FAIL) {
     Printf("Bad mbox_close in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_close(mb_o2) == MBOX_FAIL) {
     Printf("Bad mbox_close in "); Printf(argv[0]); Printf("\n");
     Exit();
   }
-
   if(mbox_close(mb_no2) == MBOX_FAIL) {
     Printf("Bad mbox_close in "); Printf(argv[0]); Printf("\n");
     Exit();
