@@ -8,7 +8,7 @@ void main (int argc, char *argv[])
   //int numprocs = 0;               // Used to store number of processes to create
   //int i;                          // Loop index variable
   int pnice = 0;
-  int pinfo = 0;
+  int pinfo = 1;
 
   // Number of molecules to spawn and react
   int num_n2;

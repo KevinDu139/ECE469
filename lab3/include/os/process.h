@@ -93,4 +93,15 @@ int GetPidFromAddress(PCB *pcb);
 void ProcessUserSleep(int seconds);
 void ProcessYield();
 
+void ProcessRecalcPriority(PCB *pcb);
+inline int WhichQueue(PCB *pcb);
+int ProcessInsertRunning(PCB *pcb);
+void ProcessDecayEstcpu(PCB *pcb);
+void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies);
+PCB *ProcessFindHighestPriorityPCB();
+void ProcessDecayAllEstcpus();
+void ProcessFixRunQueues();
+int ProcessCountAutowake();
+void ProcessPrintRunQueues();
+
 #endif	/* __process_h__ */
