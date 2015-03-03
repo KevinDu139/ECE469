@@ -30,6 +30,13 @@
 #define	PROCESS_TYPE_SYSTEM	0x100
 #define	PROCESS_TYPE_USER	0x200
 
+// BSD Priority Scheduling Constants
+#define NUM_PRIORITY_QUEUES        32
+#define BASE_PRIORITY              50
+#define PRIORITIES_PER_QUEUE       4
+#define TIME_PER_CPU_WINDOW        10 // in jiffies
+#define CPU_WINDOWS_BETWEEN_DECAYS 10
+
 typedef	void (*VoidFunc)();
 
 // Process control block

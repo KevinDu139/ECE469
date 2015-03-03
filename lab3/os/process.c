@@ -988,16 +988,56 @@ void ProcessYield() {
 }
 
 
+//recalculate priority of process
+void ProcessRecalcPriority(PCB *pcb){
+
+}
+
+//determine which queue a process is in
+inline int WhichQueue(PCB *pcb){
+
+}
 
 
-void ProcessRecalcPriority(PCB *pcb);
-inline int WhichQueue(PCB *pcb);
-int ProcessInsertRunning(PCB *pcb);
-void ProcessDecayEstcpu(PCB *pcb);
-void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies);
-PCB *ProcessFindHighestPriorityPCB();
-void ProcessDecayAllEstcpus();
-void ProcessFixRunQueues();
-int ProcessCountAutowake();
-void ProcessPrintRunQueues();
+//adds new process into queue for scheduling and running
+int ProcessInsertRunning(PCB *pcb){
+
+}
+
+//formula 2 on webpage
+void ProcessDecayEstcpu(PCB *pcb){
+
+}
+
+//on lab webpage
+void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
+
+}
+
+//find the highest priority process overall
+PCB *ProcessFindHighestPriorityPCB(){
+
+}
+
+//calling processdecayestcpu on all processes 
+void ProcessDecayAllEstcpus(){
+
+}
+
+//moves processes between queues
+void ProcessFixRunQueues(){
+
+}
+
+//returns number of processes to be auto waked to Process Schedule
+int ProcessCountAutowake(){
+
+}
+
+//prints out status and contents of run queues
+void ProcessPrintRunQueues(){
+
+}
+
+
 

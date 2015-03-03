@@ -7,6 +7,7 @@ HDRS=usertraps.h
 FINALHDRS+=../include/spawn.h
 APPROOT=../..
 INCDIR+=-I../include
+INCDIR+=-I../../../include
 
 top: default
 
