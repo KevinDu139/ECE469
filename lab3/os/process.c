@@ -657,6 +657,8 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     // from the base of the PCB array).
     dbprintf ('p', "ProcessFork (%d): function complete\n", GetCurrentPid());
 
+    ProcessPrintRunQueues();
+
     return (pcb - pcbs);
 }
 //----------------------------------------------------------------------
@@ -1119,7 +1121,22 @@ int ProcessCountAutowake(){
 
 //prints out status and contents of run queues
 void ProcessPrintRunQueues(){
+    PCB *pcb = NULL;
+    int i=0,j=0,k=0;
+    Link *l;
 
+    for(i=0; i < NUM_PRIORITY_QUEUES; i++){
+
+        j = AQueueLength(&runQueue[i]);
+        pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
+        printf("Pid %d in queue %d\n",(int)(pcb-pcbs) ,i);
+
+        for(k =0; k < j; k ++){
+            l = AQueueNext(pcb->l);
+            pcb = (PCB*) l->object;
+            printf("Pid %d in queue %d\n",(int)(pcb-pcbs) ,i);
+        }
+    }
 }
 
 
