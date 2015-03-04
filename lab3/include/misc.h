@@ -34,4 +34,16 @@ isxdigit (char c)
 	  ((c >= 'A') && (c <= 'A')));
 }
 
+inline double pow(double base, int exp){
+    if(exp == 0){
+        return 1;
+    }else if (exp % 2) {
+        return base * pow(base, exp -1);
+    }else{
+        double temp = pow(base, exp /2 );
+        return temp * temp;
+    }
+
+}
+
 #endif	// !_misc_h_

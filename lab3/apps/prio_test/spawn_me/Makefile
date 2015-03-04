@@ -9,7 +9,8 @@
 SRCS=spawn_me.c
 EXEC=spawn_me.dlx.obj
 
-include ../Makerules
+APPROOT=..
 
 include $(APPROOT)/Makerules
+
 

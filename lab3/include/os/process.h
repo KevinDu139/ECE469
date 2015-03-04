@@ -54,6 +54,12 @@ typedef struct PCB {
   int           pnice;          // Used in priority calculation
   uint32        runtime;        //keeps track of runtime in jiffys
   uint32        starttime;      //keeps track of when process starts
+
+  double        estcpu;         // estimated cpu usage
+  int           priority;       // holds priority of process, with 0 being highest
+  uint32        sleeptime;      //holds time asleep
+
+
 } PCB;
 
 // Offsets of various registers from the stack pointer in the register
