@@ -111,4 +111,4 @@ clean:
 	-rm -rf $(WORKDIR) $(OUTPUT) Makefile.depend $(OUTDIR)/vm
 
 # Includes added dependencies of source files on header files
-include Makefile.depend
+#include Makefile.depend

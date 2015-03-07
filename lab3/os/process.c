@@ -229,8 +229,11 @@ void ProcessSchedule () {
     }
 
     currentPCB->runtime += ClkGetCurJiffies() - currentPCB->starttime;
-    printf(PROCESS_CPUSTATS_FORMAT, (int)(currentPCB-pcbs), currentPCB->runtime, 0);  
+    if(currentPCB->pinfo == 1) {
+      printf(PROCESS_CPUSTATS_FORMAT, (int)(currentPCB-pcbs), currentPCB->runtime, 0);  
+    }
 
+    // Find the next pcb to run
     pcb = ProcessFindHighestPriorityPCB();
 
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
@@ -238,11 +241,11 @@ void ProcessSchedule () {
     if(pcb == currentPCB){
         if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
         ProcessRecalcPriority(currentPCB);
-        AQueueRemove(&currentPCB->l);
-        AQueueInsertLast(&runQueue[WhichQueue(currentPCB)], currentPCB->l);
-
+	// Place in new position
+	AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
+			AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
+			currentPCB->l); // Link to move
     }
-
 
     //reshuffle priority queues
     if(quanta % 10 == 0){
@@ -257,8 +260,13 @@ void ProcessSchedule () {
                 ProcessDecayEstcpu(pcb);
                 ProcessRecalcPriority(pcb);
 
-                AQueueRemove(&pcb->l);
-                AQueueInsertLast(&runQueue[WhichQueue(pcb)], pcb->l);
+		// Place in new position
+		AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
+				AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
+				currentPCB->l); // Link to move
+
+		//AQueueRemove(&pcb->l);
+                //AQueueInsertLast(&runQueue[WhichQueue(pcb)], pcb->l);
             }
         }
 
@@ -266,12 +274,15 @@ void ProcessSchedule () {
         //the end of the queue 
         pcb = ProcessFindHighestPriorityPCB();
         if(currentPCB == pcb){
-            AQueueRemove(&currentPCB->l);
-            AQueueInsertLast(&runQueue[WhichQueue(currentPCB)], currentPCB->l);
+	    // Place in new position
+	    AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
+			    AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
+			    currentPCB->l); // Link to move
+            //AQueueRemove(&currentPCB->l);
+            //AQueueInsertLast(&runQueue[WhichQueue(currentPCB)], currentPCB->l);
         }
 
     }
-
 
     // Now, run the one at the head of the queue.
     pcb = ProcessFindHighestPriorityPCB();
@@ -280,7 +291,6 @@ void ProcessSchedule () {
             (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
 
     //starting process clock here
-
     currentPCB->starttime = ClkGetCurJiffies();
 
     // Clean up zombie processes here.  This is done at interrupt time
@@ -349,12 +359,10 @@ void ProcessWakeup (PCB *wakeup) {
     // Make sure it's not yet a runnable process.
     ASSERT (wakeup->flags & PROCESS_STATUS_WAITING, "Trying to wake up a non-sleeping process!\n");
 
+    // Perform scheduling calculations
     wakeup->sleeptime = ClkGetCurJiffies() - wakeup->sleeptime;
-
     ProcessDecayEstcpuSleep(wakeup, wakeup->sleeptime);
     ProcessRecalcPriority(wakeup);
-    AQueueRemove(&wakeup->l);
-    AQueueInsertLast(&runQueue[WhichQueue(wakeup)], wakeup->l);
 
 
     ProcessSetStatus (wakeup, PROCESS_STATUS_RUNNABLE);
@@ -513,7 +521,6 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     pcb->priority  = BASE_PRIORITY;
         
 
-
     //----------------------------------------------------------------------
     // Stacks grow down from the top.  The current system stack pointer has
     // to be set to the bottom of the interrupt stack frame, which is at the
@@ -656,8 +663,6 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     // Return the process number (found by subtracting the PCB number
     // from the base of the PCB array).
     dbprintf ('p', "ProcessFork (%d): function complete\n", GetCurrentPid());
-
-    ProcessPrintRunQueues();
 
     return (pcb - pcbs);
 }
@@ -1071,7 +1076,7 @@ inline int WhichQueue(PCB *pcb){
 
 //adds new process into queue for scheduling and running
 int ProcessInsertRunning(PCB *pcb){
-    int queue = pcb->priority/PRIORITIES_PER_QUEUE;
+    int queue = WhichQueue(pcb);
     return AQueueInsertLast(&runQueue[queue], pcb->l);
 }
 
@@ -1129,12 +1134,14 @@ void ProcessPrintRunQueues(){
 
         j = AQueueLength(&runQueue[i]);
         pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
-        printf("Pid %d in queue %d\n",(int)(pcb-pcbs) ,i);
+        if(j != 0) {
+	  printf("==Queue %d==> Process %d is pid %d\n",i, 0, (int)(pcb-pcbs));
+	}
 
-        for(k =0; k < j; k ++){
+        for(k =1; k < j; k ++){
             l = AQueueNext(pcb->l);
             pcb = (PCB*) l->object;
-            printf("Pid %d in queue %d\n",(int)(pcb-pcbs) ,i);
+	    printf("==Queue %d==> Process %d is pid %d\n",i, k, (int)(pcb-pcbs));
         }
     }
 }

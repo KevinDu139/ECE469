@@ -6,7 +6,7 @@ typedef struct missile_code {
   char really_important_char;
 } missile_code;
 
-#define FILENAME_TO_RUN "spawn_me.dlx.obj"
+#define FILENAME_TO_RUN "bin/spawn_me.dlx.obj"
 
 #ifndef NULL
 #define NULL (void *)0x0
