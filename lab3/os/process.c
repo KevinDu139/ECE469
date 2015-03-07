@@ -239,7 +239,7 @@ void ProcessSchedule () {
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
     //recalculate the priority, then move it to the end of its priority queue
     if(pcb == currentPCB){
-        if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
+      if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
         ProcessRecalcPriority(currentPCB);
 	// Place in new position
 	AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
@@ -286,6 +286,7 @@ void ProcessSchedule () {
 
     // Now, run the one at the head of the queue.
     pcb = ProcessFindHighestPriorityPCB();
+    //printf("process: %d, switching to: %d\n", (int)(currentPCB-pcbs), (int)(pcb-pcbs));
     currentPCB = pcb;
     dbprintf ('p', "About to switch to PCB 0x%x,flags=0x%x @ 0x%x\n",
             (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
@@ -1096,17 +1097,33 @@ void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
 //find the highest priority process overall
 PCB *ProcessFindHighestPriorityPCB(){
     PCB *pcb = NULL;
-    int i=0;
+    PCB *highestPCB = NULL;
+    Link *l;
+    int i=0,j=0,k=0;
 
+    // Check every queue
     for(i=0; i < NUM_PRIORITY_QUEUES; i++){
-        if(AQueueLength(&runQueue[i]) != 0){
-            pcb = (PCB *)(AQueueFirst(&runQueue[i])->object);
-            break;
+        // Check queue isn't empty
+        j = AQueueLength(&runQueue[i]);
+        if(j != 0) {
+	  pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
+	  // Check if higher priority
+	  if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
+	    highestPCB = pcb;
+	  }
+	}
+	// Check remaining processes
+        for(k =1; k < j; k ++){
+            l = AQueueNext(pcb->l);
+            pcb = (PCB*) l->object;
+	    // Check if higher priority
+	    if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
+	     highestPCB = pcb;
+	   }
         }
     }
-
-    return pcb;
-
+    // return highest found priority process
+    return highestPCB;
 }
 
 //calling processdecayestcpu on all processes 
@@ -1135,13 +1152,13 @@ void ProcessPrintRunQueues(){
         j = AQueueLength(&runQueue[i]);
         pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
         if(j != 0) {
-	  printf("==Queue %d==> Process %d is pid %d\n",i, 0, (int)(pcb-pcbs));
+	  printf("==Queue %d==> Process %d is pid %d with priority %d\n",i, 0, (int)(pcb-pcbs), pcb->priority);
 	}
 
         for(k =1; k < j; k ++){
             l = AQueueNext(pcb->l);
             pcb = (PCB*) l->object;
-	    printf("==Queue %d==> Process %d is pid %d\n",i, k, (int)(pcb-pcbs));
+	    printf("==Queue %d==> Process %d is pid %d with priority %d\n",i, k, (int)(pcb-pcbs), pcb->priority);
         }
     }
 }
