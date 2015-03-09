@@ -26,6 +26,7 @@
 #define	PROCESS_STATUS_WAITING	0x4
 #define	PROCESS_STATUS_STARTING	0x8
 #define	PROCESS_STATUS_ZOMBIE	0x10
+#define PROCESS_STATUS_AUTOWAKE 0x12
 #define	PROCESS_STATUS_MASK	0x3f
 #define	PROCESS_TYPE_SYSTEM	0x100
 #define	PROCESS_TYPE_USER	0x200
@@ -59,6 +60,7 @@ typedef struct PCB {
   int           priority;       // holds priority of process, with 0 being highest
   uint32        sleeptime;      //holds time asleep
 
+  int           timetosleep;    // holds time to sleep for
 
 } PCB;
 
@@ -105,6 +107,7 @@ int GetPidFromAddress(PCB *pcb);
 
 void ProcessUserSleep(int seconds);
 void ProcessYield();
+void ProcessIdle();
 
 void ProcessRecalcPriority(PCB *pcb);
 inline int WhichQueue(PCB *pcb);
@@ -117,4 +120,5 @@ void ProcessFixRunQueues();
 int ProcessCountAutowake();
 void ProcessPrintRunQueues();
 
+void (*funcPtr)();
 #endif	/* __process_h__ */

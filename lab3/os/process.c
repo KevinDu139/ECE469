@@ -44,6 +44,8 @@ static PCB	pcbs[PROCESS_MAX_PROCS];
 
 static quanta =0;
 
+static PCB *IdlePCB;
+
 // String listing debugging options to print out.
 char	debugstr[200];
 
@@ -197,13 +199,14 @@ void ProcessSetResult (PCB * pcb, uint32 result) {
 //----------------------------------------------------------------------
 void ProcessSchedule () {
     PCB *pcb=NULL;
-    int i=0,j=0,k=0, empty=0;
+    int i=0,j=0,k=0, empty=0, user=0;
     Link *l=NULL;
 
     quanta++;
 
 //    dbprintf('p',"Now entering ProcessSchedule (cur=0x%x, %d ready)\n",
 //            (int)currentPCB, AQueueLength (&runQueue));
+
     // The OS exits if there's no runnable process.  This is a feature, not a
     // bug.  An easy solution to allowing no runnable "user" processes is to
     // have an "idle" process that's simply an infinite loop.
@@ -213,6 +216,11 @@ void ProcessSchedule () {
         }
     }
 
+    if(AQueueLength(&runQueue[NUM_PRIORITY_QUEUES-1])== 1){
+        empty++;
+    }
+
+//    printf("empty queues %d\n", empty);
     if (empty == NUM_PRIORITY_QUEUES) {
         if (!AQueueEmpty(&waitQueue)) {
             printf("FATAL ERROR: no runnable processes, but there are sleeping processes waiting!\n");
@@ -236,16 +244,24 @@ void ProcessSchedule () {
     // Find the next pcb to run
     pcb = ProcessFindHighestPriorityPCB();
 
+    if(pcb == IdlePCB){
+        AQueueMoveAfter(&runQueue[WhichQueue(pcb)], // Queue
+                AQueueLast(&runQueue[WhichQueue(pcb)]), // Position
+                pcb->l); // Link to move
+
+        pcb = ProcessFindHighestPriorityPCB();
+    }
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
     //recalculate the priority, then move it to the end of its priority queue
     if(pcb == currentPCB){
-      if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
+        if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
         ProcessRecalcPriority(currentPCB);
-	// Place in new position
-	AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
-			AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
-			currentPCB->l); // Link to move
+        // Place in new position
+        AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
+                AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
+                currentPCB->l); // Link to move
     }
+
 
     //reshuffle priority queues
     if(quanta % 10 == 0){
@@ -272,12 +288,20 @@ void ProcessSchedule () {
 
         //if current process is highest priority, we dont want to run it again so move it to
         //the end of the queue 
+
         pcb = ProcessFindHighestPriorityPCB();
+        if(pcb == IdlePCB){
+            AQueueMoveAfter(&runQueue[WhichQueue(pcb)], // Queue
+                    AQueueLast(&runQueue[WhichQueue(pcb)]), // Position
+                    pcb->l); // Link to move
+
+            pcb = ProcessFindHighestPriorityPCB();
+        }
         if(currentPCB == pcb){
-	    // Place in new position
-	    AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
-			    AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
-			    currentPCB->l); // Link to move
+            // Place in new position
+            AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
+                    AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
+                    currentPCB->l); // Link to move
             //AQueueRemove(&currentPCB->l);
             //AQueueInsertLast(&runQueue[WhichQueue(currentPCB)], currentPCB->l);
         }
@@ -305,6 +329,8 @@ void ProcessSchedule () {
         }
         ProcessFreeResources(pcb);
     }
+   ProcessPrintRunQueues();
+
     dbprintf ('p', "Leaving ProcessSchedule (cur=0x%x)\n", (int)currentPCB);
 }
 //----------------------------------------------------------------------
@@ -519,7 +545,13 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     pcb->estcpu    = 0;
     pcb->starttime = 0;
     pcb->sleeptime = 0;
-    pcb->priority  = BASE_PRIORITY;
+    if(name == "ProcessIdle"){
+        printf("process Idle\n");
+        pcb->priority = 127;
+        IdlePCB = pcb;
+    }else{
+        pcb->priority  = BASE_PRIORITY;
+    }
         
 
     //----------------------------------------------------------------------
@@ -978,6 +1010,10 @@ void main (int argc, char *argv[])
     // Start the clock which will in turn trigger periodic ProcessSchedule's
     ClkStart();
 
+    //call process fork here to start ProcessIdle
+    funcPtr = &ProcessIdle; 
+    ProcessFork(funcPtr,0,0,0,"ProcessIdle", 0);
+
     intrreturn ();
     // Should never be called because the scheduler exits when there
     // are no runnable processes left.
@@ -1063,10 +1099,20 @@ void ProcessYield() {
     // Your code here
 }
 
+void ProcessIdle(){
+    while(1);
+}
+
+
+
 
 //recalculate priority of process
 void ProcessRecalcPriority(PCB *pcb){
-    pcb->priority = BASE_PRIORITY + pcb->estcpu/4 + 2*pcb->pnice;
+    if(pcb == IdlePCB){
+        pcb->priority = 127;
+    }else{
+        pcb->priority = BASE_PRIORITY + pcb->estcpu/4 + 2*pcb->pnice;
+    }
 }
 
 //determine which queue a process is in
@@ -1106,20 +1152,20 @@ PCB *ProcessFindHighestPriorityPCB(){
         // Check queue isn't empty
         j = AQueueLength(&runQueue[i]);
         if(j != 0) {
-	  pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
-	  // Check if higher priority
-	  if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
-	    highestPCB = pcb;
-	  }
-	}
-	// Check remaining processes
+            pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
+            // Check if higher priority
+            if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
+                highestPCB = pcb;
+            }
+        }
+        // Check remaining processes
         for(k =1; k < j; k ++){
             l = AQueueNext(pcb->l);
             pcb = (PCB*) l->object;
-	    // Check if higher priority
-	    if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
-	     highestPCB = pcb;
-	   }
+            // Check if higher priority
+            if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
+                highestPCB = pcb;
+            }
         }
     }
     // return highest found priority process
