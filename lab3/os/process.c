@@ -245,7 +245,7 @@ void ProcessSchedule () {
     pcb = ProcessFindHighestPriorityPCB();
 
     if(pcb == IdlePCB){
-        MoveRunQueue(currentPCB);
+        MoveRunQueue(pcb);
         pcb = ProcessFindHighestPriorityPCB();
     }
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
@@ -268,7 +268,7 @@ void ProcessSchedule () {
 
     //reshuffle priority queues
     if(quanta % 10 == 0){
-        printf(" reshuffling priority queue\n");
+        //printf(" reshuffling priority queue\n");
 
         for(i = 0; i < NUM_PRIORITY_QUEUES; i++){
 
@@ -289,7 +289,7 @@ void ProcessSchedule () {
 
         pcb = ProcessFindHighestPriorityPCB();
         if(pcb == IdlePCB){
-            MoveRunQueue(currentPCB);
+            MoveRunQueue(pcb);
             pcb = ProcessFindHighestPriorityPCB();
         }
         if(currentPCB == pcb){
@@ -320,7 +320,7 @@ void ProcessSchedule () {
         }
         ProcessFreeResources(pcb);
     }
-    ProcessPrintRunQueues();
+    //ProcessPrintRunQueues();
 
     dbprintf ('p', "Leaving ProcessSchedule (cur=0x%x)\n", (int)currentPCB);
 }
@@ -414,7 +414,7 @@ void ProcessWakeup (PCB *wakeup) {
 //
 //----------------------------------------------------------------------
 void ProcessDestroy (PCB *pcb) {
-    printf ("ProcessDestroy (%d): function started\n", GetCurrentPid());
+//    printf ("ProcessDestroy (%d): function started\n", GetCurrentPid());
     ProcessSetStatus (pcb, PROCESS_STATUS_ZOMBIE);
 
     pcb->runtime += ClkGetCurJiffies() - pcb->starttime;
@@ -431,7 +431,7 @@ void ProcessDestroy (PCB *pcb) {
         printf("FATAL ERROR: could not insert link into runQueue in ProcessWakeup!\n");
         exitsim();
     }
-    printf ("ProcessDestroy (%d): function complete\n", GetCurrentPid());
+  //  printf ("ProcessDestroy (%d): function complete\n", GetCurrentPid());
 }
 
 //----------------------------------------------------------------------
@@ -524,6 +524,8 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     pcb->sysStackArea = newPage * MEMORY_PAGE_SIZE;
 
     //sets initinal values for stuff
+
+    //printf("pid %d has pnice of %d\n", (int)(pcb-pcbs), pnice);
 
     if(pnice < 0 || pnice > 20) {
         pcb-> pnice = 0;
@@ -1120,13 +1122,13 @@ int ProcessInsertRunning(PCB *pcb){
 
 //formula 2 on webpage
 void ProcessDecayEstcpu(PCB *pcb){
-    printf("ProcessDecayEstcpu on pid %d\n",(int)(pcb-pcbs));
+  //  printf("ProcessDecayEstcpu on pid %d\n",(int)(pcb-pcbs));
     pcb->estcpu = 2.0/3.0*pcb->estcpu + pcb->pnice;
 }
 
 //on lab webpage
 void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
-    printf("ProcessDecayEstcpuSleep\n");
+//    printf("ProcessDecayEstcpuSleep\n");
     if(pcb->sleeptime >= (TIME_PER_CPU_WINDOW*CPU_WINDOWS_BETWEEN_DECAYS)){
         int num_windows_asleep = pcb->sleeptime / (TIME_PER_CPU_WINDOW*CPU_WINDOWS_BETWEEN_DECAYS);
         pcb->estcpu = pcb->estcpu * pow((2.0/3.0),  num_windows_asleep); 

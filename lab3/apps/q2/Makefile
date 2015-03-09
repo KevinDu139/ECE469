@@ -15,4 +15,4 @@ clean:
 	cd react3; make clean
 
 run:
-	dlxsim -x ../../bin/os.dlx.obj -a -u bin/makeprocs.dlx.obj 2 4; ee469_fixterminal
+	dlxsim -x ../../bin/os.dlx.obj -a -u bin/makeprocs.dlx.obj 4 9; ee469_fixterminal
