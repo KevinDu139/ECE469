@@ -199,7 +199,7 @@ void ProcessSetResult (PCB * pcb, uint32 result) {
 //----------------------------------------------------------------------
 void ProcessSchedule () {
     PCB *pcb=NULL;
-    int i=0,j=0,k=0, empty=0, user=0;
+    int i=0,j=0,k=0, empty=0;
     Link *l=NULL;
 
     quanta++;
@@ -245,27 +245,30 @@ void ProcessSchedule () {
     pcb = ProcessFindHighestPriorityPCB();
 
     if(pcb == IdlePCB){
-        AQueueMoveAfter(&runQueue[WhichQueue(pcb)], // Queue
-                AQueueLast(&runQueue[WhichQueue(pcb)]), // Position
-                pcb->l); // Link to move
-
+        MoveRunQueue(currentPCB);
         pcb = ProcessFindHighestPriorityPCB();
     }
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
     //recalculate the priority, then move it to the end of its priority queue
     if(pcb == currentPCB){
-        if((pcb->runtime % TIME_PER_CPU_WINDOW) == 0) { pcb->estcpu++; }
-        ProcessRecalcPriority(currentPCB);
+
+        currentPCB->estcpu++;
         // Place in new position
-        AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
-                AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
-                currentPCB->l); // Link to move
+//        printf("should move position\n");
+
+        MoveRunQueue(currentPCB);
+
+        if((currentPCB->runtime % TIME_PER_CPU_WINDOW) == 0) { 
+            ProcessRecalcPriority(currentPCB);
+            // Place in new position
+            MoveRunQueue(currentPCB);
+        }
     }
 
 
     //reshuffle priority queues
     if(quanta % 10 == 0){
-        dbprintf('p'," reshuffling priority queue");
+        printf(" reshuffling priority queue\n");
 
         for(i = 0; i < NUM_PRIORITY_QUEUES; i++){
 
@@ -277,12 +280,7 @@ void ProcessSchedule () {
                 ProcessRecalcPriority(pcb);
 
 		// Place in new position
-		AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
-				AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
-				currentPCB->l); // Link to move
-
-		//AQueueRemove(&pcb->l);
-                //AQueueInsertLast(&runQueue[WhichQueue(pcb)], pcb->l);
+            MoveRunQueue(pcb);
             }
         }
 
@@ -291,19 +289,12 @@ void ProcessSchedule () {
 
         pcb = ProcessFindHighestPriorityPCB();
         if(pcb == IdlePCB){
-            AQueueMoveAfter(&runQueue[WhichQueue(pcb)], // Queue
-                    AQueueLast(&runQueue[WhichQueue(pcb)]), // Position
-                    pcb->l); // Link to move
-
+            MoveRunQueue(currentPCB);
             pcb = ProcessFindHighestPriorityPCB();
         }
         if(currentPCB == pcb){
             // Place in new position
-            AQueueMoveAfter(&runQueue[WhichQueue(currentPCB)], // Queue
-                    AQueueLast(&runQueue[WhichQueue(currentPCB)]), // Position
-                    currentPCB->l); // Link to move
-            //AQueueRemove(&currentPCB->l);
-            //AQueueInsertLast(&runQueue[WhichQueue(currentPCB)], currentPCB->l);
+            MoveRunQueue(currentPCB);
         }
 
     }
@@ -329,7 +320,7 @@ void ProcessSchedule () {
         }
         ProcessFreeResources(pcb);
     }
-   ProcessPrintRunQueues();
+    ProcessPrintRunQueues();
 
     dbprintf ('p', "Leaving ProcessSchedule (cur=0x%x)\n", (int)currentPCB);
 }
@@ -423,7 +414,7 @@ void ProcessWakeup (PCB *wakeup) {
 //
 //----------------------------------------------------------------------
 void ProcessDestroy (PCB *pcb) {
-    dbprintf ('p', "ProcessDestroy (%d): function started\n", GetCurrentPid());
+    printf ("ProcessDestroy (%d): function started\n", GetCurrentPid());
     ProcessSetStatus (pcb, PROCESS_STATUS_ZOMBIE);
 
     pcb->runtime += ClkGetCurJiffies() - pcb->starttime;
@@ -440,7 +431,7 @@ void ProcessDestroy (PCB *pcb) {
         printf("FATAL ERROR: could not insert link into runQueue in ProcessWakeup!\n");
         exitsim();
     }
-    dbprintf ('p', "ProcessDestroy (%d): function complete\n", GetCurrentPid());
+    printf ("ProcessDestroy (%d): function complete\n", GetCurrentPid());
 }
 
 //----------------------------------------------------------------------
@@ -1111,7 +1102,7 @@ void ProcessRecalcPriority(PCB *pcb){
     if(pcb == IdlePCB){
         pcb->priority = 127;
     }else{
-        pcb->priority = BASE_PRIORITY + pcb->estcpu/4 + 2*pcb->pnice;
+        pcb->priority = BASE_PRIORITY + (int)(pcb->estcpu/4.0) + (2*pcb->pnice);
     }
 }
 
@@ -1129,11 +1120,13 @@ int ProcessInsertRunning(PCB *pcb){
 
 //formula 2 on webpage
 void ProcessDecayEstcpu(PCB *pcb){
+    printf("ProcessDecayEstcpu on pid %d\n",(int)(pcb-pcbs));
     pcb->estcpu = 2.0/3.0*pcb->estcpu + pcb->pnice;
 }
 
 //on lab webpage
 void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
+    printf("ProcessDecayEstcpuSleep\n");
     if(pcb->sleeptime >= (TIME_PER_CPU_WINDOW*CPU_WINDOWS_BETWEEN_DECAYS)){
         int num_windows_asleep = pcb->sleeptime / (TIME_PER_CPU_WINDOW*CPU_WINDOWS_BETWEEN_DECAYS);
         pcb->estcpu = pcb->estcpu * pow((2.0/3.0),  num_windows_asleep); 
@@ -1143,39 +1136,41 @@ void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
 //find the highest priority process overall
 PCB *ProcessFindHighestPriorityPCB(){
     PCB *pcb = NULL;
-    PCB *highestPCB = NULL;
     Link *l;
-    int i=0,j=0,k=0;
+    int i=0;
 
-    // Check every queue
     for(i=0; i < NUM_PRIORITY_QUEUES; i++){
-        // Check queue isn't empty
-        j = AQueueLength(&runQueue[i]);
-        if(j != 0) {
-            pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
-            // Check if higher priority
-            if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
-                highestPCB = pcb;
-            }
-        }
-        // Check remaining processes
-        for(k =1; k < j; k ++){
-            l = AQueueNext(pcb->l);
-            pcb = (PCB*) l->object;
-            // Check if higher priority
-            if(highestPCB == NULL || pcb->priority < highestPCB->priority) {
-                highestPCB = pcb;
-            }
+        if(AQueueLength(&runQueue[i]) != 0){
+            pcb = (PCB *)(AQueueFirst(&runQueue[i])->object);
+            break;
         }
     }
     // return highest found priority process
-    return highestPCB;
+    return pcb;
 }
 
 //calling processdecayestcpu on all processes 
 void ProcessDecayAllEstcpus(){
 
 }
+
+void MoveRunQueue(PCB *pcb){
+
+    if (AQueueRemove(&(pcb->l)) != QUEUE_SUCCESS) {
+        printf("FATAL ERROR: could not remove process from runQueue in MoveRunQueue!\n");
+        exitsim();
+    }
+    if ((pcb->l = AQueueAllocLink(pcb)) == NULL) {
+        printf("FATAL ERROR: could not get Queue Link in MoveRunQueue!\n");
+        exitsim();
+    }
+    if (AQueueInsertLast(&runQueue[WhichQueue(pcb)], pcb->l) != QUEUE_SUCCESS) {
+        printf("FATAL ERROR: could not insert PCB into new runQUeue!\n");
+        exitsim();
+    }
+
+}
+
 
 //moves processes between queues
 void ProcessFixRunQueues(){
@@ -1193,20 +1188,22 @@ void ProcessPrintRunQueues(){
     int i=0,j=0,k=0;
     Link *l;
 
+    printf("****************************************************************************************\n");
     for(i=0; i < NUM_PRIORITY_QUEUES; i++){
 
         j = AQueueLength(&runQueue[i]);
         pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
         if(j != 0) {
-	  printf("==Queue %d==> Process %d is pid %d with priority %d\n",i, 0, (int)(pcb-pcbs), pcb->priority);
+	  printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, 0, (int)(pcb-pcbs), pcb->priority); printf("%f \n", pcb->estcpu);
 	}
 
         for(k =1; k < j; k ++){
             l = AQueueNext(pcb->l);
             pcb = (PCB*) l->object;
-	    printf("==Queue %d==> Process %d is pid %d with priority %d\n",i, k, (int)(pcb-pcbs), pcb->priority);
+	    printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, k, (int)(pcb-pcbs), pcb->priority); printf("%f \n",  pcb->estcpu);
         }
     }
+    printf("****************************************************************************************\n");
 }
 
 

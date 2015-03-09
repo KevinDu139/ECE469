@@ -116,6 +116,7 @@ void ProcessDecayEstcpu(PCB *pcb);
 void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies);
 PCB *ProcessFindHighestPriorityPCB();
 void ProcessDecayAllEstcpus();
+void MoveRunQueue(PCB *pcb);
 void ProcessFixRunQueues();
 int ProcessCountAutowake();
 void ProcessPrintRunQueues();
