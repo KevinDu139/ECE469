@@ -251,8 +251,11 @@ void ProcessSchedule () {
     //if currentPCB is the highest priority, incriment estcpu if its been run enough times and 
     //recalculate the priority, then move it to the end of its priority queue
     if(pcb == currentPCB){
-
-        currentPCB->estcpu++;
+        if(currentPCB->flags & PROCESS_STATUS_YIELD){
+            ProcessSetStatus(currentPCB, PROCESS_STATUS_RUNNABLE);
+        }else{
+            currentPCB->estcpu++;
+        }
         // Place in new position
 //        printf("should move position\n");
 
@@ -301,12 +304,10 @@ void ProcessSchedule () {
 
     // Now, run the one at the head of the queue.
     pcb = ProcessFindHighestPriorityPCB();
-    //printf("process: %d, switching to: %d\n", (int)(currentPCB-pcbs), (int)(pcb-pcbs));
-    currentPCB = pcb;
-    dbprintf ('p', "About to switch to PCB 0x%x,flags=0x%x @ 0x%x\n",
-            (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
 
-    //starting process clock here
+
+    ProcessAutowake();
+        //starting process clock here
     currentPCB->starttime = ClkGetCurJiffies();
 
     // Clean up zombie processes here.  This is done at interrupt time
@@ -545,6 +546,7 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
     }else{
         pcb->priority  = BASE_PRIORITY;
     }
+    pcb->wakeuptime = 0;
         
 
     //----------------------------------------------------------------------
@@ -1080,7 +1082,9 @@ int GetPidFromAddress(PCB *pcb) {
 // followed by a call to ProcessSchedule (in traps.c).
 //--------------------------------------------------------
 void ProcessUserSleep(int seconds) {
-    // Your code here
+    currentPCB->wakeuptime = (double)seconds + ClkGetCurTime();
+    ProcessSuspend(currentPCB);
+
 }
 
 //-----------------------------------------------------
@@ -1089,14 +1093,30 @@ void ProcessUserSleep(int seconds) {
 // ProcessSchedule (in traps.c).
 //-----------------------------------------------------
 void ProcessYield() {
-    // Your code here
+    ProcessSetStatus(currentPCB, PROCESS_STATUS_YIELD);
 }
 
 void ProcessIdle(){
     while(1);
 }
 
+void ProcessAutowake(){
+    PCB *pcb;
+    Link *l;
+    int i;
 
+    //Checking for autowake processes and waking them
+    pcb = (PCB*) (AQueueFirst(&waitQueue)->object);
+    for(i=0; i < AQueueLength(&waitQueue); i++){
+        if(pcb->wakeuptime <= ClkGetCurTime()){
+            ProcessWakeup(pcb);
+        }
+
+        l = AQueueNext(pcb->l);
+        pcb = (PCB*) l->object;
+    } 
+
+}
 
 
 //recalculate priority of process
@@ -1138,7 +1158,6 @@ void ProcessDecayEstcpuSleep(PCB *pcb, int time_asleep_jiffies){
 //find the highest priority process overall
 PCB *ProcessFindHighestPriorityPCB(){
     PCB *pcb = NULL;
-    Link *l;
     int i=0;
 
     for(i=0; i < NUM_PRIORITY_QUEUES; i++){
@@ -1173,17 +1192,6 @@ void MoveRunQueue(PCB *pcb){
 
 }
 
-
-//moves processes between queues
-void ProcessFixRunQueues(){
-
-}
-
-//returns number of processes to be auto waked to Process Schedule
-int ProcessCountAutowake(){
-    return 1;
-}
-
 //prints out status and contents of run queues
 void ProcessPrintRunQueues(){
     PCB *pcb = NULL;
@@ -1196,13 +1204,13 @@ void ProcessPrintRunQueues(){
         j = AQueueLength(&runQueue[i]);
         pcb = (PCB*) (AQueueFirst(&runQueue[i])->object);
         if(j != 0) {
-	  printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, 0, (int)(pcb-pcbs), pcb->priority); printf("%f \n", pcb->estcpu);
-	}
+            printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, 0, (int)(pcb-pcbs), pcb->priority); printf("%f \n", pcb->estcpu);
+        }
 
         for(k =1; k < j; k ++){
             l = AQueueNext(pcb->l);
             pcb = (PCB*) l->object;
-	    printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, k, (int)(pcb-pcbs), pcb->priority); printf("%f \n",  pcb->estcpu);
+            printf("==Queue %d==> Process %d is pid %d with priority %d estcpu ",i, k, (int)(pcb-pcbs), pcb->priority); printf("%f \n",  pcb->estcpu);
         }
     }
     printf("****************************************************************************************\n");
