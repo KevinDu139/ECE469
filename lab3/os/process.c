@@ -252,12 +252,12 @@ void ProcessSchedule () {
     //recalculate the priority, then move it to the end of its priority queue
     if(pcb == currentPCB){
         if(currentPCB->flags & PROCESS_STATUS_YIELD){
-            ProcessSetStatus(currentPCB, PROCESS_STATUS_RUNNABLE);
+            ProcessSetStatus(currentPCB, !PROCESS_STATUS_YIELD);
         }else{
             currentPCB->estcpu++;
         }
         // Place in new position
-//        printf("should move position\n");
+        //printf("should move position\n");
 
         MoveRunQueue(currentPCB);
 
@@ -309,7 +309,9 @@ void ProcessSchedule () {
     dbprintf ('p', "About to switch to PCB 0x%x,flags=0x%x @ 0x%x\n",
         (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
 
-    ProcessAutowake();
+    //ProcessAutowake();
+
+
         //starting process clock here
     currentPCB->starttime = ClkGetCurJiffies();
 

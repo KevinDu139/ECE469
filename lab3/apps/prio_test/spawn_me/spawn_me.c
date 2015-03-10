@@ -22,6 +22,7 @@ void main (int argc, char *argv[])
   for(i=0; i<30; i++) {
     Printf("spawn_me (%d): %c%d\n", getpid(), 'A'+program_index, i);
     //sleep(1);
+    //yield();
     for(j=0; j<50000; j++);  // just busy-wait awhile
   }
 
