@@ -61,6 +61,7 @@ typedef struct PCB {
   uint32        sleeptime;      //holds time asleep
 
   double        wakeuptime;      // holds the time the process was last awake
+  int           wakeup;
 
 } PCB;
 

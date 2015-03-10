@@ -309,7 +309,7 @@ void ProcessSchedule () {
     dbprintf ('p', "About to switch to PCB 0x%x,flags=0x%x @ 0x%x\n",
         (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
 
-    //ProcessAutowake();
+    ProcessAutowake();
 
 
         //starting process clock here
@@ -552,6 +552,7 @@ int ProcessFork (VoidFunc func, uint32 param, int pnice, int pinfo,char *name, i
         pcb->priority  = BASE_PRIORITY;
     }
     pcb->wakeuptime = 0;
+    pcb->wakeup=0;
         
 
     //----------------------------------------------------------------------
@@ -1088,6 +1089,7 @@ int GetPidFromAddress(PCB *pcb) {
 //--------------------------------------------------------
 void ProcessUserSleep(int seconds) {
     currentPCB->wakeuptime = (double)seconds + ClkGetCurTime();
+    currentPCB->wakeup =1;
     ProcessSuspend(currentPCB);
 
 }
@@ -1113,11 +1115,11 @@ void ProcessAutowake(){
     //Checking for autowake processes and waking them
     pcb = (PCB*) (AQueueFirst(&waitQueue)->object);
     for(i=0; i < AQueueLength(&waitQueue); i++){
-        if(pcb->wakeuptime <= ClkGetCurTime()){
+        l = AQueueNext(pcb->l);
+        if((pcb->wakeuptime <= ClkGetCurTime()) && pcb->wakeup){
+            pcb->wakeup=0;
             ProcessWakeup(pcb);
         }
-
-        l = AQueueNext(pcb->l);
         pcb = (PCB*) l->object;
     } 
 
