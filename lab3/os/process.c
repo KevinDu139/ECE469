@@ -304,7 +304,10 @@ void ProcessSchedule () {
 
     // Now, run the one at the head of the queue.
     pcb = ProcessFindHighestPriorityPCB();
+    currentPCB = pcb;
 
+    dbprintf ('p', "About to switch to PCB 0x%x,flags=0x%x @ 0x%x\n",
+        (int)pcb, pcb->flags, (int)(pcb->sysStackPtr[PROCESS_STACK_IAR]));
 
     ProcessAutowake();
         //starting process clock here
