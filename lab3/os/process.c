@@ -221,19 +221,21 @@ void ProcessSchedule () {
     }
 
 //    printf("empty queues %d\n", empty);
-    if (empty == NUM_PRIORITY_QUEUES) {
-        if (!AQueueEmpty(&waitQueue)) {
-            printf("FATAL ERROR: no runnable processes, but there are sleeping processes waiting!\n");
-            l = AQueueFirst(&waitQueue);
-            while (l != NULL) {
-                pcb = AQueueObject(l);
-                printf("Sleeping process %d: ", i++); printf("PID = %d\n", (int)(pcb - pcbs));
-                l = AQueueNext(l);
+    if(CountAutowake() == 0){
+        if (empty == NUM_PRIORITY_QUEUES) {
+            if (!AQueueEmpty(&waitQueue)) {
+                printf("FATAL ERROR: no runnable processes, but there are sleeping processes waiting!\n");
+                l = AQueueFirst(&waitQueue);
+                while (l != NULL) {
+                    pcb = AQueueObject(l);
+                    printf("Sleeping process %d: ", i++); printf("PID = %d\n", (int)(pcb - pcbs));
+                    l = AQueueNext(l);
+                }
+                exitsim();
             }
-            exitsim();
+            printf ("No runnable processes - exiting!\n");
+            exitsim ();	// NEVER RETURNS
         }
-        printf ("No runnable processes - exiting!\n");
-        exitsim ();	// NEVER RETURNS
     }
 
     currentPCB->runtime += ClkGetCurJiffies() - currentPCB->starttime;
@@ -1125,6 +1127,23 @@ void ProcessAutowake(){
 
 }
 
+int CountAutowake(){
+    PCB *pcb;
+    Link *l;
+    int i,c=0;
+
+    //Checking for autowake processes and waking them
+    pcb = (PCB*) (AQueueFirst(&waitQueue)->object);
+    for(i=0; i < AQueueLength(&waitQueue); i++){
+        l = AQueueNext(pcb->l);
+        if(pcb->wakeup){
+            c++;
+        }
+        pcb = (PCB*) l->object;
+    } 
+
+    return c;
+}
 
 //recalculate priority of process
 void ProcessRecalcPriority(PCB *pcb){

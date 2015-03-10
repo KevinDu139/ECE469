@@ -120,6 +120,7 @@ void ProcessDecayAllEstcpus();
 void MoveRunQueue(PCB *pcb);
 void ProcessPrintRunQueues();
 void ProcessAutowake();
+int CountAutowake();
 
 void (*funcPtr)();
 #endif	/* __process_h__ */

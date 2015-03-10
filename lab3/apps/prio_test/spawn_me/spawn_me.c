@@ -21,9 +21,9 @@ void main (int argc, char *argv[])
   // Now print messages to see if priority scheduling is working
   for(i=0; i<30; i++) {
     Printf("spawn_me (%d): %c%d\n", getpid(), 'A'+program_index, i);
-    //sleep(1);
+    sleep(2);
     //yield();
-    for(j=0; j<50000; j++);  // just busy-wait awhile
+    //for(j=0; j<50000; j++);  // just busy-wait awhile
   }
 
   // Signal the semaphore to tell the original process that we're done
