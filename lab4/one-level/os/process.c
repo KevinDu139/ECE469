@@ -65,7 +65,7 @@ uint32 get_argument(char *string);
 //
 //----------------------------------------------------------------------
 void ProcessModuleInit () {
-  int		i;
+  int i;
 
   dbprintf ('p', "Entering ProcessModuleInit\n");
   AQueueInit (&freepcbs);
@@ -86,6 +86,22 @@ void ProcessModuleInit () {
     //-------------------------------------------------------
     // STUDENT: Initialize the PCB's page table here.
     //-------------------------------------------------------
+
+    currentPCB->npages =6;
+
+    //user space pages
+    for(i=0; i <4; i++){
+        currentPCB->pagetable[i] = MemoryAllocPage();
+    }
+
+    //system stack - own register
+    currentPCB->sysStackPtr = MemoryAllocPage();
+
+    //user stack - vrirtual max
+    currentPCB->pagetable[(MAX_VIRTUAL_ADDRESS +1) >> MEM_L1FIELD_FIRST_BITNUM] = MemoryAllocPage();
+
+    
+
 
     // Finally, insert the link into the queue
     if (AQueueInsertFirst(&freepcbs, pcbs[i].l) != QUEUE_SUCCESS) {

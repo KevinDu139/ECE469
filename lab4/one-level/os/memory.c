@@ -209,6 +209,30 @@ int MemoryPageFaultHandler(PCB *pcb) {
 //---------------------------------------------------------------------
 
 int MemoryAllocPage(void) {
+    int i, j, k;
+    uint32 mask;
+
+
+    for(i=0;i < 16; i++){
+        mask = 0x1;
+        if(freemap[i] >0){
+            printf("index %d\n", i);
+            for(j=0; j <32; j++){
+                if((freemap[i] & mask) == 1){
+                    freemap[i] = freemap[i] ^ mask; 
+                    return (i*32) + j;
+                }
+            }
+            mask = mask << 1;
+        }
+    }
+
+
+
+
+
+
+
   return -1;
 }
 
