@@ -57,12 +57,18 @@ int MemoryGetSize() {
 //----------------------------------------------------------------------
 void MemoryModuleInit() {
     //inuse as 0, not in use as 1
-    int i,j
+    int i,j;
     int maxpages;
     uint32 ormask;
-    maxpages = lastosaddress / (MEM_PAGE_SIZE + 0x1);
+    maxpages = lastosaddress / MEM_PAGESIZE;
+   
+    if(lastosaddress % MEM_PAGESIZE > 0){
+        maxpages++;
+    }
 
-    for(i =0; i < maxpages/16; i++){
+    printf("max pages: %X\n", maxpages);
+
+    for(i =0; i < 16; i++){
         freemap[i] =0;
         ormask =0x1;
         for(j=0; j < 32; j++){
@@ -71,10 +77,15 @@ void MemoryModuleInit() {
             }else{
                 maxpages--;
             }
-            ormask << 1;
+            ormask = ormask << 1;
         }
     }
 
+    printf("Last os address: %X\n", lastosaddress);
+
+    for(i=0;i < 16; i++){
+        printf("Index: %d, %X\n", i, freemap[i]);
+    }
 }
 
 
@@ -87,6 +98,7 @@ void MemoryModuleInit() {
 //
 //----------------------------------------------------------------------
 uint32 MemoryTranslateUserToSystem (PCB *pcb, uint32 addr) {
+    return 0;
 }
 
 

@@ -19,11 +19,14 @@
 // that the grader knows they are defined in this file.
 //--------------------------------------------------------
 
-#define MEM_L1FIELD_FIRST_BITNUM    0x1
+#define MEM_L1FIELD_FIRST_BITNUM    0xC
 #define MAX_VIRTUAL_ADDRESS         0xFFFFF
 #define MEM_MAX_SIZE                0x1FFFFF
 #define MEM_PTE_READONLY            0x4
 #define MEM_PTE_DIRTY               0x2
 #define MEM_PTE_VALID               0x1
-#define MEM_PAGE_SIZE               0xFFF
+
+
+#define MEM_PAGESIZE                (0x1 << MEM_L1FIELD_FIRST_BITNUM)
+#define MEM_ADDRESS_OFFSET_MASK     (MEM_PAGESIZE - 0x1)
 #endif	// _memory_constants_h_
