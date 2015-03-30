@@ -98,7 +98,16 @@ void MemoryModuleInit() {
 //
 //----------------------------------------------------------------------
 uint32 MemoryTranslateUserToSystem (PCB *pcb, uint32 addr) {
-    return 0;
+    uint32 pagenum, offset, physaddr;
+
+    offset = addr & 0xFFF;
+    pagenum = addr >> 12;
+
+    physaddr = offset; 
+
+    physaddr |= (pcb->pagetable[pagenum] & 0x1FF000);
+
+    return physaddr;
 }
 
 
@@ -199,7 +208,32 @@ int MemoryCopyUserToSystem (PCB *pcb, unsigned char *from,unsigned char *to, int
 // Feel free to edit.
 //---------------------------------------------------------------------
 int MemoryPageFaultHandler(PCB *pcb) {
-  return MEM_FAIL;
+    uint32 faultaddr;
+    uint32 usrstackptr;
+    int bit, index;
+    uint32 newpage; 
+
+    faultaddr = pcb->currentSavedFrame[PROCESS_STACK_FAULT];
+    usrstackptr = pcb->currentSavedFrame[PROCESS_STACK_USER_STACKPOINTER];
+    bit = (faultaddr & 0x1FF000) % 32; //bit index
+    index = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM) / 32;
+
+    if(faultaddr >= usrstackptr){
+        if( (newpage = MemoryAllocPage()) == MEM_FAIL){
+            printf("FATAL ERROR: Could not allocate memory\n");
+            exitsim();
+        }
+
+        pcb->pagetable[index] = MemorySetupPte(newpage); 
+
+        return MEM_SUCCESS;
+
+    }else{
+        printf("segfault!!!!\n");
+        ProcessKill(pcb);
+        return MEM_FAIL;
+    }
+
 }
 
 
@@ -216,32 +250,40 @@ int MemoryAllocPage(void) {
     for(i=0;i < 16; i++){
         mask = 0x1;
         if(freemap[i] >0){
-            printf("index %d\n", i);
+            printf("index %d \n", i); 
+            printf("value %X\n", freemap[i]);
             for(j=0; j <32; j++){
-                if((freemap[i] & mask) == 1){
-                    freemap[i] = freemap[i] ^ mask; 
+                if((freemap[i] & (mask << j))){
+                    printf("mask %d\n", mask);
+                    freemap[i] ^= mask << j; 
+                    printf("allocating %X\n", (i*32) + j);
                     return (i*32) + j;
                 }
             }
-            mask = mask << 1;
         }
     }
 
-
-
-
-
-
-
-  return -1;
+  return MEM_FAIL;
 }
 
 
 uint32 MemorySetupPte (uint32 page) {
-  return -1;
+    uint32 i;
+    printf("page %x\n", page);
+    i = page << MEM_L1FIELD_FIRST_BITNUM;
+    printf("page %x\n", i);
+    i = i | MEM_PTE_VALID;
+    printf("page %x\n", i);
+    return i;
 }
 
 
 void MemoryFreePage(uint32 page) {
+    int bit, index;
+    page = page & 0x1FF000;
+    page = page >> MEM_L1FIELD_FIRST_BITNUM;
+    bit = page % 32; //bit index
+    index = page / 32;
+    freemap[index] ^= 1 << bit;
 }
 

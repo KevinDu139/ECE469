@@ -7,4 +7,4 @@ clean:
 	cd hello_world; make clean
 
 run:
-	cd ../../bin; dlxsim -D m -x os.dlx.obj -a -D mi -u makeprocs.dlx.obj 5; ee469_fixterminal
+	cd ../../bin; dlxsim -D m -x os.dlx.obj -a -D m -u makeprocs.dlx.obj 5; ee469_fixterminal

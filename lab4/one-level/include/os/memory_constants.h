@@ -29,4 +29,5 @@
 
 #define MEM_PAGESIZE                (0x1 << MEM_L1FIELD_FIRST_BITNUM)
 #define MEM_ADDRESS_OFFSET_MASK     (MEM_PAGESIZE - 0x1)
+#define MEM_PAGE_TABLE_SIZE         (MAX_VIRTUAL_ADDRESS + 1) >> MEM_L1FIELD_FIRST_BITNUM
 #endif	// _memory_constants_h_

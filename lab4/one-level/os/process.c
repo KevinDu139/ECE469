@@ -85,22 +85,11 @@ void ProcessModuleInit () {
 
     //-------------------------------------------------------
     // STUDENT: Initialize the PCB's page table here.
-    //-------------------------------------------------------
 
-    currentPCB->npages =6;
+    currentPCB->npages =0;
+//-------------------------------------------------------
 
-    //user space pages
-    for(i=0; i <4; i++){
-        currentPCB->pagetable[i] = MemoryAllocPage();
-    }
 
-    //system stack - own register
-    currentPCB->sysStackPtr = MemoryAllocPage();
-
-    //user stack - vrirtual max
-    currentPCB->pagetable[(MAX_VIRTUAL_ADDRESS +1) >> MEM_L1FIELD_FIRST_BITNUM] = MemoryAllocPage();
-
-    
 
 
     // Finally, insert the link into the queue
@@ -154,6 +143,15 @@ void ProcessFreeResources (PCB *pcb) {
   // STUDENT: Free any memory resources on process death here.
   //------------------------------------------------------------
 
+    for(i = 0; i<MEM_PAGE_TABLE_SIZE; i++){
+        if(pcb->pagetable[i] & MEM_PTE_VALID){
+            pcb->pagetable[i] ^= MEM_PTE_VALID;
+            MemoryFreePage(pcb->pagetable[i]);
+        }
+    }
+
+    pcb->npages = 0;
+    MemoryFreePage (pcb->sysStackArea);
 
   ProcessSetStatus (pcb, PROCESS_STATUS_FREE);
 }
@@ -434,6 +432,35 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
   //---------------------------------------------------------
 
 
+  pcb->npages =6;
+
+  //user space pages
+  for(i=0; i <4; i++){
+      if((pcb->pagetable[i] = MemoryAllocPage()) == MEM_FAIL){
+          printf("FATAL ERROR: Could not allocate page\n");
+          exitsim();
+      }
+      pcb->pagetable[i] = MemorySetupPte(pcb->pagetable[i]);
+  }
+
+  //system stack - own register
+  if((pcb->sysStackArea= MemoryAllocPage()) == MEM_FAIL){
+      printf("FATAL ERROR: Could not allocate page\n");
+      exitsim();
+  }
+
+  pcb->sysStackArea = MemorySetupPte(pcb->sysStackArea);
+  pcb->sysStackArea ^= 0x1;
+
+  //user stack - vrirtual max
+  if((pcb->pagetable[255] = MemoryAllocPage()) == MEM_FAIL){
+      printf("FATAL ERROR: Could not allocate page\n");
+      exitsim();
+  }
+  pcb->pagetable[255] = MemorySetupPte(pcb->pagetable[255]);
+
+
+  stackframe = (uint32*)(pcb->sysStackArea + 0xffc);
 
   // Now that the stack frame points at the bottom of the system stack memory area, we need to
   // move it up (decrement it) by one stack frame size because we're about to fill in the
@@ -464,6 +491,15 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
   // stack frame.
   //----------------------------------------------------------------------
 
+printf ("help\n"); 
+    pcb->currentSavedFrame[PROCESS_STACK_PTBASE] = (uint32) &pcb->pagetable[0];
+    pcb->currentSavedFrame[PROCESS_STACK_PTBITS] = MEM_L1FIELD_FIRST_BITNUM << 16;
+    pcb->currentSavedFrame[PROCESS_STACK_PTBITS] |= MEM_L1FIELD_FIRST_BITNUM;
+    pcb->currentSavedFrame[PROCESS_STACK_PTSIZE] = MEM_PAGE_TABLE_SIZE; 
+
+
+
+
   if (isUser) {
     dbprintf ('p', "About to load %s\n", name);
     fd = ProcessGetCodeInfo (name, &start, &codeS, &codeL, &dataS, &dataL);
@@ -493,6 +529,7 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
     // of the process's virtual address space (4-byte aligned).
     //----------------------------------------------------------------------
 
+    pcb->currentSavedFrame[PROCESS_STACK_USER_STACKPOINTER] = MAX_VIRTUAL_ADDRESS - 3; 
 
     //--------------------------------------------------------------------
     // This part is setting up the initial user stack with argc and argv.
