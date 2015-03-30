@@ -491,7 +491,6 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
   // stack frame.
   //----------------------------------------------------------------------
 
-printf ("help\n"); 
     pcb->currentSavedFrame[PROCESS_STACK_PTBASE] = (uint32) &pcb->pagetable[0];
     pcb->currentSavedFrame[PROCESS_STACK_PTBITS] = MEM_L1FIELD_FIRST_BITNUM << 16;
     pcb->currentSavedFrame[PROCESS_STACK_PTBITS] |= MEM_L1FIELD_FIRST_BITNUM;

@@ -66,7 +66,6 @@ void MemoryModuleInit() {
         maxpages++;
     }
 
-    printf("max pages: %X\n", maxpages);
 
     for(i =0; i < 16; i++){
         freemap[i] =0;
@@ -81,11 +80,7 @@ void MemoryModuleInit() {
         }
     }
 
-    printf("Last os address: %X\n", lastosaddress);
 
-    for(i=0;i < 16; i++){
-        printf("Index: %d, %X\n", i, freemap[i]);
-    }
 }
 
 
@@ -250,13 +245,9 @@ int MemoryAllocPage(void) {
     for(i=0;i < 16; i++){
         mask = 0x1;
         if(freemap[i] >0){
-            printf("index %d \n", i); 
-            printf("value %X\n", freemap[i]);
             for(j=0; j <32; j++){
                 if((freemap[i] & (mask << j))){
-                    printf("mask %d\n", mask);
                     freemap[i] ^= mask << j; 
-                    printf("allocating %X\n", (i*32) + j);
                     return (i*32) + j;
                 }
             }
@@ -269,11 +260,8 @@ int MemoryAllocPage(void) {
 
 uint32 MemorySetupPte (uint32 page) {
     uint32 i;
-    printf("page %x\n", page);
     i = page << MEM_L1FIELD_FIRST_BITNUM;
-    printf("page %x\n", i);
     i = i | MEM_PTE_VALID;
-    printf("page %x\n", i);
     return i;
 }
 
