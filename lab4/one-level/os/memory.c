@@ -208,10 +208,15 @@ int MemoryPageFaultHandler(PCB *pcb) {
     int bit, index;
     uint32 newpage; 
 
+    printf("Entering Page Fault Handling\n");
+
     faultaddr = pcb->currentSavedFrame[PROCESS_STACK_FAULT];
     usrstackptr = pcb->currentSavedFrame[PROCESS_STACK_USER_STACKPOINTER];
     bit = (faultaddr & 0x1FF000) % 32; //bit index
     index = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM) / 32;
+
+    printf("fault address: %X\n", faultaddr);
+    printf("user stack pointer: %X\n", usrstackptr);
 
     if(faultaddr >= usrstackptr){
         if( (newpage = MemoryAllocPage()) == MEM_FAIL){
@@ -240,7 +245,6 @@ int MemoryPageFaultHandler(PCB *pcb) {
 int MemoryAllocPage(void) {
     int i, j, k;
     uint32 mask;
-
 
     for(i=0;i < 16; i++){
         mask = 0x1;
