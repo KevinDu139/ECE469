@@ -1,0 +1,1 @@
+work/4.o: 4.c ../../../include/usertraps.h ../../../include/misc.h

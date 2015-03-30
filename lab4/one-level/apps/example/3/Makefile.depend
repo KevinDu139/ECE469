@@ -1,0 +1,1 @@
+work/3.o: 3.c ../../../include/usertraps.h ../../../include/misc.h

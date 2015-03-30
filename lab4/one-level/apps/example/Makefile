@@ -1,10 +1,20 @@
 default:
 	cd makeprocs; make
-	cd hello_world; make
+	cd 1; make
+	cd 2; make
+	cd 3; make
+	cd 4; make
+	cd 5; make
+	cd 6; make
 
 clean:
 	cd makeprocs; make clean
-	cd hello_world; make clean
+	cd 1; make clean
+	cd 2; make clean
+	cd 3; make clean
+	cd 4; make clean
+	cd 5; make clean
+	cd 6; make clean
 
 run:
-	cd ../../bin; dlxsim -x os.dlx.obj -a -u makeprocs.dlx.obj 100; ee469_fixterminal
+	cd ../../bin; dlxsim -x os.dlx.obj -a -u makeprocs.dlx.obj 4; ee469_fixterminal
