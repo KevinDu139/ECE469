@@ -82,7 +82,7 @@ LC2:
 	.ascii "\n\000"
 	.align 2
 LC3:
-	.ascii "Accessing Memory Location: %x\n\000"
+	.ascii "Accessing Memory Location: %d (decimal)\n\000"
 	.align 2
 LC4:
 	.ascii "Test Unallocated Virtual Access (%d): Done!\n\000"

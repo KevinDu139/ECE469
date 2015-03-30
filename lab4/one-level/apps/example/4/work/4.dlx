@@ -1,7 +1,7 @@
 ; Linked by DLX-LD.
 ; MemSize 24576
-; Data size: 235
-; Text size: 4528
+; Data size: 247
+; Text size: 4600
 ; Stack size: 8192
 .text 0x1000
 .data 0x3000
@@ -76,21 +76,35 @@ L11_LF0:
 	jr	r31
 	nop
 .endproc _isxdigit
+.data
+.align 2
+LC0_LF0:
+.ascii "RECURSE\n\000"
+.text
 .align 2
 .proc _factorial
 .global _factorial
 _factorial:
-;  Function 'factorial'; 0 bytes of locals, 0 regs to save.
+;  Function 'factorial'; 0 bytes of locals, 2 regs to save.
 	sw	-4(r29),r30; push fp
 	add	r30,r0,r29; fp = sp
 	sw	-8(r29),r31; push ret addr
-	subui	r29,r29,#8; alloc local storage
-	lw	r31,(r30)
-	snei	r1,r31,#0
+	subui	r29,r29,#16; alloc local storage
+	sw	0(r29),r2
+	sw	4(r29),r3
+	lw	r2,(r30)
+	addi	r29,r29,#-8
+	lhi	r3,((LC0_LF0)>>16)&0xffff
+	addui	r3,r3,(LC0_LF0)&0xffff
+	sw	(r29),r3
+	jal	_Printf
+	nop; not filled.
+	addi	r29,r29,#8
+	snei	r1,r2,#0
 	beqz	r1,L16_LF0
 	nop; not filled.
 	addi	r29,r29,#-8
-	addi	r1,r31,#-1
+	addi	r1,r2,#-1
 	sw	(r29),r1
 	jal	_factorial
 	nop; not filled.
@@ -101,6 +115,8 @@ _factorial:
 L16_LF0:
 	addi	r1,r0,#1
 L15_LF0:
+	lw	r2,0(r29)
+	lw	r3,4(r29)
 	lw	r31,-8(r30)
 	add	r29,r0,r30
 	lw	r30,-4(r30)
@@ -109,22 +125,22 @@ L15_LF0:
 .endproc _factorial
 .data
 .align 2
-LC0_LF0:
+LC1_LF0:
 .ascii "Usage: %s <handle_to_procs_completed_semaphore>\n\000"
 .align 2
-LC1_LF0:
+LC2_LF0:
 .ascii "Test Stack Growth (%d): Start\n\000"
 .align 2
-LC2_LF0:
+LC3_LF0:
 .ascii "Calling Recursive Function %d\n\000"
 .align 2
-LC3_LF0:
+LC4_LF0:
 .ascii "%d Recursive Calls Made\n\000"
 .align 2
-LC4_LF0:
+LC5_LF0:
 .ascii "hello_world (%d): Bad semaphore s_procs_completed (%d)!\n\000"
 .align 2
-LC5_LF0:
+LC6_LF0:
 .ascii "Stack Growth Test (%d): Done!\n\000"
 .text
 .align 2
@@ -144,8 +160,8 @@ _main:
 	beqz	r1,L19_LF0
 	nop; not filled.
 	addi	r29,r29,#-8
-	lhi	r4,((LC0_LF0)>>16)&0xffff
-	addui	r4,r4,(LC0_LF0)&0xffff
+	lhi	r4,((LC1_LF0)>>16)&0xffff
+	addui	r4,r4,(LC1_LF0)&0xffff
 	sw	(r29),r4
 	jal	_Printf
 	nop; not filled.
@@ -165,20 +181,27 @@ L19_LF0:
 	add	r2,r0,r1
 	jal	_getpid
 	nop; not filled.
-	lhi	r4,((LC1_LF0)>>16)&0xffff
-	addui	r4,r4,(LC1_LF0)&0xffff
+	lhi	r4,((LC2_LF0)>>16)&0xffff
+	addui	r4,r4,(LC2_LF0)&0xffff
 	sw	(r29),r4
 	sw	4(r29),r1
 	jal	_Printf
 	nop; not filled.
-	lhi	r4,((LC2_LF0)>>16)&0xffff
-	addui	r4,r4,(LC2_LF0)&0xffff
+	lhi	r4,((LC3_LF0)>>16)&0xffff
+	addui	r4,r4,(LC3_LF0)&0xffff
 	sw	(r29),r4
 	addi	r4,r0,#10000
 	sw	4(r29),r4
 	jal	_Printf
 	nop; not filled.
 	addi	r29,r29,#16
+	addi	r29,r29,#-8
+	lhi	r4,((LC0_LF0)>>16)&0xffff
+	addui	r4,r4,(LC0_LF0)&0xffff
+	sw	(r29),r4
+	jal	_Printf
+	nop; not filled.
+	addi	r29,r29,#8
 	addi	r29,r29,#-8
 	addi	r4,r0,#9999
 	sw	(r29),r4
@@ -187,8 +210,8 @@ L19_LF0:
 	addi	r1,r1,#1
 	addi	r29,r29,#8
 	addi	r29,r29,#-8
-	lhi	r4,((LC3_LF0)>>16)&0xffff
-	addui	r4,r4,(LC3_LF0)&0xffff
+	lhi	r4,((LC4_LF0)>>16)&0xffff
+	addui	r4,r4,(LC4_LF0)&0xffff
 	sw	(r29),r4
 	sw	4(r29),r1
 	jal	_Printf
@@ -203,8 +226,8 @@ L19_LF0:
 	jal	_getpid
 	nop; not filled.
 	addi	r29,r29,#-16
-	lhi	r4,((LC4_LF0)>>16)&0xffff
-	addui	r4,r4,(LC4_LF0)&0xffff
+	lhi	r4,((LC5_LF0)>>16)&0xffff
+	addui	r4,r4,(LC5_LF0)&0xffff
 	sw	(r29),r4
 	sw	4(r29),r1
 	sw	8(r29),r2
@@ -217,8 +240,8 @@ L22_LF0:
 	jal	_getpid
 	nop; not filled.
 	addi	r29,r29,#-8
-	lhi	r4,((LC5_LF0)>>16)&0xffff
-	addui	r4,r4,(LC5_LF0)&0xffff
+	lhi	r4,((LC6_LF0)>>16)&0xffff
+	addui	r4,r4,(LC6_LF0)&0xffff
 	sw	(r29),r4
 	sw	4(r29),r1
 	jal	_Printf

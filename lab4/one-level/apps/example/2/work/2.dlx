@@ -1,6 +1,6 @@
 ; Linked by DLX-LD.
 ; MemSize 24576
-; Data size: 255
+; Data size: 267
 ; Text size: 4392
 ; Stack size: 8192
 .text 0x1000
@@ -89,7 +89,7 @@ LC2_LF0:
 .ascii ")!\n\000"
 .align 2
 LC3_LF0:
-.ascii "Accessing Memory Location: %d\n\000"
+.ascii "Accessing Memory Location: %d (decimal)\n\000"
 .align 2
 LC4_LF0:
 .ascii "Test Out of Bounds Virtual Access (%d): Done!\n\000"

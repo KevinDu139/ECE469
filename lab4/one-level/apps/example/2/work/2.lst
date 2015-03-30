@@ -1,7 +1,7 @@
  line   address	contents
     1                      ; Linked by DLX-LD.
     2                      ; MemSize 24576
-    3                      ; Data size: 255
+    3                      ; Data size: 267
     4                      ; Text size: 4392
     5                      ; Stack size: 8192
     6  00000000          	.text 0x1000
@@ -130,29 +130,32 @@
    89  000030aa  29210a00	.ascii ")!\n\000"
    90  000030ae          	.align 2
    91  000030b0          	LC3_LF0:
-   92  000030b0  41636365	.ascii "Accessing Memory Location: %d\n\000"
+   92  000030b0  41636365	.ascii "Accessing Memory Location: %d (decimal)\n\000"
    92  000030b4  7373696e	
    92  000030b8  67204d65	
    92  000030bc  6d6f7279	
    92  000030c0  204c6f63	
    92  000030c4  6174696f	
    92  000030c8  6e3a2025	
-   92  000030cc  640a00  	
-   93  000030cf          	.align 2
-   94  000030d0          	LC4_LF0:
-   95  000030d0  54657374	.ascii "Test Out of Bounds Virtual Access (%d): Done!\n\000"
-   95  000030d4  204f7574	
-   95  000030d8  206f6620	
-   95  000030dc  426f756e	
-   95  000030e0  64732056	
-   95  000030e4  69727475	
-   95  000030e8  616c2041	
-   95  000030ec  63636573	
-   95  000030f0  73202825	
-   95  000030f4  64293a20	
-   95  000030f8  446f6e65	
-   95  000030fc  210a00  	
-   96  000030ff          	.text
+   92  000030cc  64202864	
+   92  000030d0  6563696d	
+   92  000030d4  616c290a	
+   92  000030d8  00      	
+   93  000030d9          	.align 2
+   94  000030dc          	LC4_LF0:
+   95  000030dc  54657374	.ascii "Test Out of Bounds Virtual Access (%d): Done!\n\000"
+   95  000030e0  204f7574	
+   95  000030e4  206f6620	
+   95  000030e8  426f756e	
+   95  000030ec  64732056	
+   95  000030f0  69727475	
+   95  000030f4  616c2041	
+   95  000030f8  63636573	
+   95  000030fc  73202825	
+   95  00003100  64293a20	
+   95  00003104  446f6e65	
+   95  00003108  210a00  	
+   96  0000310b          	.text
    97  000010d4          	.align 2
    98  000010d4          	.proc _main
    99  000010d4          	.global _main
@@ -233,7 +236,7 @@
   174  000011ec  0c00007c	jal	_getpid
   175  000011f0  54000000	nop; not filled.
   176  000011f4  3c040000	lhi	r4,((LC4_LF0)>>16)&0xffff
-  177  000011f8  248430d0	addui	r4,r4,(LC4_LF0)&0xffff
+  177  000011f8  248430dc	addui	r4,r4,(LC4_LF0)&0xffff
   178  000011fc  afa40000	sw	(r29),r4
   179  00001200  afa10004	sw	4(r29),r1
   180  00001204  0c000058	jal	_Printf
@@ -1572,5 +1575,5 @@
  1554  00002128          	_etext:
  1555  00002128          	.align 3
  1556  00002128          	.data
- 1557  000030ff          	.global _edata
- 1558  000030ff          	_edata:
+ 1557  0000310b          	.global _edata
+ 1558  0000310b          	_edata:
