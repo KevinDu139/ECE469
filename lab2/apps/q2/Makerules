@@ -1,7 +1,8 @@
 # NOTE: $(APPROOT) MUST BE SET PROPERLY FOR THIS MAKEFILE TO WORK!
 # $(APPROOT) should be set to the location of the apps directory.
 
-APPROOT=/home/shay/a/ee469g02/ee469/lab2/apps/q2
+#APPROOT=/home/shay/a/ee469g02/ee469/lab2/apps/q2
+APPROOT=.
 
 ######################################################
 # Program-specific Variables
