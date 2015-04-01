@@ -205,19 +205,19 @@ int MemoryCopyUserToSystem (PCB *pcb, unsigned char *from,unsigned char *to, int
 int MemoryPageFaultHandler(PCB *pcb) {
     uint32 faultaddr;
     uint32 usrstackptr;
-    int bit, index;
+    int index;
     uint32 newpage; 
 
-    printf("Entering Page Fault Handling\n");
+    /* printf("Entering Page Fault Handling\n"); */
 
     faultaddr = pcb->currentSavedFrame[PROCESS_STACK_FAULT];
     usrstackptr = pcb->currentSavedFrame[PROCESS_STACK_USER_STACKPOINTER];
     usrstackptr &= 0x1FF000;
-    bit = (faultaddr & 0x1FF000) % 32; //bit index
-    index = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM) / 32;
+    index = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM);
 
-    printf("fault address: %X\n", faultaddr);
-    printf("user stack pointer: %X\n", usrstackptr);
+    /* printf("fault address: %X\n", faultaddr); */
+    /* printf("page index: %d\n", index); */
+    /* printf("user stack pointer: %X\n", usrstackptr); */
 
     if(faultaddr >= usrstackptr){
         if( (newpage = MemoryAllocPage()) == MEM_FAIL){

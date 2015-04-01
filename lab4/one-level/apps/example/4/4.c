@@ -6,16 +6,18 @@
 // without seg faulting or killing the process. Do this with a
 // recursive program in this case calculating factorial
 
-int factorial(int n)
+int recurse(int n)
 {
-  if(n == 0) { return 1; }
-  return (1 + factorial(n - 1));
+  Printf("Function call:%d // ", n);
+  if(n%5 == 0) { Printf("\n"); }
+  if(n == 0) { return 0; }
+  return ( 1+ recurse(n - 1));
 }
 
 void main (int argc, char *argv[])
 {
   sem_t s_procs_completed; // Semaphore to signal the original process that we're done
-  int n = 300; // Number to calculate factorial
+  int n = 1000; // Number to calculate factorial
 
   if (argc != 2) { 
     Printf("Usage: %s <handle_to_procs_completed_semaphore>\n"); 
@@ -30,7 +32,7 @@ void main (int argc, char *argv[])
 
   // Call recursive program with a very large number of recursions
   Printf("Calling Recursive Function %d\n", n);
-  n = factorial(n);
+  n = recurse(n);
 
   // Print Result
   Printf("%d Recursive Calls Made\n", n);
