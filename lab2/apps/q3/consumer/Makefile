@@ -8,7 +8,7 @@
 
 SRCS=consumer.c
 EXEC=consumer.dlx.obj
-APPROOT=../
 
+include ../Makerules
 include $(APPROOT)/Makerules
 
