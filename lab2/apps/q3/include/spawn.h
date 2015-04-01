@@ -9,7 +9,7 @@ typedef struct buffer {
 } buffer_l;
 
 
-#define FILENAME_PRODUCER "bin/producer.dlx.obj"
-#define FILENAME_CONSUMER "bin/consumer.dlx.obj"
+#define FILENAME_PRODUCER "producer.dlx.obj"
+#define FILENAME_CONSUMER "consumer.dlx.obj"
 
 #endif
