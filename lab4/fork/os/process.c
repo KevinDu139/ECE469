@@ -1012,7 +1012,7 @@ void ProcessKill() {
 }
 
 
-int ProcessRealFork(){
+void ProcessRealFork(){
   uint32 newpage;
   PCB *childPCB;
   int intrs;
@@ -1155,7 +1155,8 @@ int ProcessRealFork(){
     printf("pagemap %d : %X\n", i, pagemap[i]);
   }
 */
-  return (int)(childPCB - pcbs);
+  ProcessSetResult(currentPCB, (int)(childPCB - pcbs));
+  ProcessSetResult(childPCB, 0); 
 
 }
 

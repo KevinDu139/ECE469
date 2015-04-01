@@ -360,7 +360,7 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
       break;
     case TRAP_PROCESS_FORK:
       dbprintf ('t', "Got a fork trap!\n");
-      ihandle = ProcessRealFork();
+      //ihandle = ProcessRealFork();
       ProcessSetResult(currentPCB, ihandle);  
       break;
     case TRAP_PROCESS_SLEEP:
@@ -462,8 +462,8 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
     case TRAP_FORK:
       dbprintf('t', "Got a fork trap!\n");
       ihandle = GetIntFromTrapArg(trapArgs, isr & DLX_STATUS_SYSMODE);
-      ihandle = ProcessRealFork();
-      ProcessSetResult(currentPCB, ihandle);  
+      ProcessRealFork();
+      //ProcessSetResult(currentPCB, ihandle);  
 //      ProcessSchedule();
       break; 
     case TRAP_LOCK_CREATE:
