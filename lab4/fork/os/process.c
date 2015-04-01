@@ -1040,14 +1040,15 @@ void ProcessRealFork(){
 
   //mark all page entries read only
   //update pagemap
-  for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
+  for(i=0;i < 256; i++){ 
     if(currentPCB->pagetable[i] & MEM_PTE_VALID){
-      currentPCB->pagetable[i] |= 1 << MEM_PTE_READONLY;
+      currentPCB->pagetable[i] |= MEM_PTE_READONLY;
       pagemap[(currentPCB->pagetable[i]&0x1FF000) >> 12]++;
-   //   printf("updating page %d : %d\n",(currentPCB->pagetable[i]&0x1FF000) >> 12, pagemap[(currentPCB->pagetable[i]&0x1FF000) >> 12]);
+    //  printf("updating page %d : %d\n",(currentPCB->pagetable[i]&0x1FF000) >> 12, pagemap[(currentPCB->pagetable[i]&0x1FF000) >> 12]);
     } 
   }
 
+   // PrintPagemap();
   //duplicate PCB
   bcopy((char*)currentPCB, (char*)childPCB, sizeof(PCB));
   //fix system stack pointers when creating new system stack page 
@@ -1118,14 +1119,14 @@ void ProcessRealFork(){
 
 //  printf("Fork is done, printing all valid PTE for parent and child processes\n");
 
-/*
+
   //print out valid page table entries 
   for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
     if(childPCB->pagetable[i] & MEM_PTE_VALID){
-      printf("Index %d, parent %X, child %X\n", i, currentPCB->pagetable[i], childPCB->pagetable[i]);
+    //  printf("Index %d, parent %X, child %X\n", i, currentPCB->pagetable[i], childPCB->pagetable[i]);
     }
   }
-*/
+
 
   // Place the PCB onto the run queue.
   intrs = DisableIntrs ();
@@ -1173,7 +1174,9 @@ int ReadOnlyFaultHandler(PCB *pcb){
 
   if(pagemap[(pcb->pagetable[page] & 0x1FF000) >> 12] >1){
     //flip read only bit on both of them
-    pcb->pagetable[page] &= ~(1 << MEM_PTE_READONLY);
+    pcb->pagetable[page] ^= (MEM_PTE_READONLY);
+    pagemap[(pcb->pagetable[page] >> 12)]--;
+ //   printf("decreasing page count of %d\n", (pcb->pagetable[page] >> 12));
     //allocate page
     if( (newpage = MemoryAllocPage()) == MEM_FAIL){
       printf("FATAL ERROR: Could not allocate memory\n");
@@ -1188,6 +1191,9 @@ int ReadOnlyFaultHandler(PCB *pcb){
     //add new page to reference of pcb page table
     pcb->pagetable[page] = MemorySetupPte(newpage);
 
+//    PrintPagemap();
+
+
     return MEM_SUCCESS;
 
   }else if (pagemap[(pcb->pagetable[page]&0x1FF000) >> 12] == 0){
@@ -1195,7 +1201,8 @@ int ReadOnlyFaultHandler(PCB *pcb){
     printf("error in read only fault handler!!!!\n");
   }else{
     //mark bit read write
-    pcb->pagetable[page] &= ~(1 << MEM_PTE_READONLY);
+    pcb->pagetable[page] ^= (MEM_PTE_READONLY);
+ //   PrintPagemap();
   }
 
   return MEM_FAIL;
