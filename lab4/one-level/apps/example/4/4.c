@@ -15,7 +15,7 @@ int factorial(int n)
 void main (int argc, char *argv[])
 {
   sem_t s_procs_completed; // Semaphore to signal the original process that we're done
-  int n = 1000; // Number to calculate factorial
+  int n = 300; // Number to calculate factorial
 
   if (argc != 2) { 
     Printf("Usage: %s <handle_to_procs_completed_semaphore>\n"); 

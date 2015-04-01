@@ -212,6 +212,7 @@ int MemoryPageFaultHandler(PCB *pcb) {
 
     faultaddr = pcb->currentSavedFrame[PROCESS_STACK_FAULT];
     usrstackptr = pcb->currentSavedFrame[PROCESS_STACK_USER_STACKPOINTER];
+    usrstackptr &= 0x1FF000;
     bit = (faultaddr & 0x1FF000) % 32; //bit index
     index = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM) / 32;
 
