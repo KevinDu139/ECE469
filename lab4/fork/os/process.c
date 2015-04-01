@@ -200,6 +200,8 @@ void ProcessSchedule () {
   Link *l=NULL;
   uint32 intrvals = 0;
 
+  printf("calling process Schedule!!\n");
+
   intrvals = DisableIntrs();
 
   // The OS exits if there's no runnable process.  This is a feature, not a
@@ -1048,20 +1050,6 @@ int ProcessRealFork(){
 
   //duplicate PCB
   bcopy((char*)currentPCB, (char*)childPCB, sizeof(PCB));
-
-  // Place the PCB onto the run queue.
-  intrs = DisableIntrs ();
-  if ((childPCB->l = AQueueAllocLink(childPCB)) == NULL) {
-    printf("FATAL ERROR: could not get link for forked PCB in ProcessFork!\n");
-    exitsim();
-  }
-  if (AQueueInsertLast(&runQueue, childPCB->l) != QUEUE_SUCCESS) {
-    printf("FATAL ERROR: could not insert link into runQueue in ProcessFork!\n");
-    exitsim();
-  }
-  RestoreIntrs (intrs);
-
-
   //fix system stack pointers when creating new system stack page 
   if( (newpage = MemoryAllocPage()) == MEM_FAIL){
     printf("FATAL ERROR: Could not allocate memory\n");
@@ -1082,10 +1070,7 @@ int ProcessRealFork(){
 
   childPCB->sysStackPtr = (uint32*)(childPCB->sysStackArea + ((uint32)(currentPCB->sysStackPtr) & 0xFFF));
 
-//  childPCB->currentSavedFrame = (uint32*)(childPCB->sysStackArea + ((uint32)(childPCB->currentSavedFrame) & 0xFFF));
-  
- childPCB->currentSavedFrame = (uint32*)(childPCB->sysStackArea + (*currentPCB->currentSavedFrame & 0xFFF));
-
+  childPCB->currentSavedFrame = (uint32*)(childPCB->sysStackArea + ((uint32)(childPCB->currentSavedFrame) & 0xFFF));
 
   printf("sys stack ptr : %X\n", childPCB->sysStackPtr);
   printf("current save frame : %X\n", childPCB->currentSavedFrame);
@@ -1099,9 +1084,30 @@ int ProcessRealFork(){
 
   //print out valid page table entries 
   for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
-    if(currentPCB->pagetable[i] & MEM_PTE_VALID){
+    if(childPCB->pagetable[i] & MEM_PTE_VALID){
       printf("Index %d, parent %X, child %X\n", i, currentPCB->pagetable[i], childPCB->pagetable[i]);
     }
+  }
+
+
+  // Place the PCB onto the run queue.
+  intrs = DisableIntrs ();
+  if ((childPCB->l = AQueueAllocLink(childPCB)) == NULL) {
+    printf("FATAL ERROR: could not get link for forked PCB in ProcessFork!\n");
+    exitsim();
+  }
+  if (AQueueInsertLast(&runQueue, childPCB->l) != QUEUE_SUCCESS) {
+    printf("FATAL ERROR: could not insert link into runQueue in ProcessFork!\n");
+    exitsim();
+  }
+  RestoreIntrs (intrs);
+
+
+  // If this is the first process, make it the current one
+  if (currentPCB == NULL) {
+    dbprintf ('p', "Setting currentPCB=0x%x, stackframe=0x%x\n",
+	      (int)childPCB, (int)(childPCB->currentSavedFrame));
+    currentPCB = childPCB;
   }
 
 

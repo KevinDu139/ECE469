@@ -510,7 +510,7 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
     switch (cause) {
     case TRAP_TIMER:
       dbprintf ('t', "Got a timer interrupt!\n");
-      // ClkInterrupt returns 1 when 1 "process quantum" has passed, meaning
+      // ClkInterrupt returns 0 when 1 "process quantum" has passed, meaning
       // that it's time to call ProcessSchedule again.
       if (ClkInterrupt()) {
         ProcessSchedule ();
