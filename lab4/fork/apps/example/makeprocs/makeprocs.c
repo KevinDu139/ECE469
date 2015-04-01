@@ -5,7 +5,7 @@
 void main (int argc, char *argv[])
 {
 
-  int child_pid;
+  int child_pid=0;
 
   Printf ("the main program process ID is %d\n", (int) getpid ());
   child_pid = fork();

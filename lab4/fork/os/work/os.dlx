@@ -1,7 +1,7 @@
 ; Linked by DLX-LD.
 ; MemSize 151552
 ; Data size: 64660
-; Text size: 72384
+; Text size: 72320
 ; Stack size: 8192
 .text 0x1000
 .data 0x13000
@@ -9975,37 +9975,6 @@ L262_LF3:
 	jal	_exitsim
 	nop; delay slot nop
 L266_LF3:
-	addi	r29,r29,#-16
-	add	r1,r0,r29
-	lhi	r2,((_currentPCB)>>16)&0xffff
-	addui	r2,r2,(_currentPCB)&0xffff
-	lw	r3,(r2)
-	sw	(r1),r3
-	lhi	r3,((_currentPCB)>>16)&0xffff
-	addui	r3,r3,(_currentPCB)&0xffff
-	lw	r2,(r3)
-	lw	r3,8(r2)
-	sw	4(r1),r3
-	addi	r2,r30,#-4120
-	sw	8(r1),r2
-	addi	r2,r0,#4096
-	sw	12(r1),r2
-	jal	_MemoryCopySystemToUser
-	nop; delay slot nop
-	addi	r29,r29,#16
-	addi	r29,r29,#-16
-	add	r1,r0,r29
-	lw	r2,-16(r30)
-	sw	(r1),r2
-	addi	r2,r30,#-4120
-	sw	4(r1),r2
-	lw	r2,-12(r30)
-	sw	8(r1),r2
-	addi	r2,r0,#4096
-	sw	12(r1),r2
-	jal	_MemoryCopyUserToSystem
-	nop; delay slot nop
-	addi	r29,r29,#16
 	addi	r29,r29,#-8
 	add	r1,r0,r29
 	lw	r2,-12(r30)
@@ -10020,6 +9989,21 @@ L266_LF3:
 	lw	r3,8(r2)
 	xori	r2,r3,#1
 	sw	8(r1),r2
+	addi	r29,r29,#-16
+	add	r1,r0,r29
+	lhi	r3,((_currentPCB)>>16)&0xffff
+	addui	r3,r3,(_currentPCB)&0xffff
+	lw	r2,(r3)
+	lw	r3,8(r2)
+	sw	(r1),r3
+	lw	r2,-16(r30)
+	lw	r3,8(r2)
+	sw	4(r1),r3
+	addi	r2,r0,#4
+	sw	8(r1),r2
+	jal	_bcopy
+	nop; delay slot nop
+	addi	r29,r29,#16
 	addi	r29,r29,#-8
 	add	r1,r0,r29
 	lhi	r2,((LC80_LF3)>>16)&0xffff

@@ -1055,15 +1055,21 @@ int ProcessRealFork(){
     printf("FATAL ERROR: Could not allocate memory\n");
     exitsim();
   }
-
-
-  //copy byte by byte to new page
-  MemoryCopySystemToUser(currentPCB, (char *) (currentPCB->sysStackArea) , buf, 4096);
-
-  MemoryCopyUserToSystem(childPCB, buf, (char *) newpage, 4096);
-
+  
   childPCB->sysStackArea = MemorySetupPte(newpage);
   childPCB->sysStackArea ^= 0x1; //gets rid of valid bit set by MemorySetupPte
+  bcopy((char*)(currentPCB->sysStackArea), (char*)(childPCB->sysStackArea), sizeof(currentPCB->sysStackArea));
+  
+
+  //copy byte by byte to new page
+//  MemoryCopySystemToUser(currentPCB, (char *) (currentPCB->sysStackArea) , buf, 4096);
+
+//  MemoryCopyUserToSystem(childPCB, buf, (char *) (childPCB->sysStackArea), 4096);
+
+//  childPCB->sysStackArea = MemorySetupPte(newpage);
+//  childPCB->sysStackArea ^= 0x1; //gets rid of valid bit set by MemorySetupPte
+
+  //childPCB->sysStackArea = newpage;
 
   printf("sys stack ptr : %X\n", (uint32) childPCB->sysStackPtr);
   printf("current save frame : %X\n", (uint32) childPCB->currentSavedFrame);
