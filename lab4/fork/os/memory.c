@@ -254,7 +254,7 @@ int MemoryAllocPage(void) {
         if((freemap[i] & (mask << j))){
           freemap[i] ^= mask << j; 
           pagemap[(i*32) + j]++;
-          printf("updating pagemap %d : %x\n", (i*32)+j, pagemap[(i*32) +j]);
+          //printf("updating pagemap %d : %x\n", (i*32)+j, pagemap[(i*32) +j]);
           return (i*32) + j;
         }
       }
@@ -280,12 +280,11 @@ void MemoryFreePage(uint32 page) {
     bit = page % 32; //bit index
     index = page / 32;
     pagemap[page]--;
-    printf("updating pagemap %d : %x\n", page, pagemap[page]);
    
 
 
     if(pagemap[page] == 0 ){
-    printf("freeing page! %d\n", page);
+//    printf("freeing page! %d\n", page);
       freemap[index] ^= 1 << bit;
     }
 }

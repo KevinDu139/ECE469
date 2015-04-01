@@ -755,16 +755,11 @@ L40:
 	jr	r31
 	nop
 .endproc _MemoryPageFaultHandler
-.data
-	.align 2
-LC5:
-	.ascii "updating pagemap %d : %x\n\000"
-.text
 	.align 2
 .proc _MemoryAllocPage
 .global _MemoryAllocPage
 _MemoryAllocPage:
-;  Function 'MemoryAllocPage'; 16 bytes of locals, 4 regs to save.
+;  Function 'MemoryAllocPage'; 16 bytes of locals, 3 regs to save.
 	sw	-4(r29),r30	; push fp
 	add	r30,r0,r29	; fp = sp
 	sw	-8(r29),r31	; push ret addr
@@ -772,7 +767,6 @@ _MemoryAllocPage:
 	sw	0(r29),r2
 	sw	4(r29),r3
 	sw	8(r29),r4
-	sw	12(r29),r5
 	nop
 	addi	r1,r0,#0
 	sw	-12(r30),r1
@@ -792,9 +786,9 @@ L48:
 	movi2fp	f1,r2
 	mult	f0,f0,f1
 	movfp2i	r1,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r2,r1,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r2,r1,r31
 	lw	r1,(r2)
 	snei	r2,r1,#0
 	beqz	r2,L47
@@ -815,9 +809,9 @@ L53:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,-24(r30)
 	lw	r3,-16(r30)
 	sll	r2,r2,r3
@@ -832,18 +826,18 @@ L53:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,-12(r30)
 	addi	r4,r0,#4
 	movi2fp	f0,r2
 	movi2fp	f1,r4
 	mult	f0,f0,f1
 	movfp2i	r3,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r2,r3,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r2,r3,r31
 	lw	r3,-24(r30)
 	lw	r4,-16(r30)
 	sll	r3,r3,r4
@@ -863,9 +857,9 @@ L53:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,-12(r30)
 	addi	r3,r0,#32
 	movi2fp	f0,r2
@@ -879,9 +873,9 @@ L53:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,-12(r30)
 	addi	r3,r0,#32
 	movi2fp	f0,r2
@@ -895,45 +889,13 @@ L53:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r3,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r3,r2,r31
 	lw	r4,(r3)
 	addi	r2,r4,#1
 	add	r3,r0,r2
 	sw	(r1),r3
-	addi	r29,r29,#-16
-	add	r1,r0,r29
-	lhi	r2,((LC5)>>16)&0xffff
-	addui	r2,r2,(LC5)&0xffff
-	sw	(r1),r2
-	lw	r2,-12(r30)
-	add	r3,r0,r2
-	slli	r2,r3,#0x5
-	lw	r3,-16(r30)
-	add	r2,r2,r3
-	sw	4(r1),r2
-	lw	r2,-12(r30)
-	addi	r3,r0,#32
-	movi2fp	f0,r2
-	movi2fp	f1,r3
-	mult	f0,f0,f1
-	movfp2i	r2,f0
-	lw	r3,-16(r30)
-	add	r2,r2,r3
-	addi	r3,r0,#4
-	movi2fp	f0,r2
-	movi2fp	f1,r3
-	mult	f0,f0,f1
-	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r3,r2,r5
-	lw	r2,(r3)
-	sw	8(r1),r2
-	jal	_printf
-	nop	; delay slot nop
-	addi	r29,r29,#16
 	lw	r1,-12(r30)
 	add	r2,r0,r1
 	slli	r1,r2,#0x5
@@ -967,7 +929,6 @@ L44:
 	lw	r2,0(r29)
 	lw	r3,4(r29)
 	lw	r4,8(r29)
-	lw	r5,12(r29)
 	lw	r31,-8(r30)
 	add	r29,r0,r30
 	lw	r30,-4(r30)
@@ -1001,16 +962,11 @@ L55:
 	jr	r31
 	nop
 .endproc _MemorySetupPte
-.data
-	.align 2
-LC6:
-	.ascii "freeing page! %d\n\000"
-.text
 	.align 2
 .proc _MemoryFreePage
 .global _MemoryFreePage
 _MemoryFreePage:
-;  Function 'MemoryFreePage'; 8 bytes of locals, 4 regs to save.
+;  Function 'MemoryFreePage'; 8 bytes of locals, 3 regs to save.
 	sw	-4(r29),r30	; push fp
 	add	r30,r0,r29	; fp = sp
 	sw	-8(r29),r31	; push ret addr
@@ -1018,11 +974,10 @@ _MemoryFreePage:
 	sw	0(r29),r2
 	sw	4(r29),r3
 	sw	8(r29),r4
-	sw	12(r29),r5
 	lw	r1,(r30)
-	lhi	r5,#31
-	addui	r5,r5,#61440
-	and	r2,r1,r5
+	lhi	r31,#31
+	addui	r31,r31,#61440
+	and	r2,r1,r31
 	sw	(r30),r2
 	lw	r1,(r30)
 	srli	r2,r1,#0xc
@@ -1039,93 +994,62 @@ _MemoryFreePage:
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,(r30)
 	addi	r1,r0,#4
 	movi2fp	f0,r2
 	movi2fp	f1,r1
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,(r30)
 	addi	r3,r0,#4
 	movi2fp	f0,r2
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r3,r2,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r3,r2,r31
 	lw	r4,(r3)
 	addi	r2,r4,#-1
 	add	r3,r0,r2
 	sw	(r1),r3
-	addi	r29,r29,#-16
-	add	r1,r0,r29
-	lhi	r2,((LC5)>>16)&0xffff
-	addui	r2,r2,(LC5)&0xffff
-	sw	(r1),r2
-	lw	r2,(r30)
-	sw	4(r1),r2
-	lw	r2,(r30)
-	addi	r3,r0,#4
-	movi2fp	f0,r2
-	movi2fp	f1,r3
-	mult	f0,f0,f1
-	movfp2i	r2,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r3,r2,r5
-	lw	r2,(r3)
-	sw	8(r1),r2
-	jal	_printf
-	nop	; delay slot nop
-	addi	r29,r29,#16
 	lw	r1,(r30)
 	addi	r2,r0,#4
 	movi2fp	f0,r1
 	movi2fp	f1,r2
 	mult	f0,f0,f1
 	movfp2i	r1,f0
-	lhi	r5,((_pagemap)>>16)&0xffff
-	addui	r5,r5,(_pagemap)&0xffff
-	add	r2,r1,r5
+	lhi	r31,((_pagemap)>>16)&0xffff
+	addui	r31,r31,(_pagemap)&0xffff
+	add	r2,r1,r31
 	lw	r1,(r2)
 	snei	r2,r1,#0
 	bnez	r2,L57
 	nop	; delay slot nop
-	addi	r29,r29,#-8
-	add	r1,r0,r29
-	lhi	r2,((LC6)>>16)&0xffff
-	addui	r2,r2,(LC6)&0xffff
-	sw	(r1),r2
-	lw	r2,(r30)
-	sw	4(r1),r2
-	jal	_printf
-	nop	; delay slot nop
-	addi	r29,r29,#8
 	lw	r1,-16(r30)
 	addi	r3,r0,#4
 	movi2fp	f0,r1
 	movi2fp	f1,r3
 	mult	f0,f0,f1
 	movfp2i	r2,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r1,r2,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r1,r2,r31
 	lw	r2,-16(r30)
 	addi	r4,r0,#4
 	movi2fp	f0,r2
 	movi2fp	f1,r4
 	mult	f0,f0,f1
 	movfp2i	r3,f0
-	lhi	r5,((_freemap)>>16)&0xffff
-	addui	r5,r5,(_freemap)&0xffff
-	add	r2,r3,r5
+	lhi	r31,((_freemap)>>16)&0xffff
+	addui	r31,r31,(_freemap)&0xffff
+	add	r2,r3,r31
 	addi	r3,r0,#1
 	lw	r4,-12(r30)
 	sll	r3,r3,r4
@@ -1137,7 +1061,6 @@ L56:
 	lw	r2,0(r29)
 	lw	r3,4(r29)
 	lw	r4,8(r29)
-	lw	r5,12(r29)
 	lw	r31,-8(r30)
 	add	r29,r0,r30
 	lw	r30,-4(r30)

@@ -1,50 +1,50 @@
 cd ../../bin; dlxsim -x os.dlx.obj -a -D tmp -u makeprocs.dlx.obj; ee469_fixterminal
-Stack=0x1fffc0, pc starting at 0x1263c
+Stack=0x1fffc0, pc starting at 0x129e0
 Got 4 arguments.
-Available memory: 0x22c98 -> 0x200000.
+Available memory: 0x22d38 -> 0x200000.
 Argument count is 4.
 Argument 0 is -D.
 Argument 1 is tmp.
 Argument 2 is -u.
 Argument 3 is makeprocs.dlx.obj.
 Entering ProcessModuleInit
-Initializing PCB 0 @ 0x16a44.
-Initializing PCB 1 @ 0x16eac.
-Initializing PCB 2 @ 0x17314.
-Initializing PCB 3 @ 0x1777c.
-Initializing PCB 4 @ 0x17be4.
-Initializing PCB 5 @ 0x1804c.
-Initializing PCB 6 @ 0x184b4.
-Initializing PCB 7 @ 0x1891c.
-Initializing PCB 8 @ 0x18d84.
-Initializing PCB 9 @ 0x191ec.
-Initializing PCB 10 @ 0x19654.
-Initializing PCB 11 @ 0x19abc.
-Initializing PCB 12 @ 0x19f24.
-Initializing PCB 13 @ 0x1a38c.
-Initializing PCB 14 @ 0x1a7f4.
-Initializing PCB 15 @ 0x1ac5c.
-Initializing PCB 16 @ 0x1b0c4.
-Initializing PCB 17 @ 0x1b52c.
-Initializing PCB 18 @ 0x1b994.
-Initializing PCB 19 @ 0x1bdfc.
-Initializing PCB 20 @ 0x1c264.
-Initializing PCB 21 @ 0x1c6cc.
-Initializing PCB 22 @ 0x1cb34.
-Initializing PCB 23 @ 0x1cf9c.
-Initializing PCB 24 @ 0x1d404.
-Initializing PCB 25 @ 0x1d86c.
-Initializing PCB 26 @ 0x1dcd4.
-Initializing PCB 27 @ 0x1e13c.
-Initializing PCB 28 @ 0x1e5a4.
-Initializing PCB 29 @ 0x1ea0c.
-Initializing PCB 30 @ 0x1ee74.
-Initializing PCB 31 @ 0x1f2dc.
+Initializing PCB 0 @ 0x16ae4.
+Initializing PCB 1 @ 0x16f4c.
+Initializing PCB 2 @ 0x173b4.
+Initializing PCB 3 @ 0x1781c.
+Initializing PCB 4 @ 0x17c84.
+Initializing PCB 5 @ 0x180ec.
+Initializing PCB 6 @ 0x18554.
+Initializing PCB 7 @ 0x189bc.
+Initializing PCB 8 @ 0x18e24.
+Initializing PCB 9 @ 0x1928c.
+Initializing PCB 10 @ 0x196f4.
+Initializing PCB 11 @ 0x19b5c.
+Initializing PCB 12 @ 0x19fc4.
+Initializing PCB 13 @ 0x1a42c.
+Initializing PCB 14 @ 0x1a894.
+Initializing PCB 15 @ 0x1acfc.
+Initializing PCB 16 @ 0x1b164.
+Initializing PCB 17 @ 0x1b5cc.
+Initializing PCB 18 @ 0x1ba34.
+Initializing PCB 19 @ 0x1be9c.
+Initializing PCB 20 @ 0x1c304.
+Initializing PCB 21 @ 0x1c76c.
+Initializing PCB 22 @ 0x1cbd4.
+Initializing PCB 23 @ 0x1d03c.
+Initializing PCB 24 @ 0x1d4a4.
+Initializing PCB 25 @ 0x1d90c.
+Initializing PCB 26 @ 0x1dd74.
+Initializing PCB 27 @ 0x1e1dc.
+Initializing PCB 28 @ 0x1e644.
+Initializing PCB 29 @ 0x1eaac.
+Initializing PCB 30 @ 0x1ef14.
+Initializing PCB 31 @ 0x1f37c.
 Leaving ProcessModuleInit
 SynchModuleInit: Entering SynchModuleInit
 SynchModuleInit: Leaving SynchModuleInit
 Entering ProcessFork args=0x0 0x1ffe20 makeprocs.dlx.obj 1
-Got a link @ 0x1faa4
+Got a link @ 0x1fb44
 updating pagemap 35 : 1
 updating pagemap 36 : 1
 updating pagemap 37 : 1
@@ -109,14 +109,11 @@ Placing 80 bytes at vaddr 00001e40.
 Placing 80 bytes at vaddr 00001e90.
 Placing 80 bytes at vaddr 00001ee0.
 Placing 80 bytes at vaddr 00001f30.
-Interrupt cause=0x48 iar=0x3cac isr=0x140 args=0x001ffbd0.
-Got a keyboard interrupt (char=0x76(v), nleft=1)!
-About to return from dointerrupt.
 Placing 80 bytes at vaddr 00001f80.
 Placing 80 bytes at vaddr 00001fd0.
 Placing 80 bytes at vaddr 00002020.
 Placing 4 bytes at vaddr 00002070.
-Setting currentPCB=0x1f2dc, stackframe=0x27ea8
+Setting currentPCB=0x1f37c, stackframe=0x27ea8
 Leaving ProcessFork (makeprocs.dlx.obj)
 Interrupt cause=0x8000431 iar=0x11b4 isr=0x100 args=0x000ffee8.
 About to return from dointerrupt.
@@ -130,17 +127,32 @@ About to return from dointerrupt.
 Interrupt cause=0x8000469 iar=0x12cc isr=0x100 args=0x000ffee0.
 Got a fork trap!
 forking new process!!
-Got a link @ 0x1fa94
+Got a link @ 0x1fb34
 updating page 35 : 2
 updating page 36 : 2
 updating page 37 : 2
 updating page 38 : 2
 updating page 40 : 2
 updating pagemap 41 : 1
+addr curent saved frame 27ea8
+addr child saved frame 29ea8
+addr curent saved frame 27ea8
+addr child saved frame 29ea8
+PRINTING PARENT PCB SAVED FRAME
+PTBASE: F75B43E4
+PTBITS: F7655014
+PTSIZE: F7595108
+PRINTING CHILD PCB SAVED FRAME
+PTBASE: F75B43E4
+PTBITS: F7655014
+PTSIZE: F7595108
 sys stack ptr : 27FFC
-current save frame : 27EA8
+current save frame : 29EA8
 sys stack ptr : 29FFC
 current save frame : 29EA8
+PTBASE: F75B3F7C
+PTBITS: F7655014
+PTSIZE: F7595108
 Fork is done, printing all valid PTE for parent and child processes
 Index 0, parent 23011, child 23011
 Index 1, parent 24011, child 24011
@@ -169,11 +181,11 @@ Got a timer interrupt!
 About to return from dointerrupt.
 Interrupt cause=0x8000300 iar=0x2064 isr=0x100 args=0x000ffee8.
 Got an exit trap!
-Entering ProcessDestroy for 0x1f2dc.
-Leaving ProcessDestroy for 0x1f2dc.
+Entering ProcessDestroy for 0x1f37c.
+Leaving ProcessDestroy for 0x1f37c.
 calling process Schedule!!
-About to switch to PCB 0x1ee74,flags=0x202 @ 0x0
-Freeing zombie PCB 0x1f2dc.
+About to switch to PCB 0x1ef14,flags=0x202 @ 0x0
+Freeing zombie PCB 0x1f37c.
 updating pagemap 35 : 1
 updating pagemap 36 : 1
 updating pagemap 37 : 1
@@ -182,13 +194,33 @@ updating pagemap 40 : 1
 updating pagemap 39 : 0
 freeing page! 39
 About to return from dointerrupt.
-Interrupt cause=0x40 iar=0x0 isr=0x0 args=0x00000000.
+Interrupt cause=0x40 iar=0x12cc isr=0x100 args=0x000ffee0.
 Got a timer interrupt!
 About to return from dointerrupt.
-Interrupt cause=0x1 iar=0x0 isr=0x0 args=0x00000000.
-Exiting after illegal instruction at iar=0x0, isr=0x0
+Interrupt cause=0x8000201 iar=0x11a8 isr=0x100 args=0x000ffee0.
+Got a printf trap!
+Child PID: 31
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x11a8 isr=0x100 args=0x000ffee0.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000431 iar=0x11b4 isr=0x100 args=0x000ffee0.
+About to return from dointerrupt.
+Interrupt cause=0x8000201 iar=0x11a8 isr=0x100 args=0x000ffee0.
+Got a printf trap!
+XXXXXXXXXXXXXXXXXXXXXXX ID is 30
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x11a8 isr=0x100 args=0x000ffee0.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000300 iar=0x2064 isr=0x100 args=0x000ffee8.
+Got an exit trap!
+Entering ProcessDestroy for 0x1ef14.
+Leaving ProcessDestroy for 0x1ef14.
+calling process Schedule!!
+No runnable processes - exiting!
 Exiting at program request.
-Instructions executed: 2888673
-Time simulated: 2.889 secs
-Real time elapsed: 0.442 secs
-Execution rate: 6.53M simulated instructions per real second.
+Instructions executed: 2964008
+Time simulated: 2.964 secs
+Real time elapsed: 0.193 secs
+Execution rate: 15.32M simulated instructions per real second.

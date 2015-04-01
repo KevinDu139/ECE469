@@ -379,20 +379,20 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
       // Get the arguments to the trap handler.  If this is a user mode trap,
       // copy them from user space.
       if (isr & DLX_STATUS_SYSMODE) {
-	args[0] = trapArgs[0];
-	args[1] = trapArgs[1];
+        args[0] = trapArgs[0];
+        args[1] = trapArgs[1];
       } else {
-	char	filename[32];
-	// trapArgs points to the trap arguments in user space.  There are
-	// two of them, so copy them to to system space.  The first argument
-	// is a string, so it has to be copied to system space and the
-	// argument replaced with a pointer to the string in system space.
-	MemoryCopyUserToSystem (currentPCB, (char *)trapArgs, (char *)args, sizeof(args[0])*2);
-	MemoryCopyUserToSystem (currentPCB, (char *)(args[0]), (char *)filename, 31);
-	// Null-terminate the string in case it's longer than 31 characters.
-	filename[31] = '\0';
-	// Set the argument to be the filename
-	args[0] = (uint32)filename;
+        char	filename[32];
+        // trapArgs points to the trap arguments in user space.  There are
+        // two of them, so copy them to to system space.  The first argument
+        // is a string, so it has to be copied to system space and the
+        // argument replaced with a pointer to the string in system space.
+        MemoryCopyUserToSystem (currentPCB, (char *)trapArgs, (char *)args, sizeof(args[0])*2);
+        MemoryCopyUserToSystem (currentPCB, (char *)(args[0]), (char *)filename, 31);
+        // Null-terminate the string in case it's longer than 31 characters.
+        filename[31] = '\0';
+        // Set the argument to be the filename
+        args[0] = (uint32)filename;
       }
       // Allow Open() calls to be interruptible!
       intrs = EnableIntrs ();
