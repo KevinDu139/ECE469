@@ -8,7 +8,7 @@
 
 SRCS=producer.c
 EXEC=producer.dlx.obj
-APPROOT=../
 
+include ../Makerules
 include $(APPROOT)/Makerules
 
