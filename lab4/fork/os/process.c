@@ -1012,11 +1012,11 @@ void ProcessKill() {
 
 int ProcessRealFork(){
   uint32 newpage;
-  uint32 *stackframe;
   PCB *childPCB;
   int intrs;
   int i;
   unsigned char buf[4095];
+  uint32 temp;
 
   intrs = DisableIntrs();
 
@@ -1077,20 +1077,34 @@ int ProcessRealFork(){
   childPCB->sysStackArea = MemorySetupPte(newpage);
   childPCB->sysStackArea ^= 0x1; //gets rid of valid bit set by MemorySetupPte
 
-  stackframe = (uint32*)(childPCB->sysStackArea + 0xffc);
-  stackframe -= PROCESS_STACK_FRAME_SIZE;
-  childPCB->sysStackPtr = stackframe;
-  childPCB->currentSavedFrame = stackframe;
+  printf("sys stack ptr : %X\n", (uint32) childPCB->sysStackPtr);
+  printf("current save frame : %X\n", (uint32) childPCB->currentSavedFrame);
+
+  childPCB->sysStackPtr = (uint32*)(childPCB->sysStackArea + ((uint32)(currentPCB->sysStackPtr) & 0xFFF));
+
+//  childPCB->currentSavedFrame = (uint32*)(childPCB->sysStackArea + ((uint32)(childPCB->currentSavedFrame) & 0xFFF));
+  
+ childPCB->currentSavedFrame = (uint32*)(childPCB->sysStackArea + (*currentPCB->currentSavedFrame & 0xFFF));
+
+
+  printf("sys stack ptr : %X\n", childPCB->sysStackPtr);
+  printf("current save frame : %X\n", childPCB->currentSavedFrame);
+
 
   childPCB->currentSavedFrame[PROCESS_STACK_PTBASE] = (uint32) &childPCB->pagetable[0];
 
+
   printf("Fork is done, printing all valid PTE for parent and child processes\n");
+
+
   //print out valid page table entries 
   for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
     if(currentPCB->pagetable[i] & MEM_PTE_VALID){
       printf("Index %d, parent %X, child %X\n", i, currentPCB->pagetable[i], childPCB->pagetable[i]);
     }
   }
+
+
 
 /*
   printf("parent %x, child %x\n", currentPCB->pagetable, childPCB->pagetable);
