@@ -450,7 +450,7 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
   }
 
   pcb->sysStackArea = MemorySetupPte(pcb->sysStackArea);
-  pcb->sysStackArea ^= 0x1;
+  pcb->sysStackArea ^= 0x1; //gets rid of valid set by Memory setup pte
 
   //user stack - vrirtual max
   if((pcb->pagetable[255] = MemoryAllocPage()) == MEM_FAIL){
@@ -1011,24 +1011,137 @@ void ProcessKill() {
 
 
 int ProcessRealFork(){
+  uint32 newpage;
+  uint32 *stackframe;
+  PCB *childPCB;
+  int intrs;
+  int i;
+  unsigned char buf[4095];
 
-//copy parent L1 page table into child L1 page table
-//duplicate PCB bcopy((char *)currentPCB, (char *)childpcb, sizeof(PCB));
-//use ProcessSetResult() to return values
-//Put child at end of run queue
-//impliment reverence counters for physical pages
-//impliment handler for trap 0x8 for read only page violations
-//fix system stack pointers when creating new system stack page
+  intrs = DisableIntrs();
+
+  printf("forking new process!!\n");
+
+  // Get a free PCB for the new process
+  if (AQueueEmpty(&freepcbs)) {
+    printf ("FATAL error: no free processes!\n");
+    exitsim ();	// NEVER RETURNS!
+  }
+  childPCB = (PCB *)AQueueObject(AQueueFirst (&freepcbs));
+  dbprintf ('p', "Got a link @ 0x%x\n", (int)(childPCB->l));
+  if (AQueueRemove (&(childPCB->l)) != QUEUE_SUCCESS) {
+    printf("FATAL ERROR: could not remove link from freepcbsQueue in ProcessFork!\n");
+    exitsim();
+  }
+  
+  RestoreIntrs(intrs);
+
+  //mark all page entries read only
+  //update pagemap
+  for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
+    if(currentPCB->pagetable[i] & MEM_PTE_VALID){
+      currentPCB->pagetable[i] |= 1 << MEM_PTE_READONLY;
+      pagemap[(currentPCB->pagetable[i]&0x1FF000) >> 12]++;
+      printf("updating page %d : %d\n",(currentPCB->pagetable[i]&0x1FF000) >> 12, pagemap[(currentPCB->pagetable[i]&0x1FF000) >> 12]);
+    } 
+  }
+
+  //duplicate PCB
+  bcopy((char*)currentPCB, (char*)childPCB, sizeof(PCB));
+
+  // Place the PCB onto the run queue.
+  intrs = DisableIntrs ();
+  if ((childPCB->l = AQueueAllocLink(childPCB)) == NULL) {
+    printf("FATAL ERROR: could not get link for forked PCB in ProcessFork!\n");
+    exitsim();
+  }
+  if (AQueueInsertLast(&runQueue, childPCB->l) != QUEUE_SUCCESS) {
+    printf("FATAL ERROR: could not insert link into runQueue in ProcessFork!\n");
+    exitsim();
+  }
+  RestoreIntrs (intrs);
 
 
+  //fix system stack pointers when creating new system stack page 
+  if( (newpage = MemoryAllocPage()) == MEM_FAIL){
+    printf("FATAL ERROR: Could not allocate memory\n");
+    exitsim();
+  }
 
-//do stufffs!!
 
+  //copy byte by byte to new page
+  MemoryCopySystemToUser(currentPCB, (char *) (currentPCB->sysStackArea) , buf, 4096);
 
+  MemoryCopyUserToSystem(childPCB, buf, (char *) newpage, 4096);
 
+  childPCB->sysStackArea = MemorySetupPte(newpage);
+  childPCB->sysStackArea ^= 0x1; //gets rid of valid bit set by MemorySetupPte
 
+  stackframe = (uint32*)(childPCB->sysStackArea + 0xffc);
+  stackframe -= PROCESS_STACK_FRAME_SIZE;
+  childPCB->sysStackPtr = stackframe;
+  childPCB->currentSavedFrame = stackframe;
+
+  childPCB->currentSavedFrame[PROCESS_STACK_PTBASE] = (uint32) &childPCB->pagetable[0];
+
+  printf("Fork is done, printing all valid PTE for parent and child processes\n");
+  //print out valid page table entries 
+  for(i=0;i < MEM_PAGE_TABLE_SIZE; i++){ 
+    if(currentPCB->pagetable[i] & MEM_PTE_VALID){
+      printf("Index %d, parent %X, child %X\n", i, currentPCB->pagetable[i], childPCB->pagetable[i]);
+    }
+  }
+
+/*
+  printf("parent %x, child %x\n", currentPCB->pagetable, childPCB->pagetable);
+  for(i=0; i < 512; i ++){
+    printf("pagemap %d : %X\n", i, pagemap[i]);
+  }
+*/
+  return (int)(childPCB - pcbs);
 
 }
 
+int ReadOnlyFaultHandler(PCB *pcb){
+  uint32 faultaddr;
+  uint32 page;
+  uint32 newpage;
+  unsigned char buf[4095];
+
+  printf("entering Read Only fault handler\n");
+
+  faultaddr = pcb->currentSavedFrame[PROCESS_STACK_FAULT];
+  page = (faultaddr >> MEM_L1FIELD_FIRST_BITNUM);
+
+  if(pagemap[(pcb->pagetable[page] & 0x1FF000) >> 12] >1){
+    //flip read only bit on both of them
+    pcb->pagetable[page] &= ~(1 << MEM_PTE_READONLY);
+    //allocate page
+    if( (newpage = MemoryAllocPage()) == MEM_FAIL){
+      printf("FATAL ERROR: Could not allocate memory\n");
+      exitsim();
+    }
+
+    //copy byte by byte to new page
+    MemoryCopySystemToUser(pcb, (char *) (faultaddr & 0x1FF000) , buf, 4096);
+
+    MemoryCopyUserToSystem(pcb, buf, (char *) newpage, 4096);
+    
+    //add new page to reference of pcb page table
+    pcb->pagetable[page] = MemorySetupPte(newpage);
+
+    return MEM_SUCCESS;
+
+  }else if (pagemap[(pcb->pagetable[page]&0x1FF000) >> 12] == 0){
+    //this shouldnt happen
+    printf("error in read only fault handler!!!!\n");
+  }else{
+    //mark bit read write
+    pcb->pagetable[page] &= ~(1 << MEM_PTE_READONLY);
+  }
+
+  return MEM_FAIL;
+
+}
 
 

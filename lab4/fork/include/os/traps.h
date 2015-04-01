@@ -33,6 +33,7 @@
 #define	TRAP_DIV0		0x5	// Divide by 0
 #define	TRAP_PRIVILEGE		0x6	// Instruction must be executed as sys
 #define	TRAP_FORMAT		0x7	// Instruction is malformed
+#define TRAP_ROP_ACCESS 0x8 //Do we need to make this ourselves??
 #define	TRAP_PAGEFAULT		0x20
 #define	TRAP_TLBFAULT		0x30
 #define	TRAP_TIMER		0x40	// timer interrupt
@@ -83,6 +84,7 @@
 #define TRAP_YIELD              0x466
 #define TRAP_MALLOC             0x467
 #define TRAP_MFREE              0x468
+#define TRAP_FORK               0x469
 
 #define TRAP_USER_EXIT          0x500
 

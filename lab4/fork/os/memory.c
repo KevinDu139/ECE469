@@ -13,6 +13,7 @@
 
 // num_pages = size_of_memory / size_of_one_page
 static uint32 freemap[15]; //512 pages, 32 pages per index
+int pagemap[512] = {0};
 static uint32 pagestart;
 static int nfreepages;
 static int freemapmax;
@@ -243,20 +244,22 @@ int MemoryPageFaultHandler(PCB *pcb) {
 //---------------------------------------------------------------------
 
 int MemoryAllocPage(void) {
-    int i, j, k;
-    uint32 mask;
+  int i, j, k;
+  uint32 mask;
 
-    for(i=0;i < 16; i++){
-        mask = 0x1;
-        if(freemap[i] >0){
-            for(j=0; j <32; j++){
-                if((freemap[i] & (mask << j))){
-                    freemap[i] ^= mask << j; 
-                    return (i*32) + j;
-                }
-            }
+  for(i=0;i < 16; i++){
+    mask = 0x1;
+    if(freemap[i] >0){
+      for(j=0; j <32; j++){
+        if((freemap[i] & (mask << j))){
+          freemap[i] ^= mask << j; 
+          pagemap[(i*32) + j]++;
+          printf("updating pagemap %d : %x\n", (i*32)+j, pagemap[(i*32) +j]);
+          return (i*32) + j;
         }
+      }
     }
+  }
 
   return MEM_FAIL;
 }
@@ -276,6 +279,14 @@ void MemoryFreePage(uint32 page) {
     page = page >> MEM_L1FIELD_FIRST_BITNUM;
     bit = page % 32; //bit index
     index = page / 32;
-    freemap[index] ^= 1 << bit;
+    pagemap[page]--;
+    printf("updating pagemap %d : %x\n", page, pagemap[page]);
+   
+
+
+    if(pagemap[page] == 0 ){
+    printf("freeing page! %d\n", page);
+      freemap[index] ^= 1 << bit;
+    }
 }
 

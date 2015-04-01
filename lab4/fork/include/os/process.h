@@ -103,7 +103,6 @@ void ProcessKill();
 //-------------------------------------------------------
 
 int ProcessRealFork();
-
-
+int ReadOnlyFaultHandler(PCB *pcb);
 
 #endif	/* __process_h__ */
