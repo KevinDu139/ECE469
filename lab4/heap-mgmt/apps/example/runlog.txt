@@ -1,0 +1,94 @@
+cd ../../bin; dlxsim -x os.dlx.obj -a  -u makeprocs.dlx.obj; ee469_fixterminal
+Stack=0x1fffd0, pc starting at 0x12604
+Got 2 arguments.
+Available memory: 0x22bc8 -> 0x200000.
+Argument count is 2.
+Argument 0 is -u.
+Argument 1 is makeprocs.dlx.obj.
+the main program process ID is 31
+forking new process!!
+updating page 30 : 0
+updating page 31 : 0
+updating page 32 : 0
+updating page 33 : 0
+updating page 34 : 0
+updating page 35 : 2
+updating page 36 : 2
+updating page 37 : 2
+updating page 38 : 2
+updating page 39 : 1
+updating page 40 : 2
+updating page 41 : 0
+updating page 42 : 0
+updating page 43 : 0
+updating page 44 : 0
+updating page 45 : 0
+updating page 46 : 0
+updating page 47 : 0
+updating page 48 : 0
+updating page 49 : 0
+Index 0, parent 23005, child 23005
+Index 1, parent 24005, child 24005
+Index 2, parent 25005, child 25005
+Index 3, parent 26005, child 26005
+Index 255, parent 28007, child 28007
+Cpu: writing a read-only page, vaddr=0xff000
+entering Read Only fault handler
+decreasing page count of 40
+updating page 30 : 0
+updating page 31 : 0
+updating page 32 : 0
+updating page 33 : 0
+updating page 34 : 0
+updating page 35 : 2
+updating page 36 : 2
+updating page 37 : 2
+updating page 38 : 2
+updating page 39 : 1
+updating page 40 : 1
+updating page 41 : 1
+updating page 42 : 1
+updating page 43 : 0
+updating page 44 : 0
+updating page 45 : 0
+updating page 46 : 0
+updating page 47 : 0
+updating page 48 : 0
+updating page 49 : 0
+Child PID: 30
+this is the parent process, with id 31
+the child's process ID is 30
+Test var 8008
+calling process Schedule!!
+Cpu: writing a read-only page, vaddr=0xff000
+entering Read Only fault handler
+updating page 30 : 0
+updating page 31 : 0
+updating page 32 : 0
+updating page 33 : 0
+updating page 34 : 0
+updating page 35 : 1
+updating page 36 : 1
+updating page 37 : 1
+updating page 38 : 1
+updating page 39 : 0
+updating page 40 : 1
+updating page 41 : 1
+updating page 42 : 0
+updating page 43 : 0
+updating page 44 : 0
+updating page 45 : 0
+updating page 46 : 0
+updating page 47 : 0
+updating page 48 : 0
+updating page 49 : 0
+Child PID: 0
+this is the child process, with id 30
+Test var 1337
+calling process Schedule!!
+No runnable processes - exiting!
+Exiting at program request.
+Instructions executed: 3139489
+Time simulated: 3.139 secs
+Real time elapsed: 0.191 secs
+Execution rate: 16.41M simulated instructions per real second.
