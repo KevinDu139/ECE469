@@ -1,14 +1,12 @@
 # NOTE: $(APPROOT) MUST BE SET PROPERLY FOR THIS MAKEFILE TO WORK!
 # $(APPROOT) should be set to the location of the apps directory.
 
-#APPROOT=/home/shay/a/ee469g02/ee469/lab3/apps/
-
 ######################################################
 # Program-specific Variables
 ######################################################
 
 # Directory where final executable will be stored
-OUTDIR=$(APPROOT)/bin
+OUTDIR=$(APPROOT)/../bin
 
 # List of all C source files
 #SRCS=userprog.c
@@ -37,12 +35,11 @@ AS=dlxasm
 CFLAGS= -mtraps -O3 -Wall
 
 # Flags for compiler indicating search path for include files
-INCDIR+= -I$(APPROOT)/../../include
-INCDIR+= -I$(APPROOT)/include
+INCDIR+= -I$(APPROOT)/../include
 
 # Flags for compiler indicating which libraries should be linked
 LIBS+= usertraps.aso misc.o
-OBJLIBS=$(LIBS:%=$(APPROOT)/../../lib/%)
+OBJLIBS=$(LIBS:%=$(APPROOT)/../lib/%)
 
 # Flags sent to the assembler
 ASFLAGS=

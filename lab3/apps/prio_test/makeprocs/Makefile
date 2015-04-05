@@ -9,7 +9,7 @@
 SRCS=makeprocs.c
 EXEC=makeprocs.dlx.obj
 
-APPROOT=../
+include ../Makerules
 include $(APPROOT)/Makerules
 
 
