@@ -1,27 +1,25 @@
 #include "usertraps.h"
 #include "misc.h"
 
+  int *test1;
+  int *test2;
+  int *test3;
+  int *test4;
+
 
 void main (int argc, char *argv[])
 {
 
-  int child_pid=0;
-  int test = 8008;
 
-  Printf ("the main program process ID is %d\n", (int) getpid ());
-  child_pid = fork();
-  Printf("Child PID: %d\n", child_pid);
+  Printf("starting test code\n");
 
+  test1 = (int*) malloc(200);
+  test2 = (int*) malloc(500);
+  test3 = (int*) malloc(50);
+  test4 = (int*) malloc(50);
 
-  if (child_pid != 0) {
-    Printf ("this is the parent process, with id %d\n", (int) getpid ());
-    Printf ("the child's process ID is %d\n", child_pid);
-    Printf("Test var %d\n", test);
-  } else {
-    test = 1337;
-    Printf ("this is the child process, with id %d\n", (int) getpid ());
-    Printf("Test var %d\n", test);
-  }
+  mfree(test1);
+  mfree(test4);
 
 
 }

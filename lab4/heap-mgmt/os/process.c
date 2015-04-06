@@ -65,7 +65,7 @@ uint32 get_argument(char *string);
 //
 //----------------------------------------------------------------------
 void ProcessModuleInit () {
-  int i;
+  int i,j;
 
   dbprintf ('p', "Entering ProcessModuleInit\n");
   AQueueInit (&freepcbs);
@@ -87,10 +87,11 @@ void ProcessModuleInit () {
     // STUDENT: Initialize the PCB's page table here.
 
     currentPCB->npages =0;
-//-------------------------------------------------------
+    //-------------------------------------------------------
 
-
-
+    for(j=0;j<128; j++){
+      pcbs[i].heap[j] = -1;
+    }
 
     // Finally, insert the link into the queue
     if (AQueueInsertFirst(&freepcbs, pcbs[i].l) != QUEUE_SUCCESS) {
@@ -434,10 +435,10 @@ int ProcessFork (VoidFunc func, uint32 param, char *name, int isUser) {
   //---------------------------------------------------------
 
 
-  pcb->npages =6;
+  pcb->npages =7;
 
-  //user space pages
-  for(i=0; i <4; i++){
+  //user code and heap
+  for(i=0; i <5; i++){
       if((pcb->pagetable[i] = MemoryAllocPage()) == MEM_FAIL){
           printf("FATAL ERROR: Could not allocate page\n");
           exitsim();

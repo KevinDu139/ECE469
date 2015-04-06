@@ -451,12 +451,12 @@ dointerrupt (unsigned int cause, unsigned int iar, unsigned int isr,
       break;
     case TRAP_MALLOC:
       ihandle = GetIntFromTrapArg(trapArgs, isr & DLX_STATUS_SYSMODE);
-//      ihandle = (int)malloc(currentPCB, ihandle);
+      ihandle = (int)malloc(currentPCB, ihandle);
       ProcessSetResult(currentPCB, ihandle); //Return handle
       break;
     case TRAP_MFREE:
       ihandle = GetIntFromTrapArg(trapArgs, isr & DLX_STATUS_SYSMODE);
-//      ihandle = mfree(currentPCB, (void*)ihandle);
+      ihandle = mfree(currentPCB, (void*)ihandle);
       ProcessSetResult(currentPCB, ihandle); //Return handle
       break;
     case TRAP_FORK:

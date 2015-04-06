@@ -6,6 +6,7 @@
 
 extern int lastosaddress; // Defined in an assembly file
 extern int pagemap[512];
+extern int heap[128];
 
 //--------------------------------------------------------
 // Existing function prototypes:
@@ -27,5 +28,21 @@ int MemoryAllocPage(void);
 uint32 MemorySetupPte(uint32 page);
 void MemoryFreePage(uint32 page);
 void PrintPagemap();
+
+int malloc(PCB *pcb, int memsize );
+int mfree(PCB *pcb, void *ptr);
+
+inline int pow(int base, int exp){
+    if(exp == 0){
+        return 1;
+    }else if (exp % 2) {
+        return base * pow(base, exp -1);
+    }else{
+        int temp = pow(base, exp /2 );
+        return temp * temp;
+    }
+
+}
+
 
 #endif	// _memory_h_

@@ -298,4 +298,114 @@ void PrintPagemap(){
 }
 
 
+int malloc(PCB *pcb, int memsize){
+  int i,j;
+  int order=0;
+  int size = 0;
+  int oldsize;
+  uint32 addr;
+  
+  oldsize = memsize;
+
+  if(memsize <=0){
+    return -1;
+  }
+
+  if(memsize > 4096){
+    return -1;
+  }
+
+  //rounds up to the nearest 4 bytes
+  if(memsize % 4 >0){
+     memsize += (4-(memsize % 4));
+  }
+
+  //finds the order of the memory
+  if(memsize <= 32){
+      order = 0;
+  }else if(memsize <= 64){
+      order = 1;
+  }else if(memsize <= 128){
+      order = 2;
+  }else if(memsize <= 256){
+      order = 3;
+  }else if(memsize <= 512){
+      order = 4;
+  }else if(memsize <= 1024){
+      order = 5;
+  }else if(memsize <= 2048){
+      order = 6;
+  }else if(memsize <= 4096){
+      order = 7;
+  }
+
+  size = pow(2, order);
+
+ // printf("Power %d, size %d\n", order, size);
+
+  for(i=0; i <128; i+=size){
+    if(pcb->heap[i] == -1){
+      break;
+    }
+  }
+
+  if(i >= 128){
+    return -1; //didnt find any memory!!
+  }
+
+  for(j=i; j < i+size; j++){
+    pcb->heap[j] = order;
+  }
+
+  addr = (32*i);
+ // printf("address %X\n", addr);
+
+  printf("Allocated the block: order = %d, addr = %X, requested mem size = %d, block size = %d\n", order, addr, oldsize, (size *32));
+
+  addr += (4 << 12);
+  //for(i=7; i >=order; i--){
+/*    
+  //allocate of memsize!
+  printf("Current Heap:\n");
+
+  for(i=0; i < 128; i ++){
+    printf("%d ", pcb->heap[i]);
+  }
+
+  printf("\n\n");
+*/
+
+  return addr;
+}
+
+int mfree(PCB *pcb, void *ptr){
+  int i;
+  int offset;
+  int index; 
+  int order;
+  int size;
+  
+  offset = (int)((uint32) ptr & 0xFFF);
+  index = (int)((offset)/32);
+  order = pcb->heap[index];
+  size = pow(2, order);
+
+
+  printf("Freed the block: addr %X, offset = %d, size = %d\n",  (uint32)ptr & 0xFFF,order,  size);
+
+  for(i= index; i < (index+size); i++){
+    pcb->heap[i] = -1;
+  }
+/*
+  printf("Current Heap:\n");
+
+  for(i=0; i < 128; i ++){
+    printf("%d ", pcb->heap[i]);
+  }
+
+  printf("\n\n");
+*/
+
+
+}
 
