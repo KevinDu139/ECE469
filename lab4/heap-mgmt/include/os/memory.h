@@ -29,6 +29,9 @@ uint32 MemorySetupPte(uint32 page);
 void MemoryFreePage(uint32 page);
 void PrintPagemap();
 
+int check_block(PCB * pcb, int index, int order);
+int base_buddy(int index, int order);
+
 int malloc(PCB *pcb, int memsize );
 int mfree(PCB *pcb, void *ptr);
 

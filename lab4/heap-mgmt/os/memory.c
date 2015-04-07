@@ -297,6 +297,22 @@ void PrintPagemap(){
   }
 }
 
+int check_block(PCB* pcb, int index, int order)
+{
+  int i;
+  int block_size = pow(2, order);
+  for(i = index; i < index + block_size; i++) {
+    if(pcb->heap[i] != -1) { return 0; }
+  }
+  return 1;
+}
+
+int base_buddy(int index, int order) {
+  int block_size = pow(2, order);
+  int buddy = index ^ block_size;
+  if(index < buddy) { return index; }
+  return buddy;
+}
 
 int malloc(PCB *pcb, int memsize){
   int i,j;
@@ -304,6 +320,8 @@ int malloc(PCB *pcb, int memsize){
   int size = 0;
   int oldsize;
   uint32 addr;
+  int side; // 0 = left, 1 = right
+  int print_offset = 0; // index used for printing
   
   oldsize = memsize;
 
@@ -353,6 +371,29 @@ int malloc(PCB *pcb, int memsize){
     return -1; //didnt find any memory!!
   }
 
+  /* Print allocation tree messages */
+  // Check every order starting at 6
+  for(j = 6; j >= order; j--) {
+    // Decide if i is left or right in current order
+    if(i >= (pow(2, j)+print_offset)) {
+      // Go right
+      side = 1;
+      print_offset += pow(2, j); // Add block size for right branches
+      if(check_block(pcb, print_offset, j)) {
+	printf("Create a right child node (order = %d, addr = %d, size = %d) ",j, 32*print_offset, 32*pow(2, j));
+	printf("of parent (order = %d, addr = %d, size = %d)\n", j+1, 32*(print_offset-pow(2, j)), 32*pow(2, j+1));
+      }
+    } else {
+      // Go left
+      side = 0;
+      if(check_block(pcb, print_offset, j)) {
+	printf("Create a left child node (order = %d, addr = %d, size = %d) ",j, 32*print_offset, 32*pow(2, j));
+	printf("of parent (order = %d, addr = %d, size = %d)\n", j+1, 32*print_offset, 32*pow(2, j+1));
+      }
+    }
+  }
+
+  // Allocate requested memory by marking it in heap array
   for(j=i; j < i+size; j++){
     pcb->heap[j] = order;
   }
@@ -360,11 +401,11 @@ int malloc(PCB *pcb, int memsize){
   addr = (32*i);
  // printf("address %X\n", addr);
 
-  printf("Allocated the block: order = %d, addr = %X, requested mem size = %d, block size = %d\n", order, addr, oldsize, (size *32));
+  printf("\nAllocated the block: order = %d, addr = %d, requested mem size = %d, block size = %d\n\n", order, addr, oldsize, (size *32));
 
   addr += (4 << 12);
-  //for(i=7; i >=order; i--){
-/*    
+
+  /*    
   //allocate of memsize!
   printf("Current Heap:\n");
 
@@ -373,13 +414,13 @@ int malloc(PCB *pcb, int memsize){
   }
 
   printf("\n\n");
-*/
+  */
 
   return addr;
 }
 
 int mfree(PCB *pcb, void *ptr){
-  int i;
+  int i, j;
   int offset;
   int index; 
   int order;
@@ -391,12 +432,24 @@ int mfree(PCB *pcb, void *ptr){
   size = pow(2, order);
 
 
-  printf("Freed the block: addr %X, offset = %d, size = %d\n",  (uint32)ptr & 0xFFF,order,  size);
+  printf("Freed the block: addr %d, order = %d, size = %d\n",  (uint32)ptr & 0xFFF,order,  size);
 
   for(i= index; i < (index+size); i++){
     pcb->heap[i] = -1;
   }
-/*
+
+  /* Print recombination of buddy nodes */
+  i = base_buddy(index, order);
+  while(order < 7 && check_block(pcb, i, order+1)) {
+    printf("Coalesced buddy nodes (order = %d, addr = %d, size = %d) ", order, 32*i, (32*pow(2, order)));
+    printf("& (order = %d, addr = %d, size = %d)\n", order, 32*(i ^ pow(2, order)), (32*pow(2, order)));
+    printf("int the parent node (order = %d, addr = %d, size = %d)\n", order+1, 32*i, (32*pow(2, order+1)));
+    order++;
+    i = base_buddy(i, order);
+  }
+
+  printf("\n");
+  /*
   printf("Current Heap:\n");
 
   for(i=0; i < 128; i ++){
@@ -404,7 +457,7 @@ int mfree(PCB *pcb, void *ptr){
   }
 
   printf("\n\n");
-*/
+  */
 
 
 }

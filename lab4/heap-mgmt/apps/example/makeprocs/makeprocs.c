@@ -20,6 +20,8 @@ void main (int argc, char *argv[])
 
   mfree(test1);
   mfree(test4);
+  mfree(test3);
+  mfree(test2);
 
 
 }
