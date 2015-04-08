@@ -3,6 +3,14 @@
 
 typedef struct dfs_superblock {
   // STUDENT: put superblock internals here
+  int valid;
+  int dfs_disksize;
+  int dfs_blocksize;
+  int dfs_blocknum;
+  int dfs_inode_start;
+  int dfs_num_inodes;
+  int dfs_fbv_start; 
+
 } dfs_superblock;
 
 #define DFS_BLOCKSIZE 512  // Must be an integer multiple of the disk blocksize
@@ -17,6 +25,13 @@ typedef struct dfs_inode {
   // inodes in the filesystem (and to make your life easier).  To do this, 
   // adjust the maximumm length of the filename until the size of the overall inode 
   // is 96 bytes.
+
+  char inuse;
+  uint32 max_size;
+  char filename[FILE_MAX_FILENAME_LENGTH];
+  uint32 vblock_table[10];
+  uint32 vblock_index;
+
 } dfs_inode;
 
 #define DFS_MAX_FILESYSTEM_SIZE 0x1000000  // 16MB
