@@ -8,7 +8,7 @@ typedef unsigned int uint32;
 
 #define FDISK_INODE_BLOCK_START 1 // Starts after super block (which is in file system block 0, physical block 1)
 #define FDISK_INODE_NUM_BLOCKS 16 // Number of file system blocks to use for inodes
-#define FDISK_NUM_INODES      192//STUDENT: define this
+//#define FDISK_NUM_INODES      192 //STUDENT: define this /*IN DFS_SHARED.H*/
 #define FDISK_FBV_BLOCK_START 17 //STUDENT: define this
 #define FDISK_BOOT_FILESYSTEM_BLOCKNUM 0 // Where the boot record and superblock reside in the filesystem
 

@@ -3,13 +3,13 @@
 
 typedef struct dfs_superblock {
   // STUDENT: put superblock internals here
-  int valid;
-  int dfs_disksize;
-  int dfs_blocksize;
-  int dfs_blocknum;
-  int dfs_inode_start;
-  int dfs_num_inodes;
-  int dfs_fbv_start; 
+  int valid; // If the super block is valid
+  int dfs_disksize; // Total disk size
+  int dfs_blocksize; // Virtual block size
+  int dfs_blocknum;  // Number of blocks???
+  int dfs_inode_start; // Virtual block inodes start at
+  int dfs_num_inodes; // Number of available inodes in pool
+  int dfs_fbv_start; // Starting virtual block of free block vector
 
 } dfs_superblock;
 
@@ -39,6 +39,8 @@ typedef struct dfs_inode {
 #define DFS_FAIL -1
 #define DFS_SUCCESS 1
 
-
+/** STUDENT DEFINES **/
+#define FDISK_NUM_INODES      192 
+#define DFS_FBV_MAX_NUM_WORDS   DFS_BLOCKSIZE/2
 
 #endif
