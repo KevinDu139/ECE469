@@ -3,6 +3,7 @@
 
 typedef unsigned int uint32;
 
+#include "files_shared.h"
 #include "dfs_shared.h" // This gets us structures and #define's from main filesystem driver
 
 #define FDISK_INODE_BLOCK_START 1 // Starts after super block (which is in file system block 0, physical block 1)
