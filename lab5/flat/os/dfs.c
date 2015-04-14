@@ -6,8 +6,8 @@
 #include "dfs.h"
 #include "synch.h"
 
-dfs_inode inodes[FDISK_NUM_INODES]; // all inodes
-dfs_superblock sb; // superblock
+static dfs_inode inodes[FDISK_NUM_INODES]; // all inodes
+static dfs_superblock sb; // superblock
 static uint32 fbv[DFS_FBV_MAX_NUM_WORDS]; // Free block vector
 
 static uint32 negativeone = 0xFFFFFFFF;
@@ -327,4 +327,19 @@ uint32 DfsInodeAllocateVirtualBlock(uint32 handle, uint32 virtual_blocknum) {
 
 uint32 DfsInodeTranslateVirtualToFilesys(uint32 handle, uint32 virtual_blocknum) {
 
+}
+
+
+/* Helper function for testing various dfs functions */
+void MuddleFileSystem() {
+  int i;
+
+  // Modify super block value
+  sb.dfs_blocksize = 0xDEAD;
+  sb.dfs_blocknum = 0xBEEF;
+
+  // Modify inodes 
+  for(i = 0; i < FDISK_NUM_INODES; i++) {
+    inodes[i].max_size = 0xCAFE0000 + i;
+  }
 }
