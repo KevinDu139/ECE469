@@ -1,8 +1,15 @@
 #ifndef __DFS_H__
 #define __DFS_H__
 
+/* Shared Resources and Definitions */
 #include "files_shared.h"
 #include "dfs_shared.h"
+
+/* Global Variables */
+extern dfs_superblock sb;
+extern dfs_inode inodes[];
+
+/* Function Prototypes */
 void DfsModuleInit();
 void DfsInvalidate();
 int DfsOpenFileSystem();
