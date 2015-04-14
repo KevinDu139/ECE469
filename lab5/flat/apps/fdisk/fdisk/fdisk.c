@@ -39,6 +39,9 @@ void main (int argc, char *argv[])
   sb.dfs_inode_start = FDISK_INODE_BLOCK_START;
   sb.dfs_num_inodes = FDISK_NUM_INODES;
   sb.dfs_fbv_start = FDISK_FBV_BLOCK_START;
+  // Get starting block by finding length in blocks of fbv + starting block of fbv
+  // FBV length in blocks is number_of_words * number_of_bits_per_word (32 bits)
+  sb.dfs_datablock_start = FDISK_FBV_BLOCK_START + (32 * DFS_FBV_MAX_NUM_WORDS);
 
   // Make sure the disk exists before doing anything else
   if(disk_create() == DISK_FAIL) {
@@ -67,7 +70,7 @@ void main (int argc, char *argv[])
   bcopy((char*)&sb, newblock.data, sizeof(dfs_superblock)); // Copy data from super block to temporary dfs block
   FdiskWriteBlock(1, &newblock); // Write dfs block to disk
   
-  for(i=0; i <FDISK_NUM_INODES; i+=2) {
+  for(i=0; i < FDISK_NUM_INODES; i+=2) {
     bcopy((char*)(inodes+i), newblock.data, 2*sizeof(dfs_inode)); // Copy inode array to buffer 2 indoes at a time
     FdiskWriteBlock(2+(i/2), &newblock); // Write dfs block to disk
   }

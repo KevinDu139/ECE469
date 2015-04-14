@@ -6,10 +6,11 @@ typedef struct dfs_superblock {
   int valid; // If the super block is valid
   int dfs_disksize; // Total disk size
   int dfs_blocksize; // Virtual block size
-  int dfs_blocknum;  // Number of blocks???
+  int dfs_blocknum;  // Total number of file system blocks
   int dfs_inode_start; // Virtual block inodes start at
   int dfs_num_inodes; // Number of available inodes in pool
-  int dfs_fbv_start; // Starting virtual block of free block vector
+  int dfs_fbv_start; // Starting virtual block number of free block vector
+  int dfs_datablock_start; // Starting virtual block number of data blocks
 
 } dfs_superblock;
 

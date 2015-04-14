@@ -15,6 +15,8 @@ static inline uint32 invert(uint32 n) { return n ^ negativeone; }
 
 static uint32 fs_is_open = 0; // Flag to mark when file system has been opened
 
+static lock_t fbv_lock;
+
 // You have already been told about the most likely places where you should use locks. You may use 
 // additional locks if it is really necessary.
 
@@ -35,6 +37,9 @@ void DfsModuleInit() {
 // using DfsOpenFileSystem().
   DfsInvalidate();
   DfsOpenFileSystem();
+
+  // Also allocate a lock for later file system operations
+  fbv_lock = LockCreate();
 }
 
 //-----------------------------------------------------------------
@@ -112,6 +117,8 @@ int DfsOpenFileSystem() {
   }
   sb.valid = 1; // Re-validate in memory
 
+  // Mark file system as open
+
   return DFS_SUCCESS;
 }
 
@@ -128,10 +135,13 @@ int DfsCloseFileSystem() {
   int i;
 //Basic steps:
 // Check that filesystem is not already open
-  if(fs_is_open) {
-    printf("DfsCloseFileSystem tried to open file system that already is open!\n");
+  if(!fs_is_open) {
+    printf("DfsCloseFileSystem tried to close a file system that is not open!\n");
     return DFS_FAIL;
   }
+
+// Mark file system as closed
+  fs_is_open = 0;
 
 // Read superblock from disk.  Note this is using the disk read rather 
 // than the DFS read function because the DFS read requires a valid 
@@ -169,9 +179,6 @@ int DfsCloseFileSystem() {
   // Invalidate file system in memory
   DfsInvalidate();
 
-  // Mark file system as closed
-  fs_is_open = 0;
-
   return DFS_SUCCESS;
 }
 
@@ -182,10 +189,48 @@ int DfsCloseFileSystem() {
 //-----------------------------------------------------------------
 
 uint32 DfsAllocateBlock() {
+  int i, j;
+  int block_offset = sb.dfs_datablock_start;
 // Check that file system has been validly loaded into memory
-// Find the first free block using the free block vector (FBV), mark it in use
-// Return handle to block
+  if(!fs_is_open) {
+    printf("DfsAllocateBlock detected that a file system is not open!\n");
+    return DFS_FAIL;
+  }
 
+  // Lock free block vector for searching
+  if(LockHandleAcquire(fbv_lock) != SYNC_SUCCESS) {
+    printf("DfsAllocateBlock bad lock acquire!\n");
+    return DFS_FAIL;
+  }
+
+// Find the first free block using the free block vector (FBV), mark it in use
+  for(i = 0; i < DFS_FBV_MAX_NUM_WORDS; i++) {
+    // Loop over each bit of the current int (32 bits) in the array
+    for(j = 0; j < 32; j++) {
+      // Search for a free block (0 => Empty Block, 1 => Used Block)
+      // (0 & 1) = 0 (i.e. unused block), (1 & 1) = 1 (i.e. used block)
+      if(!(fbv[i] & (0x1 << j))) {
+	// Mark the block as used
+	fbv[i] |= (0x1 << j);
+	// Release lock before returning
+	if(LockHandleRelease(fbv_lock) != SYNC_SUCCESS) {
+	  printf("DfsAllocateBlock bad lock release!\n");
+	  return DFS_FAIL;
+	}
+	// return the block number
+	return (32 * i + j) + block_offset;
+      }
+    }
+  }
+
+  // Release lock before returning
+  if(LockHandleRelease(fbv_lock) != SYNC_SUCCESS) {
+    printf("DfsAllocateBlock bad lock release!\n");
+    return DFS_FAIL;
+  }
+
+// Return failed if this part is reach
+  return DFS_FAIL;
 }
 
 
@@ -194,7 +239,33 @@ uint32 DfsAllocateBlock() {
 //-----------------------------------------------------------------
 
 int DfsFreeBlock(uint32 blocknum) {
+  int block_offset = sb.dfs_datablock_start;
+  uint32 fbv_index = (blocknum - block_offset) / 32;
+  uint32 fbv_bit = (blocknum - block_offset) - (32 * fbv_index);
 
+  // Verify file system is open
+  if(!fs_is_open) {
+    printf("DfsFreeBlock detected that a file system is not open!\n");
+    return DFS_FAIL;
+  }
+
+  // Lock free block vector
+  if(LockHandleAcquire(fbv_lock) != SYNC_SUCCESS) {
+    printf("DfsFreeBlock bad lock acquire!\n");
+    return DFS_FAIL;
+  }
+
+  // Free block in fbv
+  fbv[fbv_index] ^= (0x1 << fbv_bit);
+
+  // Release lock before returning
+  if(LockHandleRelease(fbv_lock) != SYNC_SUCCESS) {
+    printf("DfsFreeBlock bad lock release!\n");
+    return DFS_FAIL;
+  }
+
+  // Return Success
+  return DFS_SUCCESS;
 }
 
 
