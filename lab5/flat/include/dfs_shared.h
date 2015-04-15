@@ -42,6 +42,6 @@ typedef struct dfs_inode {
 
 /** STUDENT DEFINES **/
 #define FDISK_NUM_INODES      192 
-#define DFS_FBV_MAX_NUM_WORDS   DFS_BLOCKSIZE/2
+#define DFS_FBV_MAX_NUM_WORDS  DFS_MAX_FILESYSTEM_SIZE/ DFS_BLOCKSIZE/32
 
 #endif
