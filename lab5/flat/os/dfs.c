@@ -65,6 +65,7 @@ int DfsOpenFileSystem() {
   disk_block buffer_block;
   uint32 virtual_block_size;
   int i;
+  bzero(buffer_block.data, DISK_BLOCKSIZE);
 //Basic steps:
 // Check that filesystem is not already open
   if(fs_is_open) {
@@ -133,6 +134,7 @@ int DfsOpenFileSystem() {
 int DfsCloseFileSystem() {
   disk_block buffer_block;
   int i;
+  bzero(buffer_block.data, DISK_BLOCKSIZE);
 //Basic steps:
 // Check that filesystem is not already open
   if(!fs_is_open || !sb.valid) {
@@ -285,7 +287,7 @@ int DfsReadBlock(uint32 blocknum, dfs_block *b) {
 
   if(fbv[fbv_index] & (0x1 << fbv_bit)){
 
-    physical_blocknum = 1+(blocknum*2);
+    physical_blocknum = blocknum * (sb.dfs_blocksize / DISK_BLOCKSIZE);
 
     //if true read entire block 
     //put it in dfs_block *b
@@ -325,7 +327,7 @@ int DfsWriteBlock(uint32 blocknum, dfs_block *b){
 
   if(fbv[fbv_index] & (0x1 << fbv_bit)){
 
-    physical_blocknum = 1+(blocknum*2);
+    physical_blocknum = blocknum * (sb.dfs_blocksize / DISK_BLOCKSIZE);
 
     //if true read entire block 
     //put it in dfs_block *b
@@ -464,14 +466,47 @@ uint32 DfsInodeTranslateVirtualToFilesys(uint32 handle, uint32 virtual_blocknum)
 
 /* Helper function for testing various dfs functions */
 void MuddleFileSystem() {
+  uint32 blocknum;
+  dfs_block test_block;
+  dfs_block read_block;
+  char data[] = "CAFE69DEADBEEF1337";
   int i;
 
-  // Modify super block value
-  sb.dfs_blocksize = 0xDEAD;
-  sb.dfs_blocknum = 0xBEEF;
+  // Allocate a file system block to write to
+  blocknum = DfsAllocateBlock();
+  printf("=1=> Allocated block number: %d\n", blocknum);
 
-  // Modify inodes 
-  for(i = 0; i < FDISK_NUM_INODES; i++) {
-    inodes[i].max_size = 0xCAFE0000 + i;
+  // Write data
+  dstrcpy(test_block.data, data);
+  //  test_block.data = 'CAFE69DEADBEEF1337';
+  printf("=2=> Wrote data in a block: %s\n", test_block.data);
+
+  // Write data to block
+  if(DfsWriteBlock(blocknum, &test_block) == DFS_FAIL) {
+    printf("MuddleFileSystem failed to write a block to disk!\n");
+    return;
   }
+  printf("=3=> Write a block to disk\n");
+
+  // Read the block from disk
+  if(DfsReadBlock(blocknum, &read_block) == DFS_FAIL) {
+    printf("MuddleFileSystem failed to read a block from disk!\n");
+    return;
+  }
+  printf("=4=> Read a block from disk\n");
+
+  // Print read block
+  printf("=5=> Displaying data from disk block: %s\n", read_block.data);
+
+  // Print free block vector
+  for(i = 0; i < DFS_FBV_MAX_NUM_WORDS; i++) {
+    printf("word %d: %X // ", i, fbv[i]);
+    if(!(i % 5)) { printf("\n"); }
+  }
+  printf("\n");
+
+  // Free allocated block
+  DfsFreeBlock(blocknum);
+  printf("=6=> Freed block number: %d\n", blocknum);
+
 }

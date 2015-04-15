@@ -3,6 +3,7 @@
 
 #include "fdisk.h"
 
+
 dfs_superblock sb;
 dfs_inode inodes[FDISK_NUM_INODES];
 uint32 fbv[DFS_FBV_MAX_NUM_WORDS];
@@ -29,7 +30,8 @@ void main (int argc, char *argv[])
   // Need to invalidate filesystem before writing to it to make sure that the OS
   // doesn't wipe out what we do here with the old version in memory
   // You can use dfs_invalidate(); but it will be implemented in Problem 2. You can just do 
-  sb.valid = 0;
+  //  sb.valid = 0;
+  dfs_invalidate();
 
   //add checking to be sure fs size is less than max size, same with disk
   sb.dfs_disksize = MY_DFS_FILESYSTEM_SIZE; 
@@ -41,7 +43,7 @@ void main (int argc, char *argv[])
   sb.dfs_fbv_start = FDISK_FBV_BLOCK_START;
   // Get starting block by finding length in blocks of fbv + starting block of fbv
   // FBV length in blocks is number_of_words * number_of_bits_per_word (32 bits)
-  sb.dfs_datablock_start = FDISK_FBV_BLOCK_START + (32 * DFS_FBV_MAX_NUM_WORDS);
+  sb.dfs_datablock_start = FDISK_FBV_BLOCK_START + DFS_FBV_MAX_NUM_WORDS / (MY_DFS_BLOCKSIZE / 4);
 
   // Make sure the disk exists before doing anything else
   if(disk_create() == DISK_FAIL) {
