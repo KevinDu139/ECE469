@@ -10,6 +10,12 @@
 
 // STUDENT: put your file-level functions here
 int FileOpen(char *filename, char *mode){
+
+  //file modes - r, w, rw
+  //max write is 4096 bytes
+
+  //use locks when opening new file descriptor
+
   return 0;
 }
 

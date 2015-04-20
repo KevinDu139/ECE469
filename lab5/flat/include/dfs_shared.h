@@ -27,11 +27,11 @@ typedef struct dfs_inode {
   // adjust the maximumm length of the filename until the size of the overall inode 
   // is 96 bytes.
 
-  char inuse;
-  uint32 max_size;
-  char filename[FILE_MAX_FILENAME_LENGTH];
-  uint32 vblock_table[10];
-  uint32 vblock_index;
+  char inuse; // Marks if inode is currently being used
+  uint32 max_size; // Size of file inode represents
+  char filename[FILE_MAX_FILENAME_LENGTH]; // Filename of inode
+  uint32 vblock_table[10]; // Data block table
+  uint32 vblock_index; // Indirect address block
 
 } dfs_inode;
 
