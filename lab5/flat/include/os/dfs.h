@@ -25,6 +25,7 @@ uint32 DfsInodeTranslateVirtualToFilesys(uint32 handle, uint32 virtual_blocknum)
 
 /* Helper Functions */
 uint32 AllocateInode();
-void MuddleFileSystem();
+void DfsTests();
+void InodeTests();
 
 #endif

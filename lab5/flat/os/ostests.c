@@ -5,9 +5,9 @@
 #include "dfs.h"
 
 void RunOSTests() {
-  int i;
 
   // Modify some values before writing back
-  MuddleFileSystem();
+  //DfsTests();
+  InodeTests();
 }
 
