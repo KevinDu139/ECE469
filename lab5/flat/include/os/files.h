@@ -13,5 +13,7 @@ int FileWrite(int handle, void *mem, int num_bytes);
 int FileSeek(int handle, int num_bytes, int from_where);
 int FileDelete(char *filename);
 
+/* Helper Functions */
+int IsFileOpen(char* filename);
 
 #endif

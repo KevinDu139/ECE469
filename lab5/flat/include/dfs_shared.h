@@ -46,4 +46,8 @@ typedef struct dfs_inode {
 #define DFS_FBV_MAX_NUM_WORDS  DFS_MAX_FILESYSTEM_SIZE/ DFS_BLOCKSIZE/32
 
 #define FDISK_FBV_BLOCK_START 1+ FDISK_NUM_INODES /(2*(DFS_BLOCKSIZE/DISK_BLOCKSIZE)) //STUDENT: define this
+
+/* File descriptor lock create */
+void CreateFileLock();
+
 #endif
