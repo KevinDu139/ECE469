@@ -1,0 +1,4414 @@
+cd ../../bin; dlxsim -x os.dlx.obj -a -D F+ -u filetest.dlx.obj; ee469_fixterminal
+Stack=0x1fffc0, pc starting at 0x15a04
+Got 4 arguments.
+Available memory: 0x29f98 -> 0x200000.
+Argument count is 4.
+Argument 0 is -D.
+Argument 1 is F+.
+Argument 2 is -u.
+Argument 3 is filetest.dlx.obj.
+About to initialize queues.
+Initializing 400 links.
+After initializing queues.
+Map has 1 entries, memory size is 0x20.
+Free pages start with page # 0x3.
+Set freemap entry 0 to 0x8.
+Set freemap entry 0 to 0x18.
+Set freemap entry 0 to 0x38.
+Set freemap entry 0 to 0x78.
+Set freemap entry 0 to 0xf8.
+Set freemap entry 0 to 0x1f8.
+Set freemap entry 0 to 0x3f8.
+Set freemap entry 0 to 0x7f8.
+Set freemap entry 0 to 0xff8.
+Set freemap entry 0 to 0x1ff8.
+Set freemap entry 0 to 0x3ff8.
+Set freemap entry 0 to 0x7ff8.
+Set freemap entry 0 to 0xfff8.
+Set freemap entry 0 to 0x1fff8.
+Set freemap entry 0 to 0x3fff8.
+Set freemap entry 0 to 0x7fff8.
+Set freemap entry 0 to 0xffff8.
+Set freemap entry 0 to 0x1ffff8.
+Set freemap entry 0 to 0x3ffff8.
+Set freemap entry 0 to 0x7ffff8.
+Set freemap entry 0 to 0xfffff8.
+Set freemap entry 0 to 0x1fffff8.
+Set freemap entry 0 to 0x3fffff8.
+Set freemap entry 0 to 0x7fffff8.
+Set freemap entry 0 to 0xffffff8.
+Set freemap entry 0 to 0x1ffffff8.
+Set freemap entry 0 to 0x3ffffff8.
+Set freemap entry 0 to 0x7ffffff8.
+Set freemap entry 0 to 0xfffffff8.
+Initialized 29 free pages.
+After initializing memory.
+ProcessModuleInit: function started
+Initializing PCB 0 @ 0x1f3a8.
+AQueueAllocLink: allocating link
+Initializing PCB 1 @ 0x1f490.
+AQueueAllocLink: allocating link
+Initializing PCB 2 @ 0x1f578.
+AQueueAllocLink: allocating link
+Initializing PCB 3 @ 0x1f660.
+AQueueAllocLink: allocating link
+Initializing PCB 4 @ 0x1f748.
+AQueueAllocLink: allocating link
+Initializing PCB 5 @ 0x1f830.
+AQueueAllocLink: allocating link
+Initializing PCB 6 @ 0x1f918.
+AQueueAllocLink: allocating link
+Initializing PCB 7 @ 0x1fa00.
+AQueueAllocLink: allocating link
+Initializing PCB 8 @ 0x1fae8.
+AQueueAllocLink: allocating link
+Initializing PCB 9 @ 0x1fbd0.
+AQueueAllocLink: allocating link
+Initializing PCB 10 @ 0x1fcb8.
+AQueueAllocLink: allocating link
+Initializing PCB 11 @ 0x1fda0.
+AQueueAllocLink: allocating link
+Initializing PCB 12 @ 0x1fe88.
+AQueueAllocLink: allocating link
+Initializing PCB 13 @ 0x1ff70.
+AQueueAllocLink: allocating link
+Initializing PCB 14 @ 0x20058.
+AQueueAllocLink: allocating link
+Initializing PCB 15 @ 0x20140.
+AQueueAllocLink: allocating link
+Initializing PCB 16 @ 0x20228.
+AQueueAllocLink: allocating link
+Initializing PCB 17 @ 0x20310.
+AQueueAllocLink: allocating link
+Initializing PCB 18 @ 0x203f8.
+AQueueAllocLink: allocating link
+Initializing PCB 19 @ 0x204e0.
+AQueueAllocLink: allocating link
+Initializing PCB 20 @ 0x205c8.
+AQueueAllocLink: allocating link
+Initializing PCB 21 @ 0x206b0.
+AQueueAllocLink: allocating link
+Initializing PCB 22 @ 0x20798.
+AQueueAllocLink: allocating link
+Initializing PCB 23 @ 0x20880.
+AQueueAllocLink: allocating link
+Initializing PCB 24 @ 0x20968.
+AQueueAllocLink: allocating link
+Initializing PCB 25 @ 0x20a50.
+AQueueAllocLink: allocating link
+Initializing PCB 26 @ 0x20b38.
+AQueueAllocLink: allocating link
+Initializing PCB 27 @ 0x20c20.
+AQueueAllocLink: allocating link
+Initializing PCB 28 @ 0x20d08.
+AQueueAllocLink: allocating link
+Initializing PCB 29 @ 0x20df0.
+AQueueAllocLink: allocating link
+Initializing PCB 30 @ 0x20ed8.
+AQueueAllocLink: allocating link
+Initializing PCB 31 @ 0x20fc0.
+AQueueAllocLink: allocating link
+ProcessModuleInit: function complete
+After initializing processes.
+SynchModuleInit: Entering SynchModuleInit
+SynchModuleInit: Leaving SynchModuleInit
+After initializing synchronization tools.
+After initializing keyboard.
+Attepmting to open vm mode=2.
+File vm opening in file system 0.
+Attempting to open file vm into desc 0, mode 2.
+Opened vm in FS 0, mode=2 slot=0.
+VM Descriptor is 0
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+After initializing dfs filesystem.
+ProcessFork (92563399): function started
+Old interrupt value was 0x0.
+Entering ProcessFork args=0x0 0x1ffb20 filetest.dlx.obj 1
+Got a link @ 0x21408
+AQueueRemove: removing link
+Before restore interrupt value is 0xf.
+New interrupt value is 0x0.
+ProcessFork: Copying process name (filetest.dlx.obj) to pcb
+Allocating memory, starting with page 0
+Allocated memory, from map 0, page 3, map=0xfffffff0.
+Allocating memory, starting with page 0
+Allocated memory, from map 0, page 4, map=0xffffffe0.
+Setting up PCB @ 0x20fc0 (sys stack=0x40000, mem=0x30001, size=0x10000)
+About to load filetest.dlx.obj
+Attepmting to open filetest.dlx.obj mode=1.
+File filetest.dlx.obj opening in file system 0.
+Attempting to open file filetest.dlx.obj into desc 1, mode 1.
+Opened filetest.dlx.obj in FS 0, mode=1 slot=1.
+File descriptor is now 1.
+File filetest.dlx.obj -> start=0x00001000
+File filetest.dlx.obj -> code @ 0x00001000 (size=0x000011b8)
+File filetest.dlx.obj -> data @ 0x00003000 (size=0x00000eb0)
+Got 200 bytes at offset 60 ... terminated at 183.
+Buffer is '00003000:41206669
+:6c652073
+:79737465
+:6d206973
+:2073696d
+:706c7920
+:61206d65
+:616e7320
+:6f66206f
+:7267616e
+:697a696e
+:67206120
+:6c617267
+:65207365
+:74206f66
+:20627974
+:65732075
+:7369
+Z'
+New address is 0x3000.
+Seeking to 244 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003000.
+Got 200 bytes at offset 244 ... terminated at 183.
+Buffer is '00003046:6e672061
+:20736d61
+:6c6c2061
+:6d6f756e
+:74206f66
+:206f7665
+:72686561
+:642c2062
+:6f746820
+:696e2074
+:65726d73
+:206f6620
+:73697a65
+:20616e64
+:20616363
+:65737320
+:73706565
+:642e
+Z'
+New address is 0x3046.
+Seeking to 428 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003046.
+Got 200 bytes at offset 428 ... terminated at 183.
+Buffer is '0000308c:20546865
+:72652069
+:73206e6f
+:20726573
+:74726963
+:74696f6e
+:20617320
+:746f2077
+:68617420
+:74797065
+:206f6620
+:68617264
+:77617265
+:20612066
+:696c6520
+:73797374
+:656d2072
+:756e
+Z'
+New address is 0x308c.
+Seeking to 612 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000308c.
+Got 200 bytes at offset 612 ... terminated at 183.
+Buffer is '000030d2:73206f6e
+:3a206974
+:20636f75
+:6c642062
+:65205265
+:61642d4f
+:6e6c7920
+:6d656d6f
+:7279206c
+:696b6520
+:61204456
+:442d524f
+:4d2c2069
+:7420636f
+:756c6420
+:62652061
+:20747261
+:6469
+Z'
+New address is 0x30d2.
+Seeking to 796 and returning 70 bytes!
+Placing 70 bytes at vaddr 000030d2.
+Got 200 bytes at offset 796 ... terminated at 183.
+Buffer is '00003118:74696f6e
+:616c206d
+:61676e65
+:74696320
+:6f722073
+:6f6c6964
+:2d737461
+:74652068
+:61726420
+:64726976
+:652c2069
+:7420636f
+:756c6420
+:62652061
+:2052414d
+:2d626173
+:65642066
+:696c
+Z'
+New address is 0x3118.
+Seeking to 980 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003118.
+Got 200 bytes at offset 980 ... terminated at 183.
+Buffer is '0000315e:65207379
+:7374656d
+:20746861
+:74206973
+:20656e74
+:6972656c
+:7920696e
+:20766f6c
+:6174696c
+:65206d65
+:6d6f7279
+:2c206f72
+:20697420
+:636f756c
+:64206576
+:656e2062
+:65206120
+:7669
+Z'
+New address is 0x315e.
+Seeking to 1164 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000315e.
+Got 200 bytes at offset 1164 ... terminated at 183.
+Buffer is '000031a4:72747561
+:6c206469
+:736b2074
+:68617420
+:72657369
+:64657320
+:696e2061
+:2066696c
+:65202861
+:73207768
+:61742079
+:6f752077
+:696c6c20
+:62652069
+:6d706c65
+:6d656e74
+:696e6720
+:696e
+Z'
+New address is 0x31a4.
+Seeking to 1348 and returning 70 bytes!
+Placing 70 bytes at vaddr 000031a4.
+Got 200 bytes at offset 1348 ... terminated at 183.
+Buffer is '000031ea:20746869
+:73206c61
+:62292e20
+:496e2074
+:68697320
+:7761792c
+:20746865
+:2066696c
+:65207379
+:7374656d
+:2063616e
+:20736869
+:656c6420
+:74686520
+:6c6f772d
+:6c657665
+:6c206465
+:7461
+Z'
+New address is 0x31ea.
+Seeking to 1532 and returning 70 bytes!
+Placing 70 bytes at vaddr 000031ea.
+Got 200 bytes at offset 1532 ... terminated at 183.
+Buffer is '00003230:696c7320
+:6f662068
+:61726477
+:61726520
+:6469736b
+:206d616e
+:6970756c
+:6174696f
+:6e206672
+:6f6d2068
+:69676865
+:722d6c65
+:76656c20
+:70726f67
+:72616d73
+:2e205265
+:63616c6c
+:2074
+Z'
+New address is 0x3230.
+Seeking to 1716 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003230.
+Got 200 bytes at offset 1716 ... terminated at 183.
+Buffer is '00003276:68617420
+:77697468
+:20706167
+:696e672c
+:20796f75
+:206e6565
+:64656420
+:746f2073
+:746f7265
+:20746865
+:20706167
+:65207461
+:626c6520
+:616e6420
+:6f746865
+:7220696e
+:666f726d
+:6174
+Z'
+New address is 0x3276.
+Seeking to 1900 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003276.
+Got 200 bytes at offset 1900 ... terminated at 183.
+Buffer is '000032bc:696f6e20
+:61626f75
+:74206120
+:70726f63
+:65737373
+:20766972
+:7475616c
+:20616464
+:72657373
+:20616e64
+:20706879
+:73696361
+:6c207061
+:67652075
+:73616765
+:2e20596f
+:75207374
+:6f72
+Z'
+New address is 0x32bc.
+Seeking to 2084 and returning 70 bytes!
+Placing 70 bytes at vaddr 000032bc.
+Got 200 bytes at offset 2084 ... terminated at 183.
+Buffer is '00003302:65642074
+:68697320
+:696e666f
+:726d6174
+:696f6e20
+:696e2061
+:20706167
+:65207461
+:626c652c
+:20616e64
+:20746865
+:20706f69
+:6e746572
+:20746f20
+:74686520
+:70616765
+:20746162
+:6c65
+Z'
+New address is 0x3302.
+Seeking to 2268 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003302.
+Got 200 bytes at offset 2268 ... terminated at 183.
+Buffer is '00003348:20697320
+:73746f72
+:65642070
+:726f6365
+:73732063
+:6f6e7472
+:6f6c2062
+:6c6f636b
+:20285043
+:42292073
+:74727563
+:74757265
+:2e20466f
+:72206669
+:6c652073
+:79737465
+:6d732c20
+:7765
+Z'
+New address is 0x3348.
+Seeking to 2452 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003348.
+Got 200 bytes at offset 2452 ... terminated at 183.
+Buffer is '0000338e:206e6565
+:64206120
+:73696d69
+:6c617220
+:74797065
+:206f6620
+:73747275
+:63747572
+:6520746f
+:2073746f
+:72652074
+:68652069
+:6e666f72
+:6d617469
+:6f6e2061
+:626f7574
+:20612066
+:696c
+Z'
+New address is 0x338e.
+Seeking to 2636 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000338e.
+Got 200 bytes at offset 2636 ... terminated at 183.
+Buffer is '000033d4:653a2074
+:68696e67
+:73207375
+:63682061
+:73207468
+:65206669
+:6c656e61
+:6d652c20
+:74686520
+:626c6f63
+:6b207472
+:616e736c
+:6174696f
+:6e207461
+:626c652c
+:206c656e
+:67746820
+:6f66
+Z'
+New address is 0x33d4.
+Seeking to 2820 and returning 70 bytes!
+Placing 70 bytes at vaddr 000033d4.
+Got 200 bytes at offset 2820 ... terminated at 183.
+Buffer is '0000341a:20746865
+:2066696c
+:652c2065
+:74632e20
+:54686973
+:20737472
+:75637475
+:72652069
+:73206361
+:6c6c6564
+:20616e20
+:696e6465
+:78206e6f
+:6465206f
+:7220696e
+:6f646520
+:666f7220
+:7368
+Z'
+New address is 0x341a.
+Seeking to 3004 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000341a.
+Got 200 bytes at offset 3004 ... terminated at 183.
+Buffer is '00003460:6f72742e
+:20416e20
+:696e6f64
+:65206973
+:20746865
+:206d6574
+:61646174
+:61206173
+:736f6369
+:61746564
+:20776974
+:68206120
+:66696c65
+:2c206d65
+:616e696e
+:67207468
+:61742065
+:6163
+Z'
+New address is 0x3460.
+Seeking to 3188 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003460.
+Got 200 bytes at offset 3188 ... terminated at 183.
+Buffer is '000034a6:68206669
+:6c652068
+:6173206f
+:6e652069
+:6e6f6465
+:2c20616e
+:64206561
+:63682069
+:6e6f6465
+:20726570
+:72657365
+:6e747320
+:6f6e6520
+:66696c65
+:2e496e20
+:6c616220
+:342c2079
+:6f75
+Z'
+New address is 0x34a6.
+Seeking to 3372 and returning 70 bytes!
+Placing 70 bytes at vaddr 000034a6.
+Got 200 bytes at offset 3372 ... terminated at 183.
+Buffer is '000034ec:206b6570
+:74207472
+:61636b20
+:6f662077
+:68696368
+:20706167
+:65732077
+:65726520
+:66726565
+:20616e64
+:20776869
+:63682077
+:65726520
+:696e2075
+:73652074
+:68726f75
+:67682074
+:6865
+Z'
+New address is 0x34ec.
+Seeking to 3556 and returning 70 bytes!
+Placing 70 bytes at vaddr 000034ec.
+Got 200 bytes at offset 3556 ... terminated at 183.
+Buffer is '00003532:20757365
+:206f6620
+:61206269
+:746d6170
+:20776865
+:72652065
+:61636820
+:62697420
+:636f7272
+:6573706f
+:6e646564
+:20746f20
+:31207061
+:67652e20
+:54686973
+:20776173
+:2063616c
+:6c65
+Z'
+New address is 0x3532.
+Seeking to 3740 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003532.
+Got 200 bytes at offset 3740 ... terminated at 183.
+Buffer is '00003578:64207468
+:65206672
+:65656d61
+:702e2057
+:65207769
+:6c6c2075
+:73652074
+:68652073
+:616d6520
+:636f6e63
+:65707420
+:696e2074
+:68697320
+:6c616220
+:746f206b
+:65657020
+:74726163
+:6b20
+Z'
+New address is 0x3578.
+Seeking to 3924 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003578.
+Got 200 bytes at offset 3924 ... terminated at 183.
+Buffer is '000035be:6f662077
+:68696368
+:2066696c
+:65207379
+:7374656d
+:20626c6f
+:636b7320
+:61726520
+:696e2075
+:73652061
+:6e642077
+:68696368
+:20617265
+:20667265
+:652c2065
+:78636570
+:74207468
+:6174
+Z'
+New address is 0x35be.
+Seeking to 4108 and returning 70 bytes!
+Placing 70 bytes at vaddr 000035be.
+Got 200 bytes at offset 4108 ... terminated at 183.
+Buffer is '00003604:20776520
+:77696c6c
+:2063616c
+:6c206974
+:20746865
+:20667265
+:6520626c
+:6f636b20
+:76656374
+:6f722069
+:6e207468
+:6973206c
+:61622069
+:6e737465
+:6164206f
+:66207468
+:65206672
+:6565
+Z'
+New address is 0x3604.
+Seeking to 4292 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003604.
+Got 200 bytes at offset 4292 ... terminated at 183.
+Buffer is '0000364a:6d61702e
+:54686520
+:7461626c
+:65206265
+:6c6f7720
+:73756d6d
+:6172697a
+:65732074
+:68652072
+:656c6174
+:696f6e73
+:68697020
+:62657477
+:65656e20
+:70616769
+:6e672074
+:65726d73
+:2061
+Z'
+New address is 0x364a.
+Seeking to 4476 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000364a.
+Got 200 bytes at offset 4476 ... terminated at 183.
+Buffer is '00003690:6e642066
+:696c6520
+:73797374
+:656d2074
+:65726d73
+:49742069
+:73206561
+:73792069
+:6e207468
+:6973206c
+:61622074
+:6f206765
+:7420636f
+:6e667573
+:65642062
+:65747765
+:656e2064
+:6973
+Z'
+New address is 0x3690.
+Seeking to 4660 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003690.
+Got 200 bytes at offset 4660 ... terminated at 183.
+Buffer is '000036d6:6b206f70
+:65726174
+:696f6e73
+:2c206669
+:6c652073
+:79737465
+:6d206f70
+:65726174
+:696f6e73
+:2c20616e
+:64206669
+:6c65206f
+:70657261
+:74696f6e
+:732e2044
+:69736b20
+:6f706572
+:6174
+Z'
+New address is 0x36d6.
+Seeking to 4844 and returning 70 bytes!
+Placing 70 bytes at vaddr 000036d6.
+Got 200 bytes at offset 4844 ... terminated at 183.
+Buffer is '0000371c:696f6e73
+:20617265
+:20706572
+:666f726d
+:65642062
+:79207468
+:65206163
+:7475616c
+:20706879
+:73696361
+:6c206469
+:736b2068
+:61726477
+:6172652e
+:20546865
+:7365206f
+:70657261
+:7469
+Z'
+New address is 0x371c.
+Seeking to 5028 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000371c.
+Got 200 bytes at offset 5028 ... terminated at 183.
+Buffer is '00003762:6f6e7320
+:696e636c
+:75646520
+:72656164
+:696e6720
+:616e6420
+:77726974
+:696e6720
+:626c6f63
+:6b732c20
+:616e6420
+:7265706f
+:7274696e
+:67206469
+:736b2069
+:6e666f72
+:6d617469
+:6f6e
+Z'
+New address is 0x3762.
+Seeking to 5212 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003762.
+Got 200 bytes at offset 5212 ... terminated at 195.
+Buffer is '000037a8:20737563
+:68206173
+:20746865
+:20746f74
+:616c2073
+:697a6520
+:616e6420
+:74686520
+:626c6f63
+:6b207369
+000037d0:7a652e46
+:696c6520
+:73797374
+:656d206f
+:70657261
+:74696f6e
+:73202861
+:2e6b2e61
+Z'
+New address is 0x37a8.
+Seeking to 5320 and returning 40 bytes!
+Placing 40 bytes at vaddr 000037a8.
+Got 200 bytes at offset 5320 ... terminated at 183.
+Buffer is '000037d0:7a652e46
+:696c6520
+:73797374
+:656d206f
+:70657261
+:74696f6e
+:73202861
+:2e6b2e61
+:2e204446
+:53206f70
+:65726174
+:696f6e73
+:29206172
+:65207065
+:72666f72
+:6d656420
+:62792074
+:6865
+Z'
+New address is 0x37d0.
+Seeking to 5504 and returning 70 bytes!
+Placing 70 bytes at vaddr 000037d0.
+Got 200 bytes at offset 5504 ... terminated at 183.
+Buffer is '00003816:2066696c
+:65207379
+:7374656d
+:20647269
+:76657220
+:696e2074
+:6865206f
+:70657261
+:74696e67
+:20737973
+:74656d2e
+:20444653
+:206f7065
+:72617469
+:6f6e7320
+:696e636c
+:75646520
+:6f70
+Z'
+New address is 0x3816.
+Seeking to 5688 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003816.
+Got 200 bytes at offset 5688 ... terminated at 183.
+Buffer is '0000385c:656e696e
+:67207468
+:65206669
+:6c652073
+:79737465
+:6d202869
+:2e652e20
+:6c6f6164
+:696e6720
+:69742069
+:6e746f20
+:6d656d6f
+:7279292c
+:20636c6f
+:73696e67
+:20746865
+:2066696c
+:6520
+Z'
+New address is 0x385c.
+Seeking to 5872 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000385c.
+Got 200 bytes at offset 5872 ... terminated at 183.
+Buffer is '000038a2:73797374
+:656d2028
+:692e652e
+:20777269
+:74696e67
+:20697420
+:6261636b
+:20746f20
+:74686520
+:6469736b
+:292c2061
+:6c6c6f63
+:6174696e
+:6720616e
+:64206672
+:6565696e
+:67204446
+:5320
+Z'
+New address is 0x38a2.
+Seeking to 6056 and returning 70 bytes!
+Placing 70 bytes at vaddr 000038a2.
+Got 200 bytes at offset 6056 ... terminated at 183.
+Buffer is '000038e8:626c6f63
+:6b732c20
+:72656164
+:696e6720
+:616e6420
+:77726974
+:696e6720
+:44465320
+:626c6f63
+:6b732c20
+:72656164
+:696e6720
+:616e6420
+:77726974
+:696e6720
+:76697274
+:75616c20
+:626c
+Z'
+New address is 0x38e8.
+Seeking to 6240 and returning 70 bytes!
+Placing 70 bytes at vaddr 000038e8.
+Got 200 bytes at offset 6240 ... terminated at 183.
+Buffer is '0000392e:6f636b73
+:20287468
+:726f7567
+:6820696e
+:6f646573
+:292c2061
+:6e642062
+:6c6f636b
+:20636163
+:68696e67
+:2e497420
+:69732076
+:65727920
+:74656d70
+:74696e67
+:20746f20
+:23646566
+:696e
+Z'
+New address is 0x392e.
+Seeking to 6424 and returning 70 bytes!
+Placing 70 bytes at vaddr 0000392e.
+Got 200 bytes at offset 6424 ... terminated at 183.
+Buffer is '00003974:6520616c
+:6c207468
+:65207265
+:6c657661
+:6e742069
+:6e666f72
+:6d617469
+:6f6e2061
+:626f7574
+:20746865
+:2066696c
+:65207379
+:7374656d
+:2e20466f
+:7220696e
+:7374616e
+:63652c20
+:7468
+Z'
+New address is 0x3974.
+Seeking to 6608 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003974.
+Got 200 bytes at offset 6608 ... terminated at 183.
+Buffer is '000039ba:65207573
+:65722070
+:726f6772
+:616d2074
+:68617420
+:666f726d
+:61747320
+:74686520
+:66696c65
+:20737973
+:74656d20
+:63616e20
+:23646566
+:696e6520
+:74686520
+:626c6f63
+:6b207369
+:7a65
+Z'
+New address is 0x39ba.
+Seeking to 6792 and returning 70 bytes!
+Placing 70 bytes at vaddr 000039ba.
+Got 200 bytes at offset 6792 ... terminated at 183.
+Buffer is '00003a00:2e204974
+:20776f75
+:6c642062
+:65207465
+:6d707469
+:6e672074
+:6f202364
+:6566696e
+:65207468
+:69732069
+:6e207468
+:6520696e
+:636c7564
+:652f6466
+:735f7368
+:61726564
+:2e682068
+:6561
+Z'
+New address is 0x3a00.
+Seeking to 6976 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003a00.
+Got 200 bytes at offset 6976 ... terminated at 183.
+Buffer is '00003a46:64657220
+:66696c65
+:2c20616e
+:64207573
+:65207468
+:65207361
+:6d652063
+:6f6e7374
+:616e7420
+:696e2074
+:6865206f
+:70657261
+:74696e67
+:20737973
+:74656d2e
+:20486f77
+:65766572
+:2c20
+Z'
+New address is 0x3a46.
+Seeking to 7160 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003a46.
+Got 200 bytes at offset 7160 ... terminated at 183.
+Buffer is '00003a8c:73696e63
+:65207468
+:6520626c
+:6f636b20
+:73697a65
+:20697320
+:636f6e66
+:69677572
+:61626c65
+:2c206966
+:20492075
+:73652079
+:6f757220
+:66696c65
+:20737973
+:74656d20
+:64726976
+:6572
+Z'
+New address is 0x3a8c.
+Seeking to 7344 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003a8c.
+Got 200 bytes at offset 7344 ... terminated at 183.
+Buffer is '00003ad2:206f6e20
+:61206669
+:6c657379
+:7374656d
+:20746861
+:74204920
+:63726561
+:74656420
+:77697468
+:20612064
+:69666665
+:72656e74
+:20626c6f
+:636b2073
+:697a652c
+:20697420
+:73686f75
+:6c64
+Z'
+New address is 0x3ad2.
+Seeking to 7528 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003ad2.
+Got 200 bytes at offset 7528 ... terminated at 183.
+Buffer is '00003b18:20737469
+:6c6c2077
+:6f726b2e
+:20496620
+:796f7520
+:75736520
+:796f7572
+:20236465
+:66696e65
+:2d642063
+:6f6e7374
+:616e742c
+:20796f75
+:2077696c
+:6c206265
+:20757369
+:6e672074
+:6865
+Z'
+New address is 0x3b18.
+Seeking to 7712 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003b18.
+Got 200 bytes at offset 7712 ... terminated at 183.
+Buffer is '00003b5e:2077726f
+:6e672062
+:6c6f636b
+:2073697a
+:652e2052
+:6563616c
+:6c207468
+:61742074
+:68652062
+:6c6f636b
+:2073697a
+:65202861
+:6e642061
+:6c6c206f
+:74686572
+:20636f6e
+:66696775
+:7261
+Z'
+New address is 0x3b5e.
+Seeking to 7896 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003b5e.
+Got 200 bytes at offset 7896 ... terminated at 183.
+Buffer is '00003ba4:626c6520
+:66696c65
+:20737973
+:74656d20
+:6f707469
+:6f6e7329
+:20617265
+:20777269
+:7474656e
+:20696e20
+:74686520
+:73757065
+:72626c6f
+:636b2073
+:74727563
+:74757265
+:2e20596f
+:7572
+Z'
+New address is 0x3ba4.
+Seeking to 8080 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003ba4.
+Got 200 bytes at offset 8080 ... terminated at 183.
+Buffer is '00003bea:20647269
+:76657220
+:74686572
+:65666f72
+:65207368
+:6f756c64
+:20757365
+:20746865
+:2076616c
+:75657320
+:696e2074
+:68652073
+:75706572
+:626c6f63
+:6b207374
+:72756374
+:75726520
+:6166
+Z'
+New address is 0x3bea.
+Seeking to 8264 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003bea.
+Got 200 bytes at offset 8264 ... terminated at 183.
+Buffer is '00003c30:74657220
+:69742069
+:73207265
+:61642066
+:726f6d20
+:74686520
+:6469736b
+:2c207261
+:74686572
+:20746861
+:6e206120
+:636f6e73
+:74616e74
+:2e596f75
+:206d6179
+:2061736b
+:2c20686f
+:7765
+Z'
+New address is 0x3c30.
+Seeking to 8448 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003c30.
+Got 200 bytes at offset 8448 ... terminated at 183.
+Buffer is '00003c76:7665722c
+:20746865
+:6e20686f
+:77206172
+:6520796f
+:75207375
+:70706f73
+:65642074
+:6f206b6e
+:6f772068
+:6f77206c
+:61726765
+:20746f20
+:6d616b65
+:20796f75
+:72206466
+:735f626c
+:6f63
+Z'
+New address is 0x3c76.
+Seeking to 8632 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003c76.
+Got 200 bytes at offset 8632 ... terminated at 183.
+Buffer is '00003cbc:6b207374
+:75637475
+:72657320
+:616e6420
+:696e6f64
+:6520616e
+:64206672
+:65652062
+:6c6f636b
+:20766563
+:746f7220
+:61727261
+:79732061
+:7420636f
+:6d70696c
+:65207469
+:6d652c20
+:6966
+Z'
+New address is 0x3cbc.
+Seeking to 8816 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003cbc.
+Got 200 bytes at offset 8816 ... terminated at 183.
+Buffer is '00003d02:20796f75
+:20776f6e
+:74206b6e
+:6f772068
+:6f772062
+:69672061
+:6e79206f
+:66207468
+:656d2061
+:72652075
+:6e74696c
+:20796f75
+:20726561
+:64207468
+:65207375
+:70657262
+:6c6f636b
+:2061
+Z'
+New address is 0x3d02.
+Seeking to 9000 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003d02.
+Got 200 bytes at offset 9000 ... terminated at 183.
+Buffer is '00003d48:74207275
+:6e207469
+:6d653f20
+:54686520
+:616e7377
+:65722069
+:73207468
+:61742079
+:6f75206d
+:75737420
+:61737369
+:676e2061
+:20236465
+:66696e65
+:2d64206d
+:6178696d
+:756d2076
+:616c
+Z'
+New address is 0x3d48.
+Seeking to 9184 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003d48.
+Got 200 bytes at offset 9184 ... terminated at 183.
+Buffer is '00003d8e:75652074
+:6f206561
+:6368206f
+:66207468
+:65736520
+:6974656d
+:732c2061
+:6e642074
+:68656e20
+:75736520
+:686f7765
+:76657220
+:6d616e79
+:20697465
+:6d732f62
+:79746573
+:20746861
+:7420
+Z'
+New address is 0x3d8e.
+Seeking to 9368 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003d8e.
+Got 200 bytes at offset 9368 ... terminated at 183.
+Buffer is '00003dd4:74686520
+:73757065
+:72626c6f
+:636b2072
+:65717569
+:72657320
+:61742072
+:756e7469
+:6d652e57
+:68656e20
+:67726164
+:696e672c
+:20776520
+:77696c6c
+:2074616b
+:65206f66
+:6620706f
+:696e
+Z'
+New address is 0x3dd4.
+Seeking to 9552 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003dd4.
+Got 200 bytes at offset 9552 ... terminated at 183.
+Buffer is '00003e1a:74732066
+:6f722075
+:73696e67
+:20616e79
+:20236465
+:66696e65
+:2d642063
+:6f6e7374
+:616e7473
+:20776865
+:72652074
+:68652073
+:75706572
+:626c6f63
+:6b20696e
+:666f726d
+:6174696f
+:6e20
+Z'
+New address is 0x3e1a.
+Seeking to 9736 and returning 70 bytes!
+Placing 70 bytes at vaddr 00003e1a.
+Got 200 bytes at offset 9736 ... terminated at 193.
+Buffer is '00003e60:636f756c
+:64206265
+:20757365
+:6420696e
+:73746561
+:642e2000
+00003e78:74657374
+:74657374
+:00
+00003e84:74657374
+:2e747874
+:00
+00003e90:727700
+00003e94:72656164
+:20646174
+:613a2025
+:730a00
+Z'
+New address is 0x3e60.
+Seeking to 9804 and returning 24 bytes!
+Placing 24 bytes at vaddr 00003e60.
+Got 200 bytes at offset 9804 ... terminated at 195.
+Buffer is '00003e78:74657374
+:74657374
+:00
+00003e84:74657374
+:2e747874
+:00
+00003e90:727700
+00003e94:72656164
+:20646174
+:613a2025
+:730a00
+00003ea4:7200
+00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+Z'
+New address is 0x3e78.
+Seeking to 9836 and returning 9 bytes!
+Placing 9 bytes at vaddr 00003e78.
+Got 200 bytes at offset 9836 ... terminated at 193.
+Buffer is '00003e84:74657374
+:2e747874
+:00
+00003e90:727700
+00003e94:72656164
+:20646174
+:613a2025
+:730a00
+00003ea4:7200
+00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+Z'
+New address is 0x3e84.
+Seeking to 9868 and returning 9 bytes!
+Placing 9 bytes at vaddr 00003e84.
+Got 200 bytes at offset 9868 ... terminated at 191.
+Buffer is '00003e90:727700
+00003e94:72656164
+:20646174
+:613a2025
+:730a00
+00003ea4:7200
+00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+:54000000
+:3c010000
+:24213e78
+Z'
+New address is 0x3e90.
+Seeking to 9884 and returning 3 bytes!
+Placing 3 bytes at vaddr 00003e90.
+Got 200 bytes at offset 9884 ... terminated at 195.
+Buffer is '00003e94:72656164
+:20646174
+:613a2025
+:730a00
+00003ea4:7200
+00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+:54000000
+:3c010000
+:24213e78
+:80280000
+:a3c8ffe8
+Z'
+New address is 0x3e94.
+Seeking to 9930 and returning 15 bytes!
+Placing 15 bytes at vaddr 00003e94.
+Got 200 bytes at offset 9930 ... terminated at 199.
+Buffer is '00003ea4:7200
+00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+:54000000
+:3c010000
+:24213e78
+:80280000
+:a3c8ffe8
+:80280001
+:a3c8ffe9
+:80280002
+:a3c8ffea
+:80280003
+Z'
+New address is 0x3ea4.
+Seeking to 9944 and returning 2 bytes!
+Placing 2 bytes at vaddr 00003ea4.
+Got 200 bytes at offset 9944 ... terminated at 195.
+Buffer is '00003ea8:6269672e
+:74787400
+00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+:54000000
+:3c010000
+:24213e78
+:80280000
+:a3c8ffe8
+:80280001
+:a3c8ffe9
+:80280002
+:a3c8ffea
+:80280003
+:a3c8ffeb
+Z'
+New address is 0x3ea8.
+Seeking to 9972 and returning 8 bytes!
+Placing 8 bytes at vaddr 00003ea8.
+Got 200 bytes at offset 9972 ... terminated at 197.
+Buffer is '00001000:afbefffc
+:001df020
+:afbffff8
+:2fbd0028
+:0c00119c
+:54000000
+:3c010000
+:24213e78
+:80280000
+:a3c8ffe8
+:80280001
+:a3c8ffe9
+:80280002
+:a3c8ffea
+:80280003
+:a3c8ffeb
+:80280004
+:a3c8ffec
+:80280005
+Z'
+New address is 0x1000.
+Seeking to 10170 and returning 76 bytes!
+Placing 76 bytes at vaddr 00001000.
+Got 200 bytes at offset 10170 ... terminated at 199.
+Buffer is ':a3c8ffed
+:80280006
+:a3c8ffee
+:80280007
+:a3c8ffef
+:80210008
+:a3c1fff0
+:23c3ffd8
+:23bdfff8
+:afa30000
+:2008000a
+:afa80004
+:0c001010
+:54000000
+:23bd0008
+:20080000
+:a3c8ffd8
+:23bdfff8
+:3c020000
+:24423e84
+Z'
+Seeking to 10370 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000104c.
+Got 200 bytes at offset 10370 ... terminated at 199.
+Buffer is ':afa20000
+:3c060000
+:24c63e90
+:afa60004
+:0c000304
+:54000000
+:00013820
+:23bdfff8
+:afa70000
+:23c5ffe8
+:afa50004
+:20080008
+:afa80008
+:0c000310
+:54000000
+:afa70000
+:2008fff8
+:afa80004
+:20080003
+:afa80008
+Z'
+Seeking to 10570 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000109c.
+Got 200 bytes at offset 10570 ... terminated at 199.
+Buffer is ':0c000300
+:54000000
+:afa70000
+:afa30004
+:20080008
+:afa80008
+:0c0002d0
+:54000000
+:3c040000
+:24843e94
+:afa40000
+:afa30004
+:0c000150
+:54000000
+:afa70000
+:0c000294
+:54000000
+:afa20000
+:3c010000
+:24213ea4
+Z'
+Seeking to 10770 and returning 80 bytes!
+Placing 80 bytes at vaddr 000010ec.
+Got 200 bytes at offset 10770 ... terminated at 199.
+Buffer is ':afa10004
+:0c000270
+:54000000
+:00013820
+:afa40000
+:afa30004
+:0c000118
+:54000000
+:afa70000
+:afa50004
+:afa80008
+:0c000278
+:54000000
+:afa70000
+:0c000248
+:54000000
+:3c080000
+:25083ea8
+:afa80000
+:afa60004
+Z'
+Seeking to 10970 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000113c.
+Got 200 bytes at offset 10970 ... terminated at 199.
+Buffer is ':0c000224
+:54000000
+:00013820
+:afa70000
+:3c020000
+:24423000
+:afa20004
+:20080e78
+:afa80008
+:0c000230
+:54000000
+:afa70000
+:afa20004
+:afa80008
+:0c00021c
+:54000000
+:afa70000
+:20080000
+:afa80004
+:20080001
+Z'
+Seeking to 11170 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000118c.
+Got 200 bytes at offset 11170 ... terminated at 199.
+Buffer is ':afa80008
+:0c00020c
+:54000000
+:afa70000
+:afa30004
+:2008000a
+:afa80008
+:0c0001dc
+:54000000
+:afa40000
+:afa30004
+:0c000064
+:54000000
+:afa70000
+:0c0001a8
+:54000000
+:23bd0010
+:0c000f80
+:54000000
+:44000213
+Z'
+Seeking to 11370 and returning 80 bytes!
+Placing 80 bytes at vaddr 000011dc.
+Got 200 bytes at offset 11370 ... terminated at 199.
+Buffer is ':4be00000
+:54000000
+:44000214
+:4be00000
+:54000000
+:44000210
+:4be00000
+:54000000
+:44000211
+:4be00000
+:54000000
+:44000212
+:4be00000
+:54000000
+:44000280
+:4be00000
+:54000000
+:44000201
+:4be00000
+:54000000
+Z'
+Seeking to 11570 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000122c.
+Got 200 bytes at offset 11570 ... terminated at 199.
+Buffer is ':44000431
+:4be00000
+:54000000
+:44000432
+:4be00000
+:54000000
+:44000440
+:4be00000
+:54000000
+:44000441
+:4be00000
+:54000000
+:44000450
+:4be00000
+:54000000
+:44000451
+:4be00000
+:54000000
+:44000452
+:4be00000
+Z'
+Seeking to 11770 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000127c.
+Got 200 bytes at offset 11770 ... terminated at 199.
+Buffer is ':54000000
+:44000453
+:4be00000
+:54000000
+:44000454
+:4be00000
+:54000000
+:44000455
+:4be00000
+:54000000
+:44000456
+:4be00000
+:54000000
+:44000457
+:4be00000
+:54000000
+:44000458
+:4be00000
+:54000000
+:44000459
+Z'
+Seeking to 11970 and returning 80 bytes!
+Placing 80 bytes at vaddr 000012cc.
+Got 200 bytes at offset 11970 ... terminated at 199.
+Buffer is ':4be00000
+:54000000
+:44000460
+:4be00000
+:54000000
+:44000461
+:4be00000
+:54000000
+:44000462
+:4be00000
+:54000000
+:44000463
+:4be00000
+:54000000
+:44000464
+:4be00000
+:54000000
+:44000465
+:4be00000
+:54000000
+Z'
+Seeking to 12170 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000131c.
+Got 200 bytes at offset 12170 ... terminated at 199.
+Buffer is ':44000466
+:4be00000
+:54000000
+:44000467
+:4be00000
+:54000000
+:44000468
+:4be00000
+:54000000
+:44000469
+:4be00000
+:54000000
+:44000470
+:4be00000
+:54000000
+:44000471
+:4be00000
+:54000000
+:44000472
+:4be00000
+Z'
+Seeking to 12370 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000136c.
+Got 200 bytes at offset 12370 ... terminated at 199.
+Buffer is ':54000000
+:44000473
+:4be00000
+:54000000
+:44000474
+:4be00000
+:54000000
+:44000475
+:4be00000
+:54000000
+:44000476
+:4be00000
+:54000000
+:44000477
+:4be00000
+:54000000
+:440004ff
+:4be00000
+:54000000
+:44000500
+Z'
+Seeking to 12570 and returning 80 bytes!
+Placing 80 bytes at vaddr 000013bc.
+Got 200 bytes at offset 12570 ... terminated at 199.
+Buffer is ':4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:afa30004
+:afa40008
+:83c20003
+:20010000
+:304300ff
+:60640020
+:1480002c
+:54000000
+:304300ff
+:60640009
+:1480001c
+:54000000
+:304300ff
+Z'
+Seeking to 12770 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000140c.
+Got 200 bytes at offset 12770 ... terminated at 199.
+Buffer is ':6064000a
+:1480000c
+:54000000
+:08000008
+:54000000
+:20010001
+:08000004
+:54000000
+:8fa20000
+:8fa30004
+:8fa40008
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+Z'
+Seeking to 12970 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000145c.
+Got 200 bytes at offset 12970 ... terminated at 199.
+Buffer is ':afa20000
+:afa30004
+:afa40008
+:83c20003
+:20010000
+:304300ff
+:6c64002f
+:1080001c
+:54000000
+:304300ff
+:70640039
+:1480005c
+:54000000
+:08000004
+:54000000
+:304300ff
+:6c640060
+:1080001c
+:54000000
+:304300ff
+Z'
+Seeking to 13170 and returning 80 bytes!
+Placing 80 bytes at vaddr 000014ac.
+Got 200 bytes at offset 13170 ... terminated at 199.
+Buffer is ':70640066
+:14800034
+:54000000
+:08000004
+:54000000
+:304300ff
+:6c640040
+:10800020
+:54000000
+:304300ff
+:70640041
+:1480000c
+:54000000
+:08000008
+:54000000
+:20010001
+:08000004
+:54000000
+:8fa20000
+:8fa30004
+Z'
+Seeking to 13370 and returning 80 bytes!
+Placing 80 bytes at vaddr 000014fc.
+Got 200 bytes at offset 13370 ... terminated at 199.
+Buffer is ':8fa40008
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:afa30004
+:8fc10000
+:afc1fff4
+:8fc10000
+:20220001
+:afc20000
+:8fc20004
+:20430001
+:afc30004
+Z'
+Seeking to 13570 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000154c.
+Got 200 bytes at offset 13570 ... terminated at 199.
+Buffer is ':80420000
+:a0220000
+:a3c2fff3
+:93c1fff3
+:64220000
+:1440000c
+:54000000
+:0800000c
+:54000000
+:0bffffc0
+:54000000
+:8fc1fff4
+:08000004
+:54000000
+:8fa20000
+:8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+Z'
+Seeking to 13770 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000159c.
+Got 200 bytes at offset 13770 ... terminated at 199.
+Buffer is ':54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:afa30004
+:8fc10000
+:afc1fff4
+:8fc10008
+:2022ffff
+:afc20008
+:70210000
+:1020000c
+:54000000
+:08000048
+:54000000
+:8fc10000
+:20220001
+:afc20000
+Z'
+Seeking to 13970 and returning 80 bytes!
+Placing 80 bytes at vaddr 000015ec.
+Got 200 bytes at offset 13970 ... terminated at 199.
+Buffer is ':8fc20004
+:20430001
+:afc30004
+:80420000
+:a0220000
+:a3c2fff3
+:93c1fff3
+:64220000
+:1440000c
+:54000000
+:0800000c
+:54000000
+:0bffffa0
+:54000000
+:8fc1fff4
+:08000004
+:54000000
+:8fa20000
+:8fa30004
+:8fdffff8
+Z'
+Seeking to 14170 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000163c.
+Got 200 bytes at offset 14170 ... terminated at 199.
+Buffer is ':001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:8fc10000
+:afc1fff4
+:8fc10000
+:90220000
+:64410000
+:1420000c
+:54000000
+:0800001c
+:54000000
+:8fc20000
+:20410001
+Z'
+Seeking to 14370 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000168c.
+Got 200 bytes at offset 14370 ... terminated at 199.
+Buffer is ':00011020
+:afc20000
+:0bffffd0
+:54000000
+:23bdfff8
+:001d0820
+:8fc20000
+:ac220000
+:8fc20004
+:ac220004
+:0ffffe5c
+:54000000
+:23bd0008
+:8fc1fff4
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+Z'
+Seeking to 14570 and returning 80 bytes!
+Placing 80 bytes at vaddr 000016dc.
+Got 200 bytes at offset 14570 ... terminated at 199.
+Buffer is ':4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:afa30004
+:54000000
+:20010000
+:afc1fff4
+:8fc1fff4
+:8fc20008
+:0022082a
+:1420000c
+:54000000
+:08000088
+:54000000
+:8fc10004
+:90220000
+Z'
+Seeking to 14770 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000172c.
+Got 200 bytes at offset 14770 ... terminated at 199.
+Buffer is ':64410000
+:14200018
+:54000000
+:20010000
+:080000d8
+:54000000
+:08000028
+:54000000
+:8fc10000
+:8fc20004
+:90210000
+:90420000
+:00220829
+:1020000c
+:54000000
+:0800003c
+:54000000
+:8fc20000
+:20410001
+:00011020
+Z'
+Seeking to 14970 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000177c.
+Got 200 bytes at offset 14970 ... terminated at 199.
+Buffer is ':afc20000
+:8fc20004
+:20410001
+:00011020
+:afc20004
+:8fc2fff4
+:20410001
+:00011020
+:afc2fff4
+:0bffff64
+:54000000
+:8fc1fff4
+:8fc20008
+:00220828
+:10200018
+:54000000
+:20010000
+:08000054
+:54000000
+:0800004c
+Z'
+Seeking to 15170 and returning 80 bytes!
+Placing 80 bytes at vaddr 000017cc.
+Got 200 bytes at offset 15170 ... terminated at 199.
+Buffer is ':54000000
+:8fc20000
+:90410000
+:8fc20004
+:90430000
+:00230822
+:74220000
+:10400020
+:54000000
+:8fc10000
+:8fc20004
+:90210000
+:90420000
+:00220829
+:08000008
+:54000000
+:2001ffff
+:08000004
+:54000000
+:8fa20000
+Z'
+Seeking to 15370 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000181c.
+Got 200 bytes at offset 15370 ... terminated at 199.
+Buffer is ':8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:20010000
+:afc1fff4
+:8fc10000
+:20220001
+:afc20000
+:90210000
+:64220000
+:1440000c
+:54000000
+Z'
+Seeking to 15570 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000186c.
+Got 200 bytes at offset 15570 ... terminated at 199.
+Buffer is ':0800001c
+:54000000
+:8fc2fff4
+:20410001
+:00011020
+:afc2fff4
+:0bffffc8
+:54000000
+:8fc1fff4
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+Z'
+Seeking to 15770 and returning 80 bytes!
+Placing 80 bytes at vaddr 000018bc.
+Got 200 bytes at offset 15770 ... terminated at 199.
+Buffer is ':2fbd0018
+:afa20000
+:23bdfff8
+:001d0820
+:8fc20004
+:ac220000
+:0fffff5c
+:54000000
+:23bd0008
+:afc1fff4
+:8fc10000
+:90220000
+:64410000
+:1420000c
+:54000000
+:08000060
+:54000000
+:23bdfff0
+:001d0820
+:8fc20000
+Z'
+Seeking to 15970 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000190c.
+Got 200 bytes at offset 15970 ... terminated at 199.
+Buffer is ':ac220000
+:8fc20004
+:ac220004
+:8fc2fff4
+:ac220008
+:0ffffdc0
+:54000000
+:23bd0010
+:64220000
+:14400010
+:54000000
+:8fc10000
+:08000028
+:54000000
+:8fc20000
+:20410001
+:00011020
+:afc20000
+:0bffff8c
+:54000000
+Z'
+Seeking to 16170 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000195c.
+Got 200 bytes at offset 16170 ... terminated at 199.
+Buffer is ':20010000
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+:54000000
+:8fc10000
+:90220000
+:64410000
+:1420000c
+:54000000
+Z'
+Seeking to 16370 and returning 80 bytes!
+Placing 80 bytes at vaddr 000019ac.
+Got 200 bytes at offset 16370 ... terminated at 199.
+Buffer is ':08000070
+:54000000
+:8fc10004
+:afc1fff4
+:8fc1fff4
+:90220000
+:64410000
+:1420000c
+:54000000
+:08000044
+:54000000
+:8fc10000
+:8fc2fff4
+:90210000
+:90420000
+:00220828
+:10200010
+:54000000
+:8fc10000
+:08000030
+Z'
+Seeking to 16570 and returning 80 bytes!
+Placing 80 bytes at vaddr 000019fc.
+Got 200 bytes at offset 16570 ... terminated at 199.
+Buffer is ':54000000
+:8fc2fff4
+:20410001
+:00011020
+:afc2fff4
+:0bffffa8
+:54000000
+:0bffff7c
+:54000000
+:20010000
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+Z'
+Seeking to 16770 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001a4c.
+Got 200 bytes at offset 16770 ... terminated at 199.
+Buffer is ':afbffff8
+:2fbd0010
+:afa20000
+:54000000
+:8fc10000
+:90220000
+:64410000
+:1420000c
+:54000000
+:08000040
+:54000000
+:8fc10000
+:90220000
+:8fc10004
+:00411028
+:10400010
+:54000000
+:8fc10000
+:08000028
+:54000000
+Z'
+Seeking to 16970 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001a9c.
+Got 200 bytes at offset 16970 ... terminated at 199.
+Buffer is ':8fc20000
+:20410001
+:00011020
+:afc20000
+:0bffffac
+:54000000
+:20010000
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0018
+:afa20000
+Z'
+Seeking to 17170 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001aec.
+Got 200 bytes at offset 17170 ... terminated at 199.
+Buffer is ':afa30004
+:8fc10000
+:68220000
+:1040002c
+:54000000
+:8fc10004
+:20220001
+:afc20004
+:2002002d
+:a0220000
+:8fc10000
+:00011022
+:afc20000
+:08000118
+:54000000
+:8fc10000
+:64220000
+:14400020
+:54000000
+:8fc10004
+Z'
+Seeking to 17370 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001b3c.
+Got 200 bytes at offset 17370 ... terminated at 199.
+Buffer is ':20220001
+:afc20004
+:20020030
+:a0220000
+:080000ec
+:54000000
+:20010001
+:afc1fff4
+:8fc1fff4
+:8fc20000
+:0022082c
+:1420000c
+:54000000
+:08000024
+:54000000
+:8fc1fff4
+:00011820
+:50620002
+:00411020
+:50410001
+Z'
+Seeking to 17570 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001b8c.
+Got 200 bytes at offset 17570 ... terminated at 199.
+Buffer is ':afc1fff4
+:0bffffc8
+:54000000
+:54000000
+:8fc1fff4
+:2002000a
+:00200035
+:00400835
+:0401000f
+:00000834
+:afc1fff4
+:8fc10004
+:20220001
+:afc20004
+:8fc20000
+:8fc3fff4
+:00400035
+:00600835
+:0401000f
+:00001034
+Z'
+Seeking to 17770 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001bdc.
+Got 200 bytes at offset 17770 ... terminated at 199.
+Buffer is ':00021820
+:20620030
+:a0220000
+:8fc10000
+:8fc3fff4
+:00200035
+:00600835
+:0401000f
+:00001034
+:8fc3fff4
+:00400035
+:00600835
+:0401000e
+:00001034
+:00220822
+:afc10000
+:8fc1fff4
+:6c220001
+:1440000c
+:54000000
+Z'
+Seeking to 17970 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001c2c.
+Got 200 bytes at offset 17970 ... terminated at 199.
+Buffer is ':0800000c
+:54000000
+:0bffff64
+:54000000
+:8fc10004
+:20020000
+:a0220000
+:8fa20000
+:8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0020
+:afa20000
+:20010000
+Z'
+Seeking to 18170 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001c7c.
+Got 200 bytes at offset 18170 ... terminated at 199.
+Buffer is ':afc1fff4
+:8fc10000
+:90220000
+:60410020
+:14200034
+:54000000
+:8fc10000
+:90220000
+:60410009
+:14200020
+:54000000
+:8fc10000
+:90220000
+:6041000a
+:1420000c
+:54000000
+:0800001c
+:54000000
+:8fc20000
+:20410001
+Z'
+Seeking to 18370 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001ccc.
+Got 200 bytes at offset 18370 ... terminated at 199.
+Buffer is ':00011020
+:afc20000
+:0bffffa8
+:54000000
+:8fc10004
+:64220000
+:10400010
+:54000000
+:8fc10004
+:8fc20000
+:ac220000
+:8fc10000
+:90220000
+:64410000
+:14200010
+:54000000
+:8fc1fff4
+:08000294
+:54000000
+:8fc10000
+Z'
+Seeking to 18570 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001d1c.
+Got 200 bytes at offset 18570 ... terminated at 199.
+Buffer is ':90220000
+:6041002d
+:10200024
+:54000000
+:2001ffff
+:afc1ffec
+:8fc20000
+:20410001
+:00011020
+:afc20000
+:0800000c
+:54000000
+:20010001
+:afc1ffec
+:8fc10008
+:64220000
+:14400090
+:54000000
+:8fc10000
+:90220000
+Z'
+Seeking to 18770 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001d6c.
+Got 200 bytes at offset 18770 ... terminated at 199.
+Buffer is ':60410030
+:10200074
+:54000000
+:8fc20000
+:20410001
+:00011020
+:afc20000
+:8fc10000
+:90220000
+:60410078
+:14200020
+:54000000
+:8fc10000
+:90220000
+:60410058
+:1420000c
+:54000000
+:08000024
+:54000000
+:20010010
+Z'
+Seeking to 18970 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001dbc.
+Got 200 bytes at offset 18970 ... terminated at 199.
+Buffer is ':afc10008
+:8fc20000
+:20410001
+:00011020
+:afc20000
+:0800000c
+:54000000
+:20010008
+:afc10008
+:0800000c
+:54000000
+:2001000a
+:afc10008
+:8fc10008
+:70220000
+:1440001c
+:54000000
+:8fc10008
+:6c220010
+:1440000c
+Z'
+Seeking to 19170 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001e0c.
+Got 200 bytes at offset 19170 ... terminated at 199.
+Buffer is ':54000000
+:08000010
+:54000000
+:8fc1fff4
+:08000188
+:54000000
+:54000000
+:8fc10000
+:90220000
+:6c41002f
+:10200030
+:54000000
+:8fc10000
+:90220000
+:70410039
+:1020001c
+:54000000
+:8fc10000
+:90220000
+:2041ffd0
+Z'
+Seeking to 19370 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001e5c.
+Got 200 bytes at offset 19370 ... terminated at 199.
+Buffer is ':afc1fff0
+:0800008c
+:54000000
+:8fc10000
+:90220000
+:6c410060
+:10200030
+:54000000
+:8fc10000
+:90220000
+:7041007a
+:1020001c
+:54000000
+:8fc10000
+:90220000
+:2041ffa9
+:afc1fff0
+:0800004c
+:54000000
+:8fc10000
+Z'
+Seeking to 19570 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001eac.
+Got 200 bytes at offset 19570 ... terminated at 199.
+Buffer is ':90220000
+:6c410040
+:10200030
+:54000000
+:8fc10000
+:90220000
+:7041005a
+:1020001c
+:54000000
+:8fc10000
+:90220000
+:2041ffc9
+:afc1fff0
+:0800000c
+:54000000
+:200103e8
+:afc1fff0
+:8fc1fff0
+:8fc20008
+:0022082a
+Z'
+Seeking to 19770 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001efc.
+Got 200 bytes at offset 19770 ... terminated at 199.
+Buffer is ':10200040
+:54000000
+:8fc1fff4
+:8fc20008
+:00200035
+:00400835
+:0401000e
+:00000834
+:afc1fff4
+:8fc1fff4
+:8fc2fff0
+:00220820
+:afc1fff4
+:8fc20000
+:20410001
+:00011020
+:afc20000
+:8fc1fff0
+:8fc20008
+:0022082a
+Z'
+Seeking to 19970 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001f4c.
+Got 200 bytes at offset 19970 ... terminated at 199.
+Buffer is ':1420000c
+:54000000
+:0800000c
+:54000000
+:0bfffec8
+:54000000
+:8fc10004
+:64220000
+:10400010
+:54000000
+:8fc10004
+:8fc20000
+:ac220000
+:8fc1fff4
+:8fc2ffec
+:00200035
+:00400835
+:0401000e
+:00000834
+:afc1fff4
+Z'
+Seeking to 20170 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001f9c.
+Got 200 bytes at offset 20170 ... terminated at 199.
+Buffer is ':8fc1fff4
+:08000004
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0010
+:afa20000
+:afa30004
+:54000000
+:8fc10008
+:2022ffff
+:afc20008
+:6c210000
+Z'
+Seeking to 20370 and returning 80 bytes!
+Placing 80 bytes at vaddr 00001fec.
+Got 200 bytes at offset 20370 ... terminated at 199.
+Buffer is ':1420000c
+:54000000
+:0800002c
+:54000000
+:8fc10004
+:20220001
+:afc20004
+:8fc20000
+:20430001
+:afc30000
+:80420000
+:a0220000
+:0bffffbc
+:54000000
+:8fa20000
+:8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+Z'
+Seeking to 20570 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000203c.
+Got 200 bytes at offset 20570 ... terminated at 199.
+Buffer is ':54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0010
+:afa20000
+:54000000
+:8fc10004
+:2022ffff
+:afc20004
+:6c210000
+:1420000c
+:54000000
+:08000020
+:54000000
+:8fc10000
+:20220001
+:afc20000
+:20020000
+:a0220000
+Z'
+Seeking to 20770 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000208c.
+Got 200 bytes at offset 20770 ... terminated at 199.
+Buffer is ':0bffffc8
+:54000000
+:8fa20000
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0010
+:afa20000
+:afa30004
+:8fc10000
+:8fc20004
+:0022182c
+:14600008
+:54000000
+:8fc10004
+Z'
+Seeking to 20970 and returning 80 bytes!
+Placing 80 bytes at vaddr 000020dc.
+Got 200 bytes at offset 20970 ... terminated at 199.
+Buffer is ':08000004
+:54000000
+:8fa20000
+:8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:afbefffc
+:001df020
+:afbffff8
+:2fbd0010
+:afa20000
+:afa30004
+:8fc10000
+:8fc20004
+:0022182d
+:14600008
+:54000000
+Z'
+Seeking to 21170 and returning 80 bytes!
+Placing 80 bytes at vaddr 0000212c.
+Got 150 bytes at offset 21170 ... terminated at 149.
+Buffer is ':8fc10004
+:08000004
+:54000000
+:8fa20000
+:8fa30004
+:8fdffff8
+:001ee820
+:8fdefffc
+:4be00000
+:54000000
+:44000300
+:4be00000
+:54000000
+:4be00000
+:54000000
+Z'
+Seeking to 21320 and returning 60 bytes!
+Placing 60 bytes at vaddr 0000217c.
+AQueueAllocLink: allocating link
+Setting currentPCB=0x20fc0, stackframe=0x4fe8c
+Leaving ProcessFork (filetest.dlx.obj)
+ProcessFork (31): function complete
+ClkStart: clock started
+Interrupt cause=0x8000472 iar=0x13b8 isr=0x100 args=0x0000fbc4.
+TrapFileOpenHandler: just parsed filename (test.txt) from trapArgs
+TrapFileOpenHandler: just parsed filename (test.txt) from trapArgs
+TrapFileOpenHandler: just parsed mode (rw) from trapArgs
+TrapFileOpenHandler: just parsed mode (rw) from trapArgs
+TrapFileOpenHandler: calling FileOpen("test.txt", "rw")
+TrapFileOpenHandler: calling FileOpen("test.txt", "rw")
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 2.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 2.
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 1.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 1.
+starting max size (should be 0)0
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13b8 isr=0x100 args=0x0000fbc4.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000476 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+allocating block number 0
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Block: 0, Bytes written: 0, num_bytes: 8
+writing to some point in  block 
+num bytes - bytes written: 8
+Blocknum: 148, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000477 iar=0x13f4 isr=0x100 args=0x0000fbbc.
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13f4 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000475 iar=0x13dc isr=0x100 args=0x0000fbbc.
+Blocknum: 148, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13dc isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000201 iar=0x1274 isr=0x100 args=0x0000fbbc.
+Got a printf trap!
+read data: testtest
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x1274 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000473 iar=0x13c4 isr=0x100 args=0x0000fbbc.
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13c4 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000472 iar=0x13b8 isr=0x100 args=0x0000fbbc.
+TrapFileOpenHandler: just parsed filename (test.txt) from trapArgs
+TrapFileOpenHandler: just parsed filename (test.txt) from trapArgs
+TrapFileOpenHandler: just parsed mode (r) from trapArgs
+TrapFileOpenHandler: just parsed mode (r) from trapArgs
+TrapFileOpenHandler: calling FileOpen("test.txt", "r")
+TrapFileOpenHandler: calling FileOpen("test.txt", "r")
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 2.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 2.
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 1.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 1.
+starting max size (should be 0)0
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13b8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000201 iar=0x1274 isr=0x100 args=0x0000fbbc.
+Got a printf trap!
+read data: testtest
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x1274 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000476 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+FileWrite attempt to write a file not set for reading!
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000473 iar=0x13c4 isr=0x100 args=0x0000fbbc.
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13c4 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000472 iar=0x13b8 isr=0x100 args=0x0000fbbc.
+TrapFileOpenHandler: just parsed filename (big.txt) from trapArgs
+TrapFileOpenHandler: just parsed filename (big.txt) from trapArgs
+TrapFileOpenHandler: just parsed mode (rw) from trapArgs
+TrapFileOpenHandler: just parsed mode (rw) from trapArgs
+TrapFileOpenHandler: calling FileOpen("big.txt", "rw")
+TrapFileOpenHandler: calling FileOpen("big.txt", "rw")
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 2.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 2.
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 1.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 1.
+starting max size (should be 0)0
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13b8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+ClkInterrupt: calling ProcessSchedule
+Now entering ProcessSchedule (cur=0x20fc0, 1 ready)
+About to switch to PCB 0x20fc0,flags=0x202 @ 0x0
+Leaving ProcessSchedule (cur=0x20fc0)
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13b8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000476 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+allocating block number 0
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 1
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 2
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 3
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 4
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 5
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 6
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 7
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Block: 0, Bytes written: 0, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 1, Bytes written: 512, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 2, Bytes written: 1024, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 3, Bytes written: 1536, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 4, Bytes written: 2048, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 5, Bytes written: 2560, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 6, Bytes written: 3072, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 7, Bytes written: 3584, num_bytes: 3704
+writing to some point in  block 
+num bytes - bytes written: 120
+Blocknum: 164, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+About to return from dointerrupt.
+Interrupt cause=0x40 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+Got a timer interrupt!
+About to return from dointerrupt.
+Interrupt cause=0x8000476 iar=0x13e8 isr=0x100 args=0x0000fbbc.
+allocating block number 8
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 9
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+allocating block number 10
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+allocating block number 11
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+allocating block number 12
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+allocating block number 13
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+allocating block number 14
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+LockAcquire: Old interrupt value was 0xf.
+LockAcquire: Proc 31 asking for lock 0.
+LockAcquire: lock is available, assigning to proc 31
+LockRelease: Proc 31 releasing lock 0.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 7, Bytes written: 0, num_bytes: 3704
+start in middle of block! 
+Blocknum: 164, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 8, Bytes written: 392, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 9, Bytes written: 904, num_bytes: 3704
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 10, Bytes written: 1416, num_bytes: 3704
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 11, Bytes written: 1928, num_bytes: 3704
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 12, Bytes written: 2440, num_bytes: 3704
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 13, Bytes written: 2952, num_bytes: 3704
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+writing to end of block 
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Block: 14, Bytes written: 3464, num_bytes: 3704
+Blocknum: 170, blocksize: 512
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Read another physical block!
+Attepmting to open /tmp/ee469g02.img mode=1.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 1.
+Opened /tmp/ee469g02.img in FS 0, mode=1 slot=1.
+Done!
+writing to some point in  block 
+num bytes - bytes written: 240
+Interrupt cause=0x3 iar=0x11788 isr=0x14f args=0x0004ea64.
+Exiting after illegal access at iar=0x11788, isr=0x14f
+GracefulExit: closing filesystem and exiting simulator
+GracefulExit: closing filesystem and exiting simulator
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Attepmting to open /tmp/ee469g02.img mode=3.
+File /tmp/ee469g02.img opening in file system 0.
+Attempting to open file /tmp/ee469g02.img into desc 1, mode 3.
+Opened /tmp/ee469g02.img in FS 0, mode=3 slot=1.
+Exiting at program request.
+Instructions executed: 7098832
+Time simulated: 7.099 secs
+Real time elapsed: 0.505 secs
+Execution rate: 14.05M simulated instructions per real second.

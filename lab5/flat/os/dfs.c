@@ -289,13 +289,13 @@ int DfsReadBlock(uint32 blocknum, dfs_block *b) {
   uint32 physical_blocknum;
   disk_block temp;
 
-  if(fbv[fbv_index] & (0x1 << fbv_bit)){
+  if(fbv[fbv_index] & (0x1 << (fbv_bit-1))){
 
     physical_blocknum = blocknum * (sb.dfs_blocksize / DISK_BLOCKSIZE);
 
     //if true read entire block 
     //put it in dfs_block *b
-    if(DiskReadBlock(physical_blocknum, &temp) == sb.dfs_blocksize){
+    if(DiskReadBlock(physical_blocknum, &temp) != sb.dfs_blocksize){
       bcopy(temp.data, b->data, DISK_BLOCKSIZE);
 
       DiskReadBlock(physical_blocknum+1, &temp);
@@ -441,7 +441,7 @@ uint32 DfsInodeOpen(char *filename) {
 
 int DfsInodeDelete(uint32 handle) {
   int i = 0;
-  uint32 indirect_table[sb.dfs_blocksize/32];
+  uint32 indirect_table[sb.dfs_blocksize/4];
   dfs_block indirect_table_block;
 
   if(!inodes[handle].inuse) { printf("Invalid inode handle!\n"); return DFS_FAIL; }
@@ -580,12 +580,11 @@ int DfsInodeWriteBytes(uint32 handle, void *mem, int start_byte, int num_bytes) 
   if(!inodes[handle].inuse) { printf("Invalid inode handle!\n"); return DFS_FAIL; }
 
   // Allocate all blocks need in write that are not allocated
-  for(i = 0; i <=( (start_byte + num_bytes) / sb.dfs_blocksize) +1; i++) {
+  for(i = 0; i <=( (start_byte + num_bytes) / sb.dfs_blocksize); i++) {
     // Block translation
     blocknum = DfsInodeTranslateVirtualToFilesys(handle, i);
     // If translation is 0, then allocate a block
     if(blocknum == 0) {
-      printf("allocating block number %d\n", i);
       if(DfsInodeAllocateVirtualBlock(handle, i) == DFS_FAIL) {
         printf("DfsInodeWriteBytes failed to allocate a new block!\n");
         return DFS_FAIL;
@@ -595,18 +594,16 @@ int DfsInodeWriteBytes(uint32 handle, void *mem, int start_byte, int num_bytes) 
 
   for(i = start_byte / sb.dfs_blocksize; i <= (start_byte + num_bytes) / sb.dfs_blocksize; i++) {
     // Print bytes written compared to number of bytes
-    printf("Block: %d, Bytes written: %d, num_bytes: %d\n", i, bytes_written, num_bytes);
+    //printf("Block: %d, Bytes written: %d, num_bytes: %d\n", i, bytes_written, num_bytes);
 
     // Get a data block from table
     blocknum = DfsInodeTranslateVirtualToFilesys(handle, i);
 
     // Copy bytes to buffer
     if(start != 0) {
-        printf("start in middle of block! \n");
       // Decide how many bytes to write
       if((start_byte / sb.dfs_blocksize) == ((start_byte + num_bytes) / sb.dfs_blocksize)) {
         // Writing completely inside a single block
-        printf("completely inside of block! \n");
         block_bytes = num_bytes;
       } else {
         // Writing to until end of block
@@ -630,7 +627,6 @@ int DfsInodeWriteBytes(uint32 handle, void *mem, int start_byte, int num_bytes) 
     } else {
       // Write from beginning to end of block
       if((num_bytes - bytes_written) > sb.dfs_blocksize) {
-        printf("writing to end of block \n");
         // Copy data from buffer
         bcopy((char*)(mem + bytes_written), temp_block.data, sb.dfs_blocksize);
         // Write entire block
@@ -642,7 +638,6 @@ int DfsInodeWriteBytes(uint32 handle, void *mem, int start_byte, int num_bytes) 
         //bytes_written += block_bytes;
 	block_bytes = sb.dfs_blocksize;
       } else {
-        printf("writing to some point in  block \n");
         // Write until some point
         // Read block from disk, modify it, and write back
         // Read block from disk
@@ -651,8 +646,7 @@ int DfsInodeWriteBytes(uint32 handle, void *mem, int start_byte, int num_bytes) 
           return DFS_FAIL;
         }
         // Modify the block
-        printf("num bytes - bytes written: %d\n", num_bytes-bytes_written);
-        bcopy((char*)(mem + bytes_written), temp_block.data, num_bytes - bytes_written);
+        bcopy((char*)(mem + bytes_written), temp_block.data, (num_bytes - bytes_written));
         // Write block back to disk
         if(DfsWriteBlock(blocknum, &temp_block) == DFS_FAIL) {
           printf("DfsInodeWriteBytes failed to write a block: blocknum\n");
@@ -701,9 +695,9 @@ uint32 DfsInodeFilesize(uint32 handle) {
 
 uint32 DfsInodeAllocateVirtualBlock(uint32 handle, uint32 virtual_blocknum) {
   dfs_block indirect_block;
-  uint32 indirect_table[sb.dfs_blocksize/32];
+  uint32 indirect_table[sb.dfs_blocksize/4];
   uint32 return_blocknum;
-
+  int i;
   bzero(indirect_block.data, DFS_BLOCKSIZE);
 
   // Decide if direct or indirect space
@@ -737,14 +731,14 @@ uint32 DfsInodeAllocateVirtualBlock(uint32 handle, uint32 virtual_blocknum) {
       return DFS_FAIL;
     }
     // Copy block into array
-    bcopy(indirect_block.data, (char*)&indirect_table, sb.dfs_blocksize);
+    bcopy(indirect_block.data, (char*)indirect_table, sb.dfs_blocksize);
     // Allocate a block and store in indirect table
     if((indirect_table[virtual_blocknum - 10] = DfsAllocateBlock()) == DFS_FAIL) {
       printf("DfsInodeAllocateVirtualBlock failed to allocate a new block!\n");
       return DFS_FAIL;
     }
     // Copy back into block structure
-    bcopy((char*)&indirect_table, indirect_block.data, sb.dfs_blocksize);
+    bcopy((char*)indirect_table, indirect_block.data, sb.dfs_blocksize);
     // Write back to disk
     if(DfsWriteBlock(inodes[handle].vblock_index, &indirect_block) == DFS_FAIL) {
       printf("DfsInodeAllocateVirtualBlock failed to write a block: %d\n", inodes[handle].vblock_index);
@@ -767,7 +761,7 @@ uint32 DfsInodeAllocateVirtualBlock(uint32 handle, uint32 virtual_blocknum) {
 
 uint32 DfsInodeTranslateVirtualToFilesys(uint32 handle, uint32 virtual_blocknum) {
   dfs_block indirect_block;
-  uint32 indirect_table[sb.dfs_blocksize/32];
+  uint32 indirect_table[sb.dfs_blocksize/4];
 
   // Zero indirect_block
   bzero(indirect_block.data, DFS_BLOCKSIZE);
@@ -784,7 +778,7 @@ uint32 DfsInodeTranslateVirtualToFilesys(uint32 handle, uint32 virtual_blocknum)
   // Read indirect block
   DfsReadBlock(inodes[handle].vblock_index, &indirect_block);
   // Copy into array
-  bcopy(indirect_block.data, (char*)indirect_table, sb.dfs_blocksize/32);
+  bcopy(indirect_block.data, (char*)indirect_table, sb.dfs_blocksize/4);
   // Return block number
   return indirect_table[virtual_blocknum-10];
 }
